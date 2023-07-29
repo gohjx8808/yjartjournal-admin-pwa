@@ -41,6 +41,8 @@
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",
     "eslint": "^8.44.0",
+    "eslint-config-prettier": "^8.9.0",
+    "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
@@ -50,6 +52,8 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "lint-staged": "^13.2.3",
     "ng-lint-staged": "^12.0.4",
+    "prettier": "^3.0.0",
+    "prettier-eslint": "^15.0.1",
     "typescript": "~5.1.3"
   }
 }
