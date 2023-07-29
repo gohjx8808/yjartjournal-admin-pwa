@@ -10,8 +10,8 @@
     "lint": "ng lint"
   },
   "lint-staged": {
-    "src/**/*.{ts,css,html}": [
-      "ng lint"
+    "*.{ts,css,html}": [
+      "ng lint --fix"
     ]
   },
   "private": true,
