@@ -1,6 +1,6 @@
 {
-  "name": "yjartjournal-admin-pwa",
-  "short_name": "yjartjournal-admin-pwa",
+  "name": "YJArtJournal Admin",
+  "short_name": "YJAJ Admin",
   "theme_color": "#1976d2",
   "background_color": "#fafafa",
   "display": "standalone",
