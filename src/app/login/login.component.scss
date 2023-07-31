@@ -1,0 +1,22 @@
+.login-card {
+  max-width: 50vw;
+}
+
+.login-card-header {
+  justify-content: center;
+  text-align: center;
+}
+
+.login-card-icon {
+  width: 40%;
+  align-self: center;
+  display: flex;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.login-card-content {
+  margin: 0px 20px;
+  flex-direction: column;
+  display: flex;
+}
