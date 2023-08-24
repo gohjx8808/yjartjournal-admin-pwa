@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-login',
@@ -8,15 +9,24 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginComponent {
   hide = true;
-  loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
-  });
+  loginForm: FormGroup;
+
+  constructor(
+    private api: ApiService,
+    formBuilder: NonNullableFormBuilder
+  ) {
+    this.loginForm = formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
+  }
 
   onSubmit = () => {
     if (!this.loginForm.valid) {
       this.loginForm.markAllAsTouched();
     }
-    console.log(this.loginForm.value);
+    this.api.login({ ...this.loginForm.value, role: 1 }).subscribe(res => {
+      console.log(res);
+    });
   };
 }

@@ -12,22 +12,23 @@
       <mat-form-field
         appearance="outline"
         [class.error-msg-container]="
-          loginForm.controls.email.touched && loginForm.controls.email.errors
+          loginForm.controls['email'].touched &&
+          loginForm.controls['email'].errors
         ">
         <mat-label>Email</mat-label>
         <input matInput type="email" formControlName="email" />
-        <mat-error *ngIf="loginForm.controls.email.errors?.['required']">
+        <mat-error *ngIf="loginForm.controls['email'].errors?.['required']">
           Email is required.
         </mat-error>
-        <mat-error *ngIf="loginForm.controls.email.errors?.['email']">
+        <mat-error *ngIf="loginForm.controls['email'].errors?.['email']">
           Email is invalid.
         </mat-error>
       </mat-form-field>
       <mat-form-field
         appearance="outline"
         [class.error-msg-container]="
-          loginForm.controls.password.touched &&
-          loginForm.controls.password.errors
+          loginForm.controls['password'].touched &&
+          loginForm.controls['password'].errors
         ">
         <mat-label>Password</mat-label>
         <input
@@ -42,7 +43,7 @@
           [attr.aria-pressed]="hide">
           <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
         </button>
-        <mat-error *ngIf="loginForm.controls.password.errors?.['required']">
+        <mat-error *ngIf="loginForm.controls['password'].errors?.['required']">
           Password is required.
         </mat-error>
       </mat-form-field>
