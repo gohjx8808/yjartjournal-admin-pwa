@@ -10,6 +10,7 @@ import { ApiService } from '../api.service';
 export class LoginComponent {
   hide = true;
   loginForm: FormGroup;
+  submitLoading = false;
 
   constructor(
     private api: ApiService,
@@ -24,9 +25,17 @@ export class LoginComponent {
   onSubmit = () => {
     if (!this.loginForm.valid) {
       this.loginForm.markAllAsTouched();
+    } else {
+      this.submitLoading = true;
+      this.api.login({ ...this.loginForm.value, role: 1 }).subscribe({
+        next: res => {
+          this.submitLoading = false;
+          console.log(res);
+        },
+        error: () => {
+          this.submitLoading = false;
+        },
+      });
     }
-    this.api.login({ ...this.loginForm.value, role: 1 }).subscribe(res => {
-      console.log(res);
-    });
   };
 }
