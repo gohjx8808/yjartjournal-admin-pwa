@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +16,7 @@ export class LoginComponent {
 
   constructor(
     private api: ApiService,
+    private snackbar: MatSnackBar,
     formBuilder: NonNullableFormBuilder
   ) {
     this.loginForm = formBuilder.group({
@@ -32,8 +35,12 @@ export class LoginComponent {
           this.submitLoading = false;
           console.log(res);
         },
-        error: () => {
+        error: (err: HttpErrorResponse) => {
           this.submitLoading = false;
+          this.snackbar.open(err.statusText || 'Error', 'CLOSE', {
+            duration: 5000,
+            panelClass: 'app-notification-error',
+          });
         },
       });
     }
