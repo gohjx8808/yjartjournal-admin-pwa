@@ -3,6 +3,7 @@ import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { ApiService } from '../api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent {
   constructor(
     private api: ApiService,
     private snackbar: MatSnackBar,
+    private router: Router,
     formBuilder: NonNullableFormBuilder
   ) {
     this.loginForm = formBuilder.group({
@@ -33,7 +35,7 @@ export class LoginComponent {
       this.api.login({ ...this.loginForm.value, role: 1 }).subscribe({
         next: res => {
           this.submitLoading = false;
-          console.log(res);
+          this.router.navigate(['dashboard']);
         },
         error: (err: HttpErrorResponse) => {
           this.submitLoading = false;
