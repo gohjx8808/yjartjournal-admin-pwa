@@ -1,0 +1,17 @@
+<mat-drawer-container autosize hasBackdrop class="drawer-container">
+  <mat-drawer #drawer mode="side">
+    <p>Auto-resizing sidenav</p>
+    <a routerLink="/test">test</a>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mat-toolbar>
+      <button
+        mat-icon-button
+        aria-label="Icon button to open sidenav"
+        (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-drawer-content>
+</mat-drawer-container>
