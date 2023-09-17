@@ -15,6 +15,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatToolbarModule } from '@angular/material/toolbar';
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
@@ -36,6 +38,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatInputModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
+    MatToolbarModule,
     ReactiveFormsModule,
     HttpClientModule,
   ],
