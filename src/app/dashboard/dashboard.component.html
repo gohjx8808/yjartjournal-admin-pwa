@@ -1,6 +1,15 @@
-<mat-toolbar>
-  <button mat-icon-button aria-label="Icon button to open sidenav">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>Dashboard</span>
-</mat-toolbar>
+<mat-drawer-container autosize hasBackdrop class="drawer-container">
+  <mat-drawer #drawer mode="side">
+    <p>Auto-resizing sidenav</p>
+    <a routerLink="/test">test</a>
+  </mat-drawer>
+  <mat-toolbar>
+    <button
+      mat-icon-button
+      aria-label="Icon button to open sidenav"
+      (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <router-outlet></router-outlet>
+  </mat-toolbar>
+</mat-drawer-container>

@@ -17,9 +17,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { TestComponent } from './test/test.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    DashboardComponent,
+    TestComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
