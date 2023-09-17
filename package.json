@@ -13,7 +13,7 @@
     "src/**/*.{ts,css,html}": [
       "ng-lint-staged lint --fix --"
     ],
-    "src/**/*.{scss}": [
+    "src/**/*.scss": [
       "stylelint --fix \"src/**/*.scss\""
     ]
   },
