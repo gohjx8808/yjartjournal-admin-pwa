@@ -1,16 +1,27 @@
 <app-layout>
   <div class="dashboard-content">
     <app-statistics-card
-      title="test"
-      textContent="content test"></app-statistics-card>
+      title="Total Yarn Stock"
+      textContent="{{
+        dashboardData?.yarnStockOverview?.totalYarn
+      }}"></app-statistics-card>
     <app-statistics-card
-      title="test"
-      textContent="content test"></app-statistics-card>
+      customContentStyle="{{
+        dashboardData?.yarnStockOverview?.totalReorderYarn || 0 > 0
+          ? 'reorder-required'
+          : 'stock-sufficient'
+      }}"
+      title="Total Reorder Yarn Stock"
+      textContent="{{
+        dashboardData?.yarnStockOverview?.totalReorderYarn
+      }}"></app-statistics-card>
     <app-statistics-card
-      title="test"
-      textContent="content test"></app-statistics-card>
+      title="Total Yarn Category"
+      textContent="{{ dashboardData?.categoryCount }}"></app-statistics-card>
     <app-statistics-card
-      title="test"
-      textContent="content test"></app-statistics-card>
+      title="Total Yarn Color Category"
+      textContent="{{
+        dashboardData?.colorCategoryCount
+      }}"></app-statistics-card>
   </div>
 </app-layout>

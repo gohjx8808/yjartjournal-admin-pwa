@@ -8,4 +8,5 @@ import { Component, Input } from '@angular/core';
 export class StatisticsCardComponent {
   @Input() title = '';
   @Input() textContent = '';
+  @Input() customContentStyle?: string | null = null;
 }

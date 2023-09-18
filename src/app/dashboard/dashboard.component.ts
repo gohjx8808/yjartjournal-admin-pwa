@@ -7,9 +7,11 @@ import { ApiService } from '../services/api.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
+  dashboardData: dashboard.yarnStockOverview | null = null;
+
   constructor(private apiService: ApiService) {
-    this.apiService
-      .getYarnStockOverview()
-      .subscribe(data => console.log(data.data));
+    this.apiService.getYarnStockOverview().subscribe(res => {
+      this.dashboardData = res.data;
+    });
   }
 }

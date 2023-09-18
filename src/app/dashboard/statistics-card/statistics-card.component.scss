@@ -1,5 +1,21 @@
 .card-container {
   width: 28vw;
+  height: 25vh;
   margin-top: 15px;
   margin-bottom: 15px;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.card-content {
+  color: deepskyblue;
+}
+
+.reorder-required {
+  color: red;
+}
+
+.stock-sufficient {
+  color: green;
 }
