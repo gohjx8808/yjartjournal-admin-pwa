@@ -33,7 +33,8 @@ export class LoginComponent {
     } else {
       this.submitLoading = true;
       this.api.login({ ...this.loginForm.value, role: 1 }).subscribe({
-        next: () => {
+        next: res => {
+          localStorage.setItem('TOKEN', res.data.accessToken);
           this.submitLoading = false;
           this.router.navigate(['dashboard']);
         },
