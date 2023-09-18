@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./statistics-card.component.scss'],
 })
 export class StatisticsCardComponent {
-  @Input() title = '';
-  @Input() textContent = '';
-  @Input() customContentStyle?: string | null = null;
+  @Input({ required: true }) title = '';
+  @Input({ required: true }) textContent = '';
+  @Input() customContentStyle?: string = undefined;
 }

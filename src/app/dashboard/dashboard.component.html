@@ -24,4 +24,16 @@
         dashboardData?.colorCategoryCount
       }}"></app-statistics-card>
   </div>
+  <div class="chart-content">
+    <app-chart-card
+      title="Yarn Stock Yarn Category"
+      [chartData]="
+        dashboardData?.yarnStockOverview?.categoryChart
+      "></app-chart-card>
+    <app-chart-card
+      title="Yarn Stock Yarn Color Category"
+      [chartData]="
+        dashboardData?.yarnStockOverview?.colorCategoryChart
+      "></app-chart-card>
+  </div>
 </app-layout>

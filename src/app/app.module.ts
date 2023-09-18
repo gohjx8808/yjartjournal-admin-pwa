@@ -21,6 +21,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
 import { FooterComponent } from './footer/footer.component';
 import { StatisticsCardComponent } from './dashboard/statistics-card/statistics-card.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartCardComponent } from './dashboard/chart-card/chart-card.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { StatisticsCardComponent } from './dashboard/statistics-card/statistics-
     YarnStockComponent,
     FooterComponent,
     StatisticsCardComponent,
+    ChartCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,6 +56,7 @@ import { StatisticsCardComponent } from './dashboard/statistics-card/statistics-
     MatSidenavModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxChartsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
