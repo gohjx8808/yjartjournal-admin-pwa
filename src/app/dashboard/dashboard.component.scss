@@ -1,7 +1,6 @@
 .dashboard-content {
   padding: 50px;
-  flex-direction: row;
+  flex-flow: row wrap;
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrap;
 }
