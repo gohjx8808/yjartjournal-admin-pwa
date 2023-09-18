@@ -19,6 +19,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
     LayoutComponent,
     DashboardComponent,
     YarnStockComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
