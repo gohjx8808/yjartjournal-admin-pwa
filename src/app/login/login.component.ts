@@ -33,7 +33,7 @@ export class LoginComponent {
     } else {
       this.submitLoading = true;
       this.api.login({ ...this.loginForm.value, role: 1 }).subscribe({
-        next: res => {
+        next: () => {
           this.submitLoading = false;
           this.router.navigate(['dashboard']);
         },
