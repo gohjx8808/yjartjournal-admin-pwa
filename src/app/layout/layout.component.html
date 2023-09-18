@@ -5,9 +5,7 @@
       <button
         mat-button
         (click)="onItemsSelected(item.route)"
-        color="{{
-          item.route.includes(currentRouteUrl) ? 'primary' : 'default'
-        }}">
+        color="{{ item === currentItem ? 'primary' : 'default' }}">
         <mat-icon>{{ item.icon }}</mat-icon>
         {{ item.name }}
       </button>
@@ -21,6 +19,7 @@
         (click)="drawer.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
+      {{ currentItem.name }}
     </mat-toolbar>
     <ng-content></ng-content>
     <app-footer></app-footer>

@@ -10,19 +10,22 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class LayoutComponent {
   @ViewChild('drawer') drawer!: MatDrawer;
 
-  currentRouteUrl = '';
+  drawerNavItems: layout.drawerItem[] = [
+    { name: 'Dashboard', icon: 'home', route: '/dashboard' },
+    { name: 'Yarn Stock', icon: 'inventory', route: '/yarn-stock' },
+  ];
+
+  currentItem: layout.drawerItem = this.drawerNavItems[0];
 
   constructor(
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.currentRouteUrl = this.route.snapshot.url.join('/');
+    const currentRouteUrl = this.route.snapshot.url.join('/');
+    this.currentItem =
+      this.drawerNavItems.find(item => item.route.includes(currentRouteUrl)) ||
+      this.drawerNavItems[0];
   }
-
-  drawerNavItems: layout.drawerItem[] = [
-    { name: 'Dashboard', icon: 'home', route: '/dashboard' },
-    { name: 'Yarn Stock', icon: 'inventory', route: '/yarn-stock' },
-  ];
 
   onItemsSelected(route: string) {
     this.router.navigate([route]);
