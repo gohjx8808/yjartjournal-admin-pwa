@@ -1,28 +1,28 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
-import { NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent {
   @ViewChild('drawer') drawer!: MatDrawer;
 
-  constructor(private router: Router) {}
+  currentRouteUrl = '';
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.currentRouteUrl = this.route.snapshot.url.join('/');
+  }
 
   drawerNavItems: layout.drawerItem[] = [
     { name: 'Dashboard', icon: 'home', route: '/dashboard' },
+    { name: 'Yarn Stock', icon: 'inventory', route: '/yarn-stock' },
   ];
-
-  ngOnInit() {
-    this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
-        console.log('Route has changed to:', event.url);
-      }
-    });
-  }
 
   onItemsSelected(route: string) {
     this.router.navigate([route]);

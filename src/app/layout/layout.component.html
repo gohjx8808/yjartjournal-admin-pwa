@@ -1,13 +1,17 @@
 <mat-drawer-container autosize hasBackdrop class="drawer-container">
   <mat-drawer #drawer mode="side" class="drawer">
-    <p>Auto-resizing sidenav</p>
-    <button
-      mat-button
-      *ngFor="let item of drawerNavItems"
-      (click)="onItemsSelected(item.route)">
-      <mat-icon>{{ item.icon }}</mat-icon>
-      {{ item.name }}
-    </button>
+    <p><strong>Menu</strong></p>
+    <div *ngFor="let item of drawerNavItems">
+      <button
+        mat-button
+        (click)="onItemsSelected(item.route)"
+        color="{{
+          item.route.includes(currentRouteUrl) ? 'primary' : 'default'
+        }}">
+        <mat-icon>{{ item.icon }}</mat-icon>
+        {{ item.name }}
+      </button>
+    </div>
   </mat-drawer>
   <mat-drawer-content>
     <mat-toolbar>

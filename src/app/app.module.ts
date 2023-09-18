@@ -18,6 +18,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     LoginComponent,
     LayoutComponent,
     DashboardComponent,
+    YarnStockComponent,
   ],
   imports: [
     BrowserModule,
