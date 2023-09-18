@@ -20,6 +20,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
 import { FooterComponent } from './footer/footer.component';
+import { StatisticsCardComponent } from './dashboard/statistics-card/statistics-card.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { FooterComponent } from './footer/footer.component';
     DashboardComponent,
     YarnStockComponent,
     FooterComponent,
+    StatisticsCardComponent,
   ],
   imports: [
     BrowserModule,
