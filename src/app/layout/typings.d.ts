@@ -1,7 +1,14 @@
 declare namespace layout {
   interface drawerItem {
-    icon: string;
+    icon?: string;
     name: string;
-    route: string;
+    route?: string;
+    children?: drawerItem[];
+  }
+
+  interface drawerItemFlatNode {
+    expandable: boolean;
+    name: string;
+    level: number;
   }
 }

@@ -22,6 +22,7 @@ import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
 import { FooterComponent } from './footer/footer.component';
 import { StatisticsCardComponent } from './dashboard/statistics-card/statistics-card.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { MatTreeModule } from '@angular/material/tree';
 import { ChartCardComponent } from './dashboard/chart-card/chart-card.component';
 
 @NgModule({
@@ -53,6 +54,7 @@ import { ChartCardComponent } from './dashboard/chart-card/chart-card.component'
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatToolbarModule,
+    MatTreeModule,
     MatSidenavModule,
     ReactiveFormsModule,
     HttpClientModule,
