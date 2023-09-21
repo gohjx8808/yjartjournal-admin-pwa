@@ -25,6 +25,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatTreeModule } from '@angular/material/tree';
 import { ChartCardComponent } from './dashboard/chart-card/chart-card.component';
 import { MasterDataComponent } from './master-data/master-data.component';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { MasterDataComponent } from './master-data/master-data.component';
     MatToolbarModule,
     MatTreeModule,
     MatSidenavModule,
+    MatListModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgxChartsModule,

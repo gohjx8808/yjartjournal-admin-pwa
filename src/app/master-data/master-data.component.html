@@ -1,1 +1,12 @@
-<p>master-data works!</p>
+<app-layout>
+  <mat-list class="master-data-content">
+    <div mat-subheader>
+      <strong>
+        {{ isYarnCategory ? 'Yarn Category' : 'Yarn Color Category' }}
+      </strong>
+    </div>
+    <mat-list-item *ngFor="let data of listData">
+      <div matListItemTitle>{{ data.name }}</div>
+    </mat-list-item>
+  </mat-list>
+</app-layout>
