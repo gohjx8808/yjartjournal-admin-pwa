@@ -38,18 +38,4 @@ export class ApiService {
       headers,
     });
   }
-
-  login(payload: auth.signInPayload) {
-    return this.postRequest<auth.signInResponse>(
-      '/users/sign-in',
-      payload,
-      false
-    );
-  }
-
-  getYarnStockOverview() {
-    return this.getRequest<dashboard.yarnStockOverview>(
-      '/dashboard/yarn-stock-overview'
-    );
-  }
 }

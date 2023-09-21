@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ApiService } from '../services/api.service';
+import { DashboardApiService } from './api/dashboard-api.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,8 +9,8 @@ import { ApiService } from '../services/api.service';
 export class DashboardComponent {
   dashboardData: dashboard.yarnStockOverview | null = null;
 
-  constructor(private apiService: ApiService) {
-    this.apiService.getYarnStockOverview().subscribe(res => {
+  constructor(private dashboardApiService: DashboardApiService) {
+    this.dashboardApiService.getYarnStockOverview().subscribe(res => {
       this.dashboardData = res.data;
     });
   }

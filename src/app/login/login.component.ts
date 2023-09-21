@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { ApiService } from '../services/api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { LoginApiService } from './api/login-api.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,7 @@ export class LoginComponent {
   submitLoading = false;
 
   constructor(
-    private api: ApiService,
+    private loginApi: LoginApiService,
     private snackbar: MatSnackBar,
     private router: Router,
     formBuilder: NonNullableFormBuilder
@@ -32,7 +32,7 @@ export class LoginComponent {
       this.loginForm.markAllAsTouched();
     } else {
       this.submitLoading = true;
-      this.api.login({ ...this.loginForm.value, role: 1 }).subscribe({
+      this.loginApi.login({ ...this.loginForm.value, role: 1 }).subscribe({
         next: res => {
           localStorage.setItem('TOKEN', res.data.accessToken);
           this.submitLoading = false;
