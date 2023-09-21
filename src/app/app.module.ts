@@ -24,6 +24,7 @@ import { StatisticsCardComponent } from './dashboard/statistics-card/statistics-
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { MatTreeModule } from '@angular/material/tree';
 import { ChartCardComponent } from './dashboard/chart-card/chart-card.component';
+import { MasterDataComponent } from './master-data/master-data.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { ChartCardComponent } from './dashboard/chart-card/chart-card.component'
     FooterComponent,
     StatisticsCardComponent,
     ChartCardComponent,
+    MasterDataComponent,
   ],
   imports: [
     BrowserModule,

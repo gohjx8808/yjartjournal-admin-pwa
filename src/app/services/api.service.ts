@@ -25,10 +25,25 @@ export class ApiService {
     });
   }
 
+  postRequest<T>(url: string, payload: any, auth = true) {
+    const token = localStorage.getItem('TOKEN');
+    let headers = {};
+
+    if (auth) {
+      headers = { Authorization: `Bearer ${token}` };
+    }
+
+    return this.http.post<Response<T>>(`${environment.apiUrl}${url}`, {
+      ...payload,
+      headers,
+    });
+  }
+
   login(payload: auth.signInPayload) {
-    return this.http.post<Response<auth.signInResponse>>(
-      `${environment.apiUrl}/users/sign-in`,
-      payload
+    return this.postRequest<auth.signInResponse>(
+      '/users/sign-in',
+      payload,
+      false
     );
   }
 
