@@ -1,6 +1,21 @@
 .master-data-content {
-  padding: 5vw 5vw 0;
-  flex-flow: row wrap;
+  padding: 5vw 5vw;
+  flex-flow: column wrap;
   display: flex;
-  justify-content: space-around;
+}
+
+.master-data-card {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.master-data {
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px 5px 20px;
+}
+
+.edit-icon {
+  color: goldenrod;
 }

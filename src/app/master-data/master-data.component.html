@@ -1,12 +1,20 @@
 <app-layout>
-  <mat-list class="master-data-content">
-    <div mat-subheader>
-      <strong>
-        {{ isYarnCategory ? 'Yarn Category' : 'Yarn Color Category' }}
-      </strong>
-    </div>
-    <mat-list-item *ngFor="let data of listData">
-      <div matListItemTitle>{{ data.name }}</div>
-    </mat-list-item>
-  </mat-list>
+  <div class="master-data-content">
+    <h1>
+      {{ isYarnCategory ? 'Yarn Category' : 'Yarn Color Category' }}
+    </h1>
+    <mat-card class="master-data-card" *ngFor="let data of listData">
+      <mat-card-header class="master-data">
+        <mat-card-title>{{ data.name }}</mat-card-title>
+        <div>
+          <button mat-icon-button aria-label="Edit data">
+            <mat-icon class="edit-icon">edit</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Delete data" color="warn">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+    </mat-card>
+  </div>
 </app-layout>
