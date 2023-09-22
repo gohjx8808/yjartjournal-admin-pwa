@@ -4,4 +4,14 @@ declare namespace masterData {
     isAdd: boolean;
     isYarnCategory: boolean;
   }
+
+  interface addMasterDataPayload {
+    name: string;
+  }
+
+  interface deleteMasterDataPayload {
+    id: number;
+  }
+
+  type updateMasterDataPayload = addMasterDataPayload & deleteMasterDataPayload;
 }

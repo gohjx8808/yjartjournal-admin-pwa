@@ -12,4 +12,11 @@ export class YarnColorCategoryApiService {
       '/stocks/yarn-color-categories'
     );
   }
+
+  postUpdateYarnColorCategory(payload: masterData.updateMasterDataPayload) {
+    return this.apiService.postRequest(
+      '/stocks/yarn-color-categories/update',
+      payload
+    );
+  }
 }

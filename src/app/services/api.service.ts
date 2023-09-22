@@ -33,8 +33,7 @@ export class ApiService {
       headers = { Authorization: `Bearer ${token}` };
     }
 
-    return this.http.post<Response<T>>(`${environment.apiUrl}${url}`, {
-      ...payload,
+    return this.http.post<Response<T>>(`${environment.apiUrl}${url}`, payload, {
       headers,
     });
   }
