@@ -1,5 +1,20 @@
-<h1 mat-dialog-title>Favorite Animal</h1>
-<div mat-dialog-content>
-  My favorite animal is:
-  <span>{{ data.data.name }}</span>
-</div>
+<h1 mat-dialog-title>{{ title }}</h1>
+<form [formGroup]="masterDataForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content class="content">
+    <mat-form-field
+      appearance="outline"
+      [class.error-msg-container]="masterDataForm.controls['name'].touched">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="masterDataForm.controls['name'].errors?.['required']">
+        Name is required.
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial type="submit">
+      Submit
+    </button>
+  </mat-dialog-actions>
+</form>
