@@ -26,6 +26,8 @@ import { MatTreeModule } from '@angular/material/tree';
 import { ChartCardComponent } from './dashboard/chart-card/chart-card.component';
 import { MasterDataComponent } from './master-data/master-data.component';
 import { MatListModule } from '@angular/material/list';
+import { AddEditMasterDataDialogComponent } from './master-data/dialogs/add-edit-master-data-dialog/add-edit-master-data-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { MatListModule } from '@angular/material/list';
     StatisticsCardComponent,
     ChartCardComponent,
     MasterDataComponent,
+    AddEditMasterDataDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,6 +63,7 @@ import { MatListModule } from '@angular/material/list';
     MatTreeModule,
     MatSidenavModule,
     MatListModule,
+    MatDialogModule,
     ReactiveFormsModule,
     HttpClientModule,
     NgxChartsModule,

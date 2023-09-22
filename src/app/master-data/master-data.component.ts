@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { YarnCategoryApiService } from './api/yarn-category/yarn-category-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { YarnColorCategoryApiService } from './api/yarn-color-category/yarn-color-category-api.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddEditMasterDataDialogComponent } from './dialogs/add-edit-master-data-dialog/add-edit-master-data-dialog.component';
 
 @Component({
   selector: 'app-master-data',
@@ -14,6 +16,7 @@ export class MasterDataComponent {
 
   constructor(
     private route: ActivatedRoute,
+    private dialog: MatDialog,
     private yarnCategoryApiService: YarnCategoryApiService,
     private yarnColorCategoryApiService: YarnColorCategoryApiService
   ) {
@@ -31,5 +34,15 @@ export class MasterDataComponent {
           this.listData = data.data;
         });
     }
+  }
+
+  openAddEditDialog(isAdd: boolean, data: globalType.optionData) {
+    this.dialog.open(AddEditMasterDataDialogComponent, {
+      data: {
+        data,
+        isAdd,
+        isYarnCategory: this.isYarnCategory,
+      },
+    });
   }
 }

@@ -7,7 +7,10 @@
       <mat-card-header class="master-data">
         <mat-card-title>{{ data.name }}</mat-card-title>
         <div>
-          <button mat-icon-button aria-label="Edit data">
+          <button
+            mat-icon-button
+            aria-label="Edit data"
+            (click)="openAddEditDialog(false, data)">
             <mat-icon class="edit-icon">edit</mat-icon>
           </button>
           <button mat-icon-button aria-label="Delete data" color="warn">
