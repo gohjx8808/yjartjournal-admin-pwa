@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'yarn-stock', component: YarnStockComponent },
   { path: 'yarn-category', component: MasterDataComponent },
+  { path: 'yarn-color-category', component: MasterDataComponent },
 ];
 
 @NgModule({

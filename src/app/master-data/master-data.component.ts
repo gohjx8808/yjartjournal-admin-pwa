@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { YarnCategoryApiService } from './api/yarn-category/yarn-category-api.service';
 import { ActivatedRoute } from '@angular/router';
+import { YarnColorCategoryApiService } from './api/yarn-color-category/yarn-color-category-api.service';
 
 @Component({
   selector: 'app-master-data',
@@ -13,7 +14,8 @@ export class MasterDataComponent {
 
   constructor(
     private route: ActivatedRoute,
-    private yarnCategoryApiService: YarnCategoryApiService
+    private yarnCategoryApiService: YarnCategoryApiService,
+    private yarnColorCategoryApiService: YarnColorCategoryApiService
   ) {
     const currentRouteUrl = this.route.snapshot.url.join('/');
     if (currentRouteUrl === 'yarn-category') {
@@ -21,6 +23,13 @@ export class MasterDataComponent {
       this.yarnCategoryApiService.getAllYarnCategory().subscribe(data => {
         this.listData = data.data;
       });
+    } else {
+      this.isYarnCategory = false;
+      this.yarnColorCategoryApiService
+        .getAllYarnColorCategory()
+        .subscribe(data => {
+          this.listData = data.data;
+        });
     }
   }
 }
