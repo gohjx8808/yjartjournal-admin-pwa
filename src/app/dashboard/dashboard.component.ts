@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DashboardApiService } from './api/dashboard-api.service';
 
 @Component({
@@ -6,10 +6,12 @@ import { DashboardApiService } from './api/dashboard-api.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   dashboardData: dashboard.yarnStockOverview | null = null;
 
-  constructor(private dashboardApiService: DashboardApiService) {
+  constructor(private dashboardApiService: DashboardApiService) {}
+
+  ngOnInit(): void {
     this.dashboardApiService.getYarnStockOverview().subscribe(res => {
       this.dashboardData = res.data;
     });

@@ -1,5 +1,5 @@
 import { FlatTreeControl } from '@angular/cdk/tree';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDrawer } from '@angular/material/sidenav';
 import {
   MatTreeFlatDataSource,
@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
 })
-export class LayoutComponent {
+export class LayoutComponent implements OnInit {
   @ViewChild('drawer') drawer!: MatDrawer;
 
   drawerNavItems: layout.drawerItem[] = [
@@ -59,7 +59,9 @@ export class LayoutComponent {
   constructor(
     private router: Router,
     private route: ActivatedRoute
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     const currentRouteUrl = this.route.snapshot.url.join('/');
     this.dataSource.data = this.drawerNavItems;
     this.currentItem =

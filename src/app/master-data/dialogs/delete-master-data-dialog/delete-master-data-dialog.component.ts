@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { YarnCategoryApiService } from '../../api/yarn-category/yarn-category-api.service';
 import { YarnColorCategoryApiService } from '../../api/yarn-color-category/yarn-color-category-api.service';
@@ -11,7 +11,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './delete-master-data-dialog.component.html',
   styleUrls: ['./delete-master-data-dialog.component.scss'],
 })
-export class DeleteMasterDataDialogComponent {
+export class DeleteMasterDataDialogComponent implements OnInit {
   submitLoading = false;
   title = '';
 
@@ -21,8 +21,10 @@ export class DeleteMasterDataDialogComponent {
     private yarnColorCategoryApiService: YarnColorCategoryApiService,
     private snackbarService: SnackbarService,
     private apiService: ApiService
-  ) {
-    if (data.isYarnCategory) {
+  ) {}
+
+  ngOnInit(): void {
+    if (this.data.isYarnCategory) {
       this.title = 'Delete Yarn Category';
     } else {
       this.title = 'Delete Yarn Color Category';

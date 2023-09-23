@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -12,7 +12,7 @@ import { YarnColorCategoryApiService } from '../../api/yarn-color-category/yarn-
   templateUrl: './add-edit-master-data-dialog.component.html',
   styleUrls: ['./add-edit-master-data-dialog.component.scss'],
 })
-export class AddEditMasterDataDialogComponent {
+export class AddEditMasterDataDialogComponent implements OnInit {
   title = '';
   masterDataForm: FormGroup;
   submitLoading = false;
@@ -25,21 +25,23 @@ export class AddEditMasterDataDialogComponent {
     private snackbarService: SnackbarService,
     private apiService: ApiService
   ) {
-    if (data.isAdd) {
+    this.masterDataForm = formBuilder.group({
+      name: [data.data?.name, [Validators.required]],
+    });
+  }
+
+  ngOnInit(): void {
+    if (this.data.isAdd) {
       this.title = 'Add ';
     } else {
       this.title = 'Edit ';
     }
 
-    if (data.isYarnCategory) {
+    if (this.data.isYarnCategory) {
       this.title += 'Yarn Category';
     } else {
       this.title += 'Yarn Color Category';
     }
-
-    this.masterDataForm = formBuilder.group({
-      name: [data.data?.name, [Validators.required]],
-    });
   }
 
   onSubmit() {

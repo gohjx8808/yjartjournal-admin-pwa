@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { YarnCategoryApiService } from './api/yarn-category/yarn-category-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { YarnColorCategoryApiService } from './api/yarn-color-category/yarn-color-category-api.service';
@@ -11,7 +11,7 @@ import { DeleteMasterDataDialogComponent } from './dialogs/delete-master-data-di
   templateUrl: './master-data.component.html',
   styleUrls: ['./master-data.component.scss'],
 })
-export class MasterDataComponent {
+export class MasterDataComponent implements OnInit {
   listData: globalType.optionData[] = [];
   isYarnCategory = false;
 
@@ -20,7 +20,9 @@ export class MasterDataComponent {
     private dialog: MatDialog,
     private yarnCategoryApiService: YarnCategoryApiService,
     private yarnColorCategoryApiService: YarnColorCategoryApiService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     const currentRouteUrl = this.route.snapshot.url.join('/');
     if (currentRouteUrl === 'yarn-category') {
       this.isYarnCategory = true;
