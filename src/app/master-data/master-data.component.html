@@ -1,8 +1,18 @@
 <app-layout>
   <div class="master-data-content">
-    <h1>
-      {{ isYarnCategory ? 'Yarn Category' : 'Yarn Color Category' }}
-    </h1>
+    <div class="master-data-header">
+      <h1>
+        {{ isYarnCategory ? 'Yarn Category' : 'Yarn Color Category' }}
+      </h1>
+      <button
+        mat-stroked-button
+        aria-label="Add master data"
+        class="add-btn"
+        (click)="openAddEditDialog(true)">
+        <span class="add-icon">Add</span>
+        <mat-icon class="add-icon">add</mat-icon>
+      </button>
+    </div>
     <mat-card class="master-data-card" *ngFor="let data of listData">
       <mat-card-header class="master-data">
         <mat-card-title>{{ data.name }}</mat-card-title>

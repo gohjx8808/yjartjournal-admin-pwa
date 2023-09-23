@@ -1,6 +1,6 @@
 declare namespace masterData {
   interface addEditData {
-    data: globalType.optionData;
+    data?: globalType.optionData;
     isAdd: boolean;
     isYarnCategory: boolean;
   }

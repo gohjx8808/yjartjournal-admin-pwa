@@ -19,3 +19,17 @@
 .edit-icon {
   color: goldenrod;
 }
+
+.master-data-header {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-btn {
+  background-color: forestgreen;
+}
+
+.add-icon {
+  color: white;
+}

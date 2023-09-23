@@ -14,7 +14,7 @@ export class YarnColorCategoryApiService {
   }
 
   addYarnColorCategory(payload: masterData.addMasterDataPayload) {
-    this.apiService.postRequest(
+    return this.apiService.postRequest(
       '/stocks/yarn-color-categories/add-new',
       payload
     );

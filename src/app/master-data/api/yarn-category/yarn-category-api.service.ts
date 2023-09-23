@@ -14,7 +14,10 @@ export class YarnCategoryApiService {
   }
 
   addYarnCategory(payload: masterData.addMasterDataPayload) {
-    this.apiService.postRequest('/stocks/yarn-categories/add-new', payload);
+    return this.apiService.postRequest(
+      '/stocks/yarn-categories/add-new',
+      payload
+    );
   }
 
   updateYarnCategory(payload: masterData.updateMasterDataPayload) {

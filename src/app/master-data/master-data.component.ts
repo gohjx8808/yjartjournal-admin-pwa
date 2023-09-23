@@ -36,7 +36,7 @@ export class MasterDataComponent {
     }
   }
 
-  openAddEditDialog(isAdd: boolean, data: globalType.optionData) {
+  openAddEditDialog(isAdd: boolean, data?: globalType.optionData) {
     this.dialog.open(AddEditMasterDataDialogComponent, {
       data: {
         data,

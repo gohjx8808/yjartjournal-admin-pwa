@@ -38,7 +38,7 @@ export class AddEditMasterDataDialogComponent {
     }
 
     this.masterDataForm = formBuilder.group({
-      name: [data.data.name, [Validators.required]],
+      name: [data.data?.name, [Validators.required]],
     });
   }
 
@@ -48,13 +48,49 @@ export class AddEditMasterDataDialogComponent {
     } else {
       this.submitLoading = true;
       if (this.data.isAdd) {
-        /* empty */
+        if (this.data.isYarnCategory) {
+          this.yarnCategoryApiService
+            .addYarnCategory(this.masterDataForm.value)
+            .subscribe({
+              next: () => {
+                this.submitLoading = false;
+                this.refreshHack('yarn-category');
+                this.snackbarService.openSuccessSnackbar(
+                  'The yarn category had been added!'
+                );
+              },
+              error: (err: HttpErrorResponse) => {
+                this.submitLoading = false;
+                this.snackbarService.openErrorSnackbar(
+                  err.statusText || 'Error'
+                );
+              },
+            });
+        } else {
+          this.yarnColorCategoryApiService
+            .addYarnColorCategory(this.masterDataForm.value)
+            .subscribe({
+              next: () => {
+                this.submitLoading = false;
+                this.refreshHack('yarn-color-category');
+                this.snackbarService.openSuccessSnackbar(
+                  'The yarn color category had been added!'
+                );
+              },
+              error: (err: HttpErrorResponse) => {
+                this.submitLoading = false;
+                this.snackbarService.openErrorSnackbar(
+                  err.statusText || 'Error'
+                );
+              },
+            });
+        }
       } else {
         if (this.data.isYarnCategory) {
           this.yarnCategoryApiService
             .updateYarnCategory({
               ...this.masterDataForm.value,
-              id: this.data.data.id,
+              id: this.data.data?.id,
             })
             .subscribe({
               next: () => {
@@ -75,7 +111,7 @@ export class AddEditMasterDataDialogComponent {
           this.yarnColorCategoryApiService
             .updateYarnColorCategory({
               ...this.masterDataForm.value,
-              id: this.data.data.id,
+              id: this.data.data?.id,
             })
             .subscribe({
               next: () => {
