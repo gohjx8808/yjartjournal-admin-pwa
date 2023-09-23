@@ -17,4 +17,8 @@ declare namespace yarnStock {
     reorderStatus: 'Optimum' | 'Reorder';
     imageUrl: string | null;
   }
+
+  interface yarnStockCheckbox extends globalType.optionData {
+    checked: boolean;
+  }
 }
