@@ -1,11 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { SnackbarService } from 'src/app/services/snackbar.service';
 import { YarnCategoryApiService } from '../../api/yarn-category/yarn-category-api.service';
 import { YarnColorCategoryApiService } from '../../api/yarn-color-category/yarn-color-category-api.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-edit-master-data-dialog',
@@ -22,7 +22,7 @@ export class AddEditMasterDataDialogComponent {
     formBuilder: NonNullableFormBuilder,
     private yarnCategoryApiService: YarnCategoryApiService,
     private yarnColorCategoryApiService: YarnColorCategoryApiService,
-    private snackbar: MatSnackBar,
+    private snackbarService: SnackbarService,
     private router: Router
   ) {
     if (data.isAdd) {
@@ -52,7 +52,7 @@ export class AddEditMasterDataDialogComponent {
       } else {
         if (this.data.isYarnCategory) {
           this.yarnCategoryApiService
-            .postUpdateYarnCategory({
+            .updateYarnCategory({
               ...this.masterDataForm.value,
               id: this.data.data.id,
             })
@@ -60,26 +60,20 @@ export class AddEditMasterDataDialogComponent {
               next: () => {
                 this.submitLoading = false;
                 this.refreshHack('yarn-category');
-                this.snackbar.open(
-                  'The yarn category had been updated!',
-                  'CLOSE',
-                  {
-                    duration: 5000,
-                    panelClass: 'app-notification-success',
-                  }
+                this.snackbarService.openSuccessSnackbar(
+                  'The yarn category had been updated!'
                 );
               },
               error: (err: HttpErrorResponse) => {
                 this.submitLoading = false;
-                this.snackbar.open(err.statusText || 'Error', 'CLOSE', {
-                  duration: 5000,
-                  panelClass: 'app-notification-error',
-                });
+                this.snackbarService.openErrorSnackbar(
+                  err.statusText || 'Error'
+                );
               },
             });
         } else {
           this.yarnColorCategoryApiService
-            .postUpdateYarnColorCategory({
+            .updateYarnColorCategory({
               ...this.masterDataForm.value,
               id: this.data.data.id,
             })
@@ -87,21 +81,15 @@ export class AddEditMasterDataDialogComponent {
               next: () => {
                 this.submitLoading = false;
                 this.refreshHack('yarn-color-category');
-                this.snackbar.open(
-                  'The yarn color category had been updated!',
-                  'CLOSE',
-                  {
-                    duration: 5000,
-                    panelClass: 'app-notification-success',
-                  }
+                this.snackbarService.openSuccessSnackbar(
+                  'The yarn color category had been updated!'
                 );
               },
               error: (err: HttpErrorResponse) => {
                 this.submitLoading = false;
-                this.snackbar.open(err.statusText || 'Error', 'CLOSE', {
-                  duration: 5000,
-                  panelClass: 'app-notification-error',
-                });
+                this.snackbarService.openErrorSnackbar(
+                  err.statusText || 'Error'
+                );
               },
             });
         }

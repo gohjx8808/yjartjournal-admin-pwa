@@ -1,8 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { SnackbarService } from '../services/snackbar.service';
 import { LoginApiService } from './api/login-api.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class LoginComponent {
 
   constructor(
     private loginApi: LoginApiService,
-    private snackbar: MatSnackBar,
+    private snackbarService: SnackbarService,
     private router: Router,
     formBuilder: NonNullableFormBuilder
   ) {
@@ -40,10 +40,7 @@ export class LoginComponent {
         },
         error: (err: HttpErrorResponse) => {
           this.submitLoading = false;
-          this.snackbar.open(err.statusText || 'Error', 'CLOSE', {
-            duration: 5000,
-            panelClass: 'app-notification-error',
-          });
+          this.snackbarService.openErrorSnackbar(err.statusText || 'Error');
         },
       });
     }

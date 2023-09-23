@@ -13,7 +13,14 @@ export class YarnColorCategoryApiService {
     );
   }
 
-  postUpdateYarnColorCategory(payload: masterData.updateMasterDataPayload) {
+  addYarnColorCategory(payload: masterData.addMasterDataPayload) {
+    this.apiService.postRequest(
+      '/stocks/yarn-color-categories/add-new',
+      payload
+    );
+  }
+
+  updateYarnColorCategory(payload: masterData.updateMasterDataPayload) {
     return this.apiService.postRequest(
       '/stocks/yarn-color-categories/update',
       payload
