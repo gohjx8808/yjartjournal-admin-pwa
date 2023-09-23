@@ -23,7 +23,11 @@
             (click)="openAddEditDialog(false, data)">
             <mat-icon class="edit-icon">edit</mat-icon>
           </button>
-          <button mat-icon-button aria-label="Delete data" color="warn">
+          <button
+            mat-icon-button
+            aria-label="Delete data"
+            color="warn"
+            (click)="openDeleteDialog(data)">
             <mat-icon>delete</mat-icon>
           </button>
         </div>

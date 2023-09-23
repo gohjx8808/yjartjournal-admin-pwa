@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>
+    Are you sure you wish to delete this
+    {{ data.isYarnCategory ? 'yarn category' : 'yarn color category' }}?
+  </h3>
+  <p>
+    <strong> Name: {{ data.data.name }} </strong>
+  </p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Confirm</button>
+</mat-dialog-actions>

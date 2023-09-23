@@ -1,7 +1,12 @@
 declare namespace masterData {
-  interface addEditData {
+  interface addEditDialogData {
     data?: globalType.optionData;
     isAdd: boolean;
+    isYarnCategory: boolean;
+  }
+
+  interface deleteDialogData {
+    data: globalType.optionData;
     isYarnCategory: boolean;
   }
 

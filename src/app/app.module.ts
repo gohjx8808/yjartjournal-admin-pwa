@@ -28,6 +28,7 @@ import { MasterDataComponent } from './master-data/master-data.component';
 import { MatListModule } from '@angular/material/list';
 import { AddEditMasterDataDialogComponent } from './master-data/dialogs/add-edit-master-data-dialog/add-edit-master-data-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteMasterDataDialogComponent } from './master-data/dialogs/delete-master-data-dialog/delete-master-data-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ChartCardComponent,
     MasterDataComponent,
     AddEditMasterDataDialogComponent,
+    DeleteMasterDataDialogComponent,
   ],
   imports: [
     BrowserModule,

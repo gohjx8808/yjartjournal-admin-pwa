@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { YarnColorCategoryApiService } from './api/yarn-color-category/yarn-color-category-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditMasterDataDialogComponent } from './dialogs/add-edit-master-data-dialog/add-edit-master-data-dialog.component';
+import { DeleteMasterDataDialogComponent } from './dialogs/delete-master-data-dialog/delete-master-data-dialog.component';
 
 @Component({
   selector: 'app-master-data',
@@ -41,6 +42,15 @@ export class MasterDataComponent {
       data: {
         data,
         isAdd,
+        isYarnCategory: this.isYarnCategory,
+      },
+    });
+  }
+
+  openDeleteDialog(data: globalType.optionData) {
+    this.dialog.open(DeleteMasterDataDialogComponent, {
+      data: {
+        data,
         isYarnCategory: this.isYarnCategory,
       },
     });

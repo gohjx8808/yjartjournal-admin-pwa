@@ -18,7 +18,7 @@ export class AddEditMasterDataDialogComponent {
   submitLoading = false;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: masterData.addEditData,
+    @Inject(MAT_DIALOG_DATA) public data: masterData.addEditDialogData,
     formBuilder: NonNullableFormBuilder,
     private yarnCategoryApiService: YarnCategoryApiService,
     private yarnColorCategoryApiService: YarnColorCategoryApiService,
