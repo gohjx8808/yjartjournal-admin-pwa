@@ -14,21 +14,19 @@ import { YarnColorCategoryApiService } from '../../api/yarn-color-category/yarn-
 })
 export class AddEditMasterDataDialogComponent implements OnInit {
   title = '';
-  masterDataForm: FormGroup;
+  masterDataForm = this.formBuilder.group({
+    name: [this.data.data?.name || '', [Validators.required]],
+  });
   submitLoading = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: masterData.addEditDialogData,
-    formBuilder: NonNullableFormBuilder,
+    private formBuilder: NonNullableFormBuilder,
     private yarnCategoryApiService: YarnCategoryApiService,
     private yarnColorCategoryApiService: YarnColorCategoryApiService,
     private snackbarService: SnackbarService,
     private apiService: ApiService
-  ) {
-    this.masterDataForm = formBuilder.group({
-      name: [data.data?.name, [Validators.required]],
-    });
-  }
+  ) {}
 
   ngOnInit(): void {
     if (this.data.isAdd) {
@@ -52,7 +50,7 @@ export class AddEditMasterDataDialogComponent implements OnInit {
       if (this.data.isAdd) {
         if (this.data.isYarnCategory) {
           this.yarnCategoryApiService
-            .addYarnCategory(this.masterDataForm.value)
+            .addYarnCategory(this.masterDataForm.getRawValue())
             .subscribe({
               next: () => {
                 this.submitLoading = false;
@@ -70,7 +68,7 @@ export class AddEditMasterDataDialogComponent implements OnInit {
             });
         } else {
           this.yarnColorCategoryApiService
-            .addYarnColorCategory(this.masterDataForm.value)
+            .addYarnColorCategory(this.masterDataForm.getRawValue())
             .subscribe({
               next: () => {
                 this.submitLoading = false;
@@ -91,8 +89,8 @@ export class AddEditMasterDataDialogComponent implements OnInit {
         if (this.data.isYarnCategory) {
           this.yarnCategoryApiService
             .updateYarnCategory({
-              ...this.masterDataForm.value,
-              id: this.data.data?.id,
+              ...this.masterDataForm.getRawValue(),
+              id: this.data.data?.id || 0,
             })
             .subscribe({
               next: () => {
@@ -112,8 +110,8 @@ export class AddEditMasterDataDialogComponent implements OnInit {
         } else {
           this.yarnColorCategoryApiService
             .updateYarnColorCategory({
-              ...this.masterDataForm.value,
-              id: this.data.data?.id,
+              ...this.masterDataForm.getRawValue(),
+              id: this.data.data?.id || 0,
             })
             .subscribe({
               next: () => {
