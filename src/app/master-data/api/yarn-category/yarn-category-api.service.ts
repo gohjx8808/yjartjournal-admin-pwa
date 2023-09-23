@@ -26,4 +26,11 @@ export class YarnCategoryApiService {
       payload
     );
   }
+
+  deleteYarnCategory(payload: masterData.deleteMasterDataPayload) {
+    return this.apiService.postRequest(
+      '/stocks/yarn-categories/delete',
+      payload
+    );
+  }
 }

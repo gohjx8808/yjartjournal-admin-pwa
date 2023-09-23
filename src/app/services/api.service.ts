@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { Router } from '@angular/router';
 
 interface Response<T> {
   data: T;
@@ -10,7 +11,10 @@ interface Response<T> {
   providedIn: 'root',
 })
 export class ApiService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) {}
 
   getRequest<T>(url: string, auth = true) {
     const token = localStorage.getItem('TOKEN');
@@ -36,5 +40,13 @@ export class ApiService {
     return this.http.post<Response<T>>(`${environment.apiUrl}${url}`, payload, {
       headers,
     });
+  }
+
+  refreshHack(destination: string) {
+    this.router
+      .navigateByUrl('/dashboard', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate([destination]);
+      });
   }
 }

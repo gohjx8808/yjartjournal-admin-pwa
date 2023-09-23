@@ -26,4 +26,11 @@ export class YarnColorCategoryApiService {
       payload
     );
   }
+
+  deleteYarnColorCategory(payload: masterData.deleteMasterDataPayload) {
+    return this.apiService.postRequest(
+      '/stocks/yarn-color-categories/delete',
+      payload
+    );
+  }
 }

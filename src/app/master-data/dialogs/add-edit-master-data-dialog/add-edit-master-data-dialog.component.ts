@@ -2,8 +2,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+import { ApiService } from '../../../services/api.service';
 import { YarnCategoryApiService } from '../../api/yarn-category/yarn-category-api.service';
 import { YarnColorCategoryApiService } from '../../api/yarn-color-category/yarn-color-category-api.service';
 
@@ -23,7 +23,7 @@ export class AddEditMasterDataDialogComponent {
     private yarnCategoryApiService: YarnCategoryApiService,
     private yarnColorCategoryApiService: YarnColorCategoryApiService,
     private snackbarService: SnackbarService,
-    private router: Router
+    private apiService: ApiService
   ) {
     if (data.isAdd) {
       this.title = 'Add ';
@@ -54,7 +54,7 @@ export class AddEditMasterDataDialogComponent {
             .subscribe({
               next: () => {
                 this.submitLoading = false;
-                this.refreshHack('yarn-category');
+                this.apiService.refreshHack('yarn-category');
                 this.snackbarService.openSuccessSnackbar(
                   'The yarn category had been added!'
                 );
@@ -72,7 +72,7 @@ export class AddEditMasterDataDialogComponent {
             .subscribe({
               next: () => {
                 this.submitLoading = false;
-                this.refreshHack('yarn-color-category');
+                this.apiService.refreshHack('yarn-color-category');
                 this.snackbarService.openSuccessSnackbar(
                   'The yarn color category had been added!'
                 );
@@ -95,7 +95,7 @@ export class AddEditMasterDataDialogComponent {
             .subscribe({
               next: () => {
                 this.submitLoading = false;
-                this.refreshHack('yarn-category');
+                this.apiService.refreshHack('yarn-category');
                 this.snackbarService.openSuccessSnackbar(
                   'The yarn category had been updated!'
                 );
@@ -116,7 +116,7 @@ export class AddEditMasterDataDialogComponent {
             .subscribe({
               next: () => {
                 this.submitLoading = false;
-                this.refreshHack('yarn-color-category');
+                this.apiService.refreshHack('yarn-color-category');
                 this.snackbarService.openSuccessSnackbar(
                   'The yarn color category had been updated!'
                 );
@@ -131,13 +131,5 @@ export class AddEditMasterDataDialogComponent {
         }
       }
     }
-  }
-
-  refreshHack(destination: string) {
-    this.router
-      .navigateByUrl('/dashboard', { skipLocationChange: true })
-      .then(() => {
-        this.router.navigate([destination]);
-      });
   }
 }
