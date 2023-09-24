@@ -1,37 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { YarnCategoryApiService } from '../master-data/api/yarn-category/yarn-category-api.service';
-import { YarnColorCategoryApiService } from '../master-data/api/yarn-color-category/yarn-color-category-api.service';
+import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { FilterDialogComponent } from './dialogs/filter-dialog/filter-dialog.component';
 
 @Component({
   selector: 'app-yarn-stock',
   templateUrl: './yarn-stock.component.html',
   styleUrls: ['./yarn-stock.component.scss'],
 })
-export class YarnStockComponent implements OnInit {
-  yarnCategoryList: yarnStock.yarnStockCheckbox[] = [];
-  yarnColorCategoryList: yarnStock.yarnStockCheckbox[] = [];
+export class YarnStockComponent {
+  constructor(private dialog: MatDialog) {}
 
-  constructor(
-    private yarnCategoryApiService: YarnCategoryApiService,
-    private yarnColorCategoryApiService: YarnColorCategoryApiService
-  ) {}
-
-  ngOnInit(): void {
-    this.yarnCategoryApiService.getYarnCategories().subscribe(data => {
-      data.map(cat => {
-        this.yarnCategoryList.push({ ...cat, checked: true });
-      });
-    });
-    this.yarnColorCategoryApiService
-      .getYarnColorCategories()
-      .subscribe(data => {
-        data.map(colorCat => {
-          this.yarnColorCategoryList.push({ ...colorCat, checked: true });
-        });
-      });
-  }
-
-  onCatChange() {
-    console.log(this.yarnCategoryList);
+  onOpenFilter() {
+    this.dialog.open(FilterDialogComponent);
   }
 }

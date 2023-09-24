@@ -1,14 +1,22 @@
 <h1 mat-dialog-title>Filter Yarn Stock</h1>
-<mat-dialog-content class="content">
-  <section class="example-section">
-    <span class="example-list-section">
-      <!-- <mat-checkbox
-        *ngFor="let cat of yarnCategoryList"
-        [(ngModel)]="cat.checked"
-        (ngModelChange)="onCatChange()">
-        {{ cat.name }}
-      </mat-checkbox> -->
-    </span>
+<mat-dialog-content>
+  <section>
+    <h3>Yarn Categories</h3>
+    <mat-checkbox
+      *ngFor="let cat of catList"
+      [(ngModel)]="cat.checked"
+      (ngModelChange)="onChange()">
+      {{ cat.name }}
+    </mat-checkbox>
+  </section>
+  <section>
+    <h3>Yarn Color Categories</h3>
+    <mat-checkbox
+      *ngFor="let colorCat of colorCatList"
+      [(ngModel)]="colorCat.checked"
+      (ngModelChange)="onChange()">
+      {{ colorCat.name }}
+    </mat-checkbox>
   </section>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
