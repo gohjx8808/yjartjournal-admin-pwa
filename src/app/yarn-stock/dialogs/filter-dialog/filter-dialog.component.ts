@@ -19,17 +19,20 @@ export class FilterDialogComponent implements OnInit {
   ngOnInit(): void {
     this.yarnCategoryApiService.getAllYarnCategoryApi();
     this.yarnColorCategoryApiService.getAllYarnColorCategoryApi();
-    const tempCatList: yarnStock.yarnStockCheckbox[] = [];
+    let tempCatList: yarnStock.yarnStockCheckbox[] = [];
     this.yarnCategoryApiService.getYarnCategories().subscribe(categories => {
+      tempCatList = [];
       categories.map(cat => {
         tempCatList.push({ ...cat, checked: true });
       });
     });
     this.catList = tempCatList;
-    const tempColorCatList: yarnStock.yarnStockCheckbox[] = [];
+
+    let tempColorCatList: yarnStock.yarnStockCheckbox[] = [];
     this.yarnColorCategoryApiService
       .getYarnColorCategories()
       .subscribe(colorCategories => {
+        tempColorCatList = [];
         colorCategories.map(colorCat => {
           tempColorCatList.push({ ...colorCat, checked: true });
         });
