@@ -17,15 +17,15 @@ export class YarnStockComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.yarnCategoryApiService.getAllYarnCategory().subscribe(category => {
-      category.data.map(cat => {
+    this.yarnCategoryApiService.getYarnCategories().subscribe(data => {
+      data.map(cat => {
         this.yarnCategoryList.push({ ...cat, checked: true });
       });
     });
     this.yarnColorCategoryApiService
-      .getAllYarnColorCategory()
-      .subscribe(colorCategory => {
-        colorCategory.data.map(colorCat => {
+      .getYarnColorCategories()
+      .subscribe(data => {
+        data.map(colorCat => {
           this.yarnColorCategoryList.push({ ...colorCat, checked: true });
         });
       });

@@ -3,7 +3,6 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SnackbarService } from 'src/app/services/snackbar.service';
-import { ApiService } from '../../../services/api.service';
 import { YarnCategoryApiService } from '../../api/yarn-category/yarn-category-api.service';
 import { YarnColorCategoryApiService } from '../../api/yarn-color-category/yarn-color-category-api.service';
 
@@ -24,8 +23,7 @@ export class AddEditMasterDataDialogComponent implements OnInit {
     private formBuilder: NonNullableFormBuilder,
     private yarnCategoryApiService: YarnCategoryApiService,
     private yarnColorCategoryApiService: YarnColorCategoryApiService,
-    private snackbarService: SnackbarService,
-    private apiService: ApiService
+    private snackbarService: SnackbarService
   ) {}
 
   ngOnInit(): void {
@@ -54,7 +52,7 @@ export class AddEditMasterDataDialogComponent implements OnInit {
             .subscribe({
               next: () => {
                 this.submitLoading = false;
-                this.apiService.refreshHack('yarn-category');
+                this.yarnCategoryApiService.getAllYarnCategoryApi();
                 this.snackbarService.openSuccessSnackbar(
                   'The yarn category had been added!'
                 );
@@ -72,7 +70,7 @@ export class AddEditMasterDataDialogComponent implements OnInit {
             .subscribe({
               next: () => {
                 this.submitLoading = false;
-                this.apiService.refreshHack('yarn-color-category');
+                this.yarnColorCategoryApiService.getAllYarnColorCategoryApi();
                 this.snackbarService.openSuccessSnackbar(
                   'The yarn color category had been added!'
                 );
@@ -95,7 +93,7 @@ export class AddEditMasterDataDialogComponent implements OnInit {
             .subscribe({
               next: () => {
                 this.submitLoading = false;
-                this.apiService.refreshHack('yarn-category');
+                this.yarnCategoryApiService.getAllYarnCategoryApi();
                 this.snackbarService.openSuccessSnackbar(
                   'The yarn category had been updated!'
                 );
@@ -116,7 +114,7 @@ export class AddEditMasterDataDialogComponent implements OnInit {
             .subscribe({
               next: () => {
                 this.submitLoading = false;
-                this.apiService.refreshHack('yarn-color-category');
+                this.yarnColorCategoryApiService.getAllYarnColorCategoryApi();
                 this.snackbarService.openSuccessSnackbar(
                   'The yarn color category had been updated!'
                 );

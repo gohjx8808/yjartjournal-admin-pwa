@@ -1,16 +1,26 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { ApiService } from 'src/app/services/api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class YarnColorCategoryApiService {
+  private yarnColorCategories: BehaviorSubject<globalType.optionData[]> =
+    new BehaviorSubject<globalType.optionData[]>([]);
+
   constructor(private apiService: ApiService) {}
 
-  getAllYarnColorCategory() {
-    return this.apiService.getRequest<globalType.optionData[]>(
-      '/stocks/yarn-color-categories'
-    );
+  getYarnColorCategories() {
+    return this.yarnColorCategories.asObservable();
+  }
+
+  getAllYarnColorCategoryApi() {
+    return this.apiService
+      .getRequest<globalType.optionData[]>('/stocks/yarn-color-categories')
+      .subscribe(data => {
+        this.yarnColorCategories.next(data.data);
+      });
   }
 
   addYarnColorCategory(payload: masterData.addMasterDataPayload) {

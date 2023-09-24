@@ -26,15 +26,17 @@ export class MasterDataComponent implements OnInit {
     const currentRouteUrl = this.route.snapshot.url.join('/');
     if (currentRouteUrl === 'yarn-category') {
       this.isYarnCategory = true;
-      this.yarnCategoryApiService.getAllYarnCategory().subscribe(data => {
-        this.listData = data.data;
+      this.yarnCategoryApiService.getAllYarnCategoryApi();
+      this.yarnCategoryApiService.getYarnCategories().subscribe(data => {
+        this.listData = data;
       });
     } else {
       this.isYarnCategory = false;
+      this.yarnColorCategoryApiService.getAllYarnColorCategoryApi();
       this.yarnColorCategoryApiService
-        .getAllYarnColorCategory()
+        .getYarnColorCategories()
         .subscribe(data => {
-          this.listData = data.data;
+          this.listData = data;
         });
     }
   }
