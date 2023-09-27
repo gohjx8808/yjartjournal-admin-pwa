@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { YarnCategoryApiService } from '../../../master-data/api/yarn-category/yarn-category-api.service';
 import { YarnColorCategoryApiService } from '../../../master-data/api/yarn-color-category/yarn-color-category-api.service';
+import { YarnStockApiService } from '../../api/yarn-stock-api.service';
 
 @Component({
   selector: 'app-filter-dialog',
@@ -13,7 +14,8 @@ export class FilterDialogComponent implements OnInit {
 
   constructor(
     private yarnCategoryApiService: YarnCategoryApiService,
-    private yarnColorCategoryApiService: YarnColorCategoryApiService
+    private yarnColorCategoryApiService: YarnColorCategoryApiService,
+    private yarnStockApiService: YarnStockApiService
   ) {}
 
   ngOnInit(): void {
@@ -41,7 +43,13 @@ export class FilterDialogComponent implements OnInit {
   }
 
   onChange() {
-    console.log(this.catList);
-    console.log(this.colorCatList);
+    this.yarnStockApiService.getAllYarnStockApi({
+      yarnCategoryIds: this.getCheckedId(this.catList),
+      yarnColorCategoryIds: this.getCheckedId(this.colorCatList),
+    });
+  }
+
+  private getCheckedId(list: yarnStock.yarnStockCheckbox[]) {
+    return list.filter(item => item.checked).map(({ id }) => id);
   }
 }

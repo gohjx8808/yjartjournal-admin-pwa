@@ -36,14 +36,15 @@ export class YarnStockComponent implements OnInit {
         colorCatIds = colorCatList.map(({ id }) => id);
       });
 
-    this.yarnStockApiService
-      .getAllYarnStock({
-        yarnCategoryIds: catIds,
-        yarnColorCategoryIds: colorCatIds,
-      })
-      .subscribe(data => {
-        this.yarnStockList = data.data;
-      });
+    this.yarnStockApiService.getAllYarnStockApi({
+      yarnCategoryIds: catIds,
+      yarnColorCategoryIds: colorCatIds,
+    });
+
+    this.yarnStockApiService.getYarnStocks().subscribe(stocks => {
+      console.log(stocks);
+      this.yarnStockList = stocks;
+    });
   }
 
   onOpenFilter() {
