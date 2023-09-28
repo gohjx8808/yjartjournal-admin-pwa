@@ -1,11 +1,61 @@
 <app-layout>
-  <button
-    class="filter-fab"
-    mat-fab
-    matTooltip="Filter"
-    color="primary"
-    aria-label="Filter yarn stock"
-    (click)="onOpenFilter()">
-    <mat-icon>filter_alt</mat-icon>
-  </button>
+  <div class="yarn-stocks-content">
+    <mat-card class="yarn-stocks-card" *ngFor="let stock of yarnStockList">
+      <mat-card-header>
+        <mat-card-title>{{ stock.detailedColor }}</mat-card-title>
+      </mat-card-header>
+      <img
+        *ngIf="stock.imageUrl"
+        mat-card-image
+        src="{{ stock.imageUrl }}"
+        alt="Photo of a Shiba Inu" />
+      <mat-card-content>
+        <p class="yarn-stocks-card-content">
+          <span><strong>Yarn Category</strong></span>
+          <span>{{ stock.yarnCategory.name }}</span>
+        </p>
+        <p class="yarn-stocks-card-content">
+          <span><strong>Yarn Color Category</strong></span>
+          <span>{{ stock.yarnColorCategory.name }}</span>
+        </p>
+        <p class="yarn-stocks-card-content">
+          <span><strong>Used Quantity</strong></span>
+          <span>{{ stock.usedQuantity }}</span>
+        </p>
+        <p class="yarn-stocks-card-content">
+          <span><strong>Cost Per Item</strong></span>
+          <span>{{
+            stock.costPerItem | currency: 'MYR' : 'symbol-narrow'
+          }}</span>
+        </p>
+        <p class="yarn-stocks-card-content">
+          <span><strong>Reorder Level</strong></span>
+          <span>{{ stock.reorderLevel }}</span>
+        </p>
+        <p class="yarn-stocks-card-content">
+          <span><strong>Last Ordered Date</strong></span>
+          <span>{{ stock.lastOrderedAt | empty }}</span>
+        </p>
+        <p
+          class="yarn-stocks-card-content"
+          [ngClass]="
+            stock.reorderStatus === 'Optimum'
+              ? 'optimum-level'
+              : 'reorder-level'
+          ">
+          <span><strong>Reorder Status</strong></span>
+          <span>{{ stock.reorderStatus }}</span>
+        </p>
+      </mat-card-content>
+    </mat-card>
+    <button
+      class="filter-fab"
+      mat-fab
+      matTooltip="Filter"
+      color="primary"
+      aria-label="Filter yarn stock"
+      (click)="onOpenFilter()">
+      <mat-icon>filter_alt</mat-icon>
+    </button>
+  </div>
 </app-layout>

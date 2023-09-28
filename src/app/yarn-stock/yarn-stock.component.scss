@@ -3,3 +3,30 @@
   right: 20px;
   bottom: 20px;
 }
+
+.yarn-stocks-card {
+  max-width: 400px;
+  width: 35vw;
+  margin-bottom: 50px;
+}
+
+.yarn-stocks-content {
+  padding: 5vw;
+  flex-flow: row wrap;
+  display: flex;
+  justify-content: space-around;
+}
+
+.yarn-stocks-card-content {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.optimum-level {
+  color: green;
+}
+
+.reorder-level {
+  color: red;
+}

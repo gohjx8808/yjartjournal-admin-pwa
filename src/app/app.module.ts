@@ -31,6 +31,7 @@ import { DeleteMasterDataDialogComponent } from './master-data/dialogs/delete-ma
 import { MasterDataComponent } from './master-data/master-data.component';
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
 import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter-dialog.component';
+import { EmptyPipe } from './pipes/empty.pipe';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter
     AddEditMasterDataDialogComponent,
     DeleteMasterDataDialogComponent,
     FilterDialogComponent,
+    EmptyPipe,
   ],
   imports: [
     BrowserModule,
