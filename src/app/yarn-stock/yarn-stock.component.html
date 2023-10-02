@@ -5,10 +5,9 @@
         <mat-card-title>{{ stock.detailedColor }}</mat-card-title>
       </mat-card-header>
       <img
-        *ngIf="stock.imageUrl"
         mat-card-image
-        src="{{ stock.imageUrl }}"
-        alt="Photo of a Shiba Inu" />
+        [src]="stock.imageUrl || 'assets/images/noimage.png'"
+        alt="Photo of {{ stock.detailedColor }}" />
       <mat-card-content>
         <p class="yarn-stocks-card-content">
           <span><strong>Yarn Category</strong></span>
