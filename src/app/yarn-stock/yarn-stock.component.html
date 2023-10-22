@@ -45,6 +45,15 @@
           <span><strong>Reorder Status</strong></span>
           <span>{{ stock.reorderStatus }}</span>
         </p>
+        <div class="quantity-container">
+          <button mat-icon-button aria-label="Decrease quantity">
+            <mat-icon>remove</mat-icon>
+          </button>
+          <span class="quantity-text">{{ stock.inStockQuantity }}</span>
+          <button mat-icon-button aria-label="Increase quantity">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
       </mat-card-content>
     </mat-card>
     <button

@@ -30,3 +30,15 @@
 .reorder-level {
   color: red;
 }
+
+.quantity-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.quantity-text {
+  margin-right: 5px;
+  margin-left: 5px;
+}
