@@ -46,11 +46,17 @@
           <span>{{ stock.reorderStatus }}</span>
         </p>
         <div class="quantity-container">
-          <button mat-icon-button aria-label="Decrease quantity">
+          <button
+            mat-icon-button
+            aria-label="Decrease quantity"
+            (click)="onDecreaseQuantity(stock.id, stock.inStockQuantity)">
             <mat-icon>remove</mat-icon>
           </button>
           <span class="quantity-text">{{ stock.inStockQuantity }}</span>
-          <button mat-icon-button aria-label="Increase quantity">
+          <button
+            mat-icon-button
+            aria-label="Increase quantity"
+            (click)="onIncreaseQuantity(stock.id, stock.inStockQuantity)">
             <mat-icon>add</mat-icon>
           </button>
         </div>

@@ -42,12 +42,25 @@ export class YarnStockComponent implements OnInit {
     });
 
     this.yarnStockApiService.getYarnStocks().subscribe(stocks => {
-      console.log(stocks);
       this.yarnStockList = stocks;
     });
   }
 
   onOpenFilter() {
     this.dialog.open(FilterDialogComponent);
+  }
+
+  onIncreaseQuantity(yarnId: number, quantity: number) {
+    this.yarnStockApiService.postUpdateYarnStockQuantity({
+      yarnId,
+      quantity: quantity + 1,
+    });
+  }
+
+  onDecreaseQuantity(yarnId: number, quantity: number) {
+    this.yarnStockApiService.postUpdateYarnStockQuantity({
+      yarnId,
+      quantity: quantity - 1,
+    });
   }
 }

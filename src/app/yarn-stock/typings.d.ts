@@ -21,4 +21,9 @@ declare namespace yarnStock {
   interface yarnStockCheckbox extends globalType.optionData {
     checked: boolean;
   }
+
+  interface updateQuantityPayload {
+    yarnId: number;
+    quantity: number;
+  }
 }

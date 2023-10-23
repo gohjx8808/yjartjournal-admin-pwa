@@ -19,4 +19,15 @@ export class YarnStockApiService {
       .postRequest<yarnStock.yarnStockData[]>('/stocks/yarn-stocks', payload)
       .subscribe(data => this.yarnStocks.next(data.data));
   }
+
+  postUpdateYarnStockQuantity(payload: yarnStock.updateQuantityPayload) {
+    this.apiService
+      .postRequest('/stocks/update-quantity', payload)
+      .subscribe(() => {
+        this.getAllYarnStockApi({
+          yarnCategoryIds: [],
+          yarnColorCategoryIds: [],
+        });
+      });
+  }
 }
