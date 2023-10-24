@@ -5,7 +5,7 @@
     <mat-checkbox
       *ngFor="let cat of catList"
       [(ngModel)]="cat.checked"
-      (ngModelChange)="onChange()">
+      (ngModelChange)="dialogData.onChange()">
       {{ cat.name }}
     </mat-checkbox>
   </section>
@@ -14,7 +14,7 @@
     <mat-checkbox
       *ngFor="let colorCat of colorCatList"
       [(ngModel)]="colorCat.checked"
-      (ngModelChange)="onChange()">
+      (ngModelChange)="dialogData.onChange()">
       {{ colorCat.name }}
     </mat-checkbox>
   </section>

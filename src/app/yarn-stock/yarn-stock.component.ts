@@ -12,28 +12,44 @@ import { YarnStockApiService } from './api/yarn-stock-api.service';
 })
 export class YarnStockComponent implements OnInit {
   yarnStockList: yarnStock.yarnStockData[] = [];
+  checkboxCatList: yarnStock.yarnStockCheckbox[] = [];
+  checkboxColorCatList: yarnStock.yarnStockCheckbox[] = [];
 
   constructor(
     private dialog: MatDialog,
     private yarnCategoryApiService: YarnCategoryApiService,
     private yarnColorCategoryApiService: YarnColorCategoryApiService,
     private yarnStockApiService: YarnStockApiService
-  ) {}
+  ) {
+    this.onChange = this.onChange.bind(this);
+  }
 
   ngOnInit(): void {
     this.yarnCategoryApiService.getAllYarnCategoryApi();
     this.yarnColorCategoryApiService.getAllYarnColorCategoryApi();
 
     let catIds: number[] = [];
+    let tempCatList: yarnStock.yarnStockCheckbox[] = [];
     this.yarnCategoryApiService.getYarnCategories().subscribe(catList => {
-      catIds = catList.map(({ id }) => id);
+      tempCatList = [];
+      catIds = catList.map(cat => {
+        tempCatList.push({ ...cat, checked: true });
+        return cat.id;
+      });
+      this.checkboxCatList = tempCatList;
     });
 
     let colorCatIds: number[] = [];
+    let tempColorCatList: yarnStock.yarnStockCheckbox[] = [];
     this.yarnColorCategoryApiService
       .getYarnColorCategories()
       .subscribe(colorCatList => {
-        colorCatIds = colorCatList.map(({ id }) => id);
+        tempColorCatList = [];
+        colorCatIds = colorCatList.map(colorCat => {
+          tempColorCatList.push({ ...colorCat, checked: true });
+          return colorCat.id;
+        });
+        this.checkboxColorCatList = tempColorCatList;
       });
 
     this.yarnStockApiService.getAllYarnStockApi({
@@ -47,7 +63,24 @@ export class YarnStockComponent implements OnInit {
   }
 
   onOpenFilter() {
-    this.dialog.open(FilterDialogComponent);
+    this.dialog.open(FilterDialogComponent, {
+      data: {
+        catList: this.checkboxCatList,
+        colorCatList: this.checkboxColorCatList,
+        onChange: this.onChange,
+      },
+    });
+  }
+
+  onChange() {
+    this.yarnStockApiService.getAllYarnStockApi({
+      yarnCategoryIds: this.getCheckedId(this.checkboxCatList),
+      yarnColorCategoryIds: this.getCheckedId(this.checkboxColorCatList),
+    });
+  }
+
+  private getCheckedId(list: yarnStock.yarnStockCheckbox[]) {
+    return list.filter(item => item.checked).map(({ id }) => id);
   }
 
   onIncreaseQuantity(yarnId: number, quantity: number) {

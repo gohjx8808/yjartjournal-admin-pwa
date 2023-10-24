@@ -26,4 +26,10 @@ declare namespace yarnStock {
     yarnId: number;
     quantity: number;
   }
+
+  interface filterDialogData {
+    catList: yarnStockCheckbox[];
+    colorCatList: yarnStockCheckbox[];
+    onChange: () => void;
+  }
 }
