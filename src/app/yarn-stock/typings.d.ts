@@ -25,6 +25,7 @@ declare namespace yarnStock {
   interface updateQuantityPayload {
     yarnId: number;
     quantity: number;
+    onRefreshData: () => void;
   }
 
   interface filterDialogData {

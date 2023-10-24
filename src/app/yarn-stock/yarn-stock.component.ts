@@ -21,7 +21,7 @@ export class YarnStockComponent implements OnInit {
     private yarnColorCategoryApiService: YarnColorCategoryApiService,
     private yarnStockApiService: YarnStockApiService
   ) {
-    this.onChange = this.onChange.bind(this);
+    this.onRefreshData = this.onRefreshData.bind(this);
   }
 
   ngOnInit(): void {
@@ -67,12 +67,12 @@ export class YarnStockComponent implements OnInit {
       data: {
         catList: this.checkboxCatList,
         colorCatList: this.checkboxColorCatList,
-        onChange: this.onChange,
+        onChange: this.onRefreshData,
       },
     });
   }
 
-  onChange() {
+  onRefreshData() {
     this.yarnStockApiService.getAllYarnStockApi({
       yarnCategoryIds: this.getCheckedId(this.checkboxCatList),
       yarnColorCategoryIds: this.getCheckedId(this.checkboxColorCatList),
@@ -87,6 +87,7 @@ export class YarnStockComponent implements OnInit {
     this.yarnStockApiService.postUpdateYarnStockQuantity({
       yarnId,
       quantity: quantity + 1,
+      onRefreshData: this.onRefreshData,
     });
   }
 
@@ -94,6 +95,7 @@ export class YarnStockComponent implements OnInit {
     this.yarnStockApiService.postUpdateYarnStockQuantity({
       yarnId,
       quantity: quantity - 1,
+      onRefreshData: this.onRefreshData,
     });
   }
 }
