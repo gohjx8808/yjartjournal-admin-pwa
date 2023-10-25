@@ -1,1 +1,22 @@
-// empty
+.content {
+  padding-top: 10px;
+  flex-direction: column;
+  display: flex;
+  width: 50vw;
+}
+
+.input-row-container {
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.input-container {
+  min-width: 200px;
+  width: 48%;
+}
+
+.input-prefix {
+  margin-left: 10px;
+}

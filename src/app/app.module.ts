@@ -33,6 +33,9 @@ import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
 import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter-dialog.component';
 import { EmptyPipe } from './pipes/empty.pipe';
 import { AddYarnStockDialogComponent } from './yarn-stock/dialogs/add-yarn-stock-dialog/add-yarn-stock-dialog.component';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -74,12 +77,15 @@ import { AddYarnStockDialogComponent } from './yarn-stock/dialogs/add-yarn-stock
     MatListModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
     NgxChartsModule,
   ],
-  providers: [],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

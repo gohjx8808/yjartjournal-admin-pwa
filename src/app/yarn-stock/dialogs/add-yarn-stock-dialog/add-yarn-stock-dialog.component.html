@@ -1,6 +1,61 @@
 <h1 mat-dialog-title>Add Yarn Stock</h1>
-<div mat-dialog-content>Would you like to delete cat.jpeg?</div>
-<div mat-dialog-actions>
-  <button mat-button mat-dialog-close>No</button>
-  <button mat-button mat-dialog-close cdkFocusInitial>Ok</button>
-</div>
+<mat-dialog-content class="content">
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput formControlName="name" />
+    <!-- <mat-error *ngIf="masterDataForm.controls['name'].errors?.['required']">
+      Name is required.
+    </mat-error> -->
+  </mat-form-field>
+  <div class="input-row-container">
+    <mat-form-field appearance="outline" class="input-container">
+      <mat-label>Yarn Category</mat-label>
+      <mat-select name="yarnCategory">
+        <mat-option
+          *ngFor="let category of yarnCategories"
+          [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="input-container">
+      <mat-label>Yarn Color Category</mat-label>
+      <mat-select name="yarnColorCategory">
+        <mat-option
+          *ngFor="let colorCategory of yarnColorCategories"
+          [value]="colorCategory.id">
+          {{ colorCategory.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="input-container">
+      <mat-label>Cost</mat-label>
+      <span matPrefix class="input-prefix">RM &nbsp;</span>
+      <input type="number" matInput />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="input-container">
+      <mat-label>Reorder Level</mat-label>
+      <input type="number" matInput />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="input-container">
+      <mat-label>Last Ordered Date</mat-label>
+      <input matInput [matDatepicker]="datepicker" />
+      <mat-hint>DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>
+            Apply
+          </button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button mat-dialog-close cdkFocusInitial>Submit</button>
+</mat-dialog-actions>
