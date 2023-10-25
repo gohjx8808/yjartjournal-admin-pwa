@@ -4,18 +4,25 @@
   bottom: 20px;
 }
 
+.yarn-stocks-view {
+  padding: 5vw;
+  margin-right: 5vw;
+  margin-left: 5vw;
+  flex-direction: column;
+}
+
 .yarn-stocks-card {
   max-width: 400px;
+  padding: 10px;
   width: 35vw;
   margin-bottom: 50px;
   border-radius: 20px;
 }
 
 .yarn-stocks-content {
-  padding: 5vw;
   flex-flow: row wrap;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .yarn-stocks-card-content {
@@ -42,4 +49,18 @@
 .quantity-text {
   margin-right: 5px;
   margin-left: 5px;
+}
+
+.add-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+.add-btn {
+  background-color: forestgreen;
+}
+
+.add-icon {
+  color: white;
 }

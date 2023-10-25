@@ -4,6 +4,7 @@ import { FilterDialogComponent } from './dialogs/filter-dialog/filter-dialog.com
 import { YarnCategoryApiService } from '../master-data/api/yarn-category/yarn-category-api.service';
 import { YarnColorCategoryApiService } from '../master-data/api/yarn-color-category/yarn-color-category-api.service';
 import { YarnStockApiService } from './api/yarn-stock-api.service';
+import { AddYarnStockDialogComponent } from './dialogs/add-yarn-stock-dialog/add-yarn-stock-dialog.component';
 
 @Component({
   selector: 'app-yarn-stock',
@@ -72,7 +73,7 @@ export class YarnStockComponent implements OnInit {
     });
   }
 
-  onRefreshData() {
+  private onRefreshData() {
     this.yarnStockApiService.getAllYarnStockApi({
       yarnCategoryIds: this.getCheckedId(this.checkboxCatList),
       yarnColorCategoryIds: this.getCheckedId(this.checkboxColorCatList),
@@ -97,5 +98,9 @@ export class YarnStockComponent implements OnInit {
       quantity: quantity - 1,
       onRefreshData: this.onRefreshData,
     });
+  }
+
+  openAddDialog() {
+    this.dialog.open(AddYarnStockDialogComponent);
   }
 }

@@ -1,75 +1,87 @@
 <app-layout>
-  <div class="yarn-stocks-content">
-    <mat-card class="yarn-stocks-card" *ngFor="let stock of yarnStockList">
-      <mat-card-header>
-        <mat-card-title>{{ stock.detailedColor }}</mat-card-title>
-      </mat-card-header>
-      <img
-        mat-card-image
-        [src]="stock.imageUrl || 'assets/images/noimage.png'"
-        alt="Photo of {{ stock.detailedColor }}" />
-      <mat-card-content>
-        <p class="yarn-stocks-card-content">
-          <span><strong>Yarn Category</strong></span>
-          <span>{{ stock.yarnCategory.name }}</span>
-        </p>
-        <p class="yarn-stocks-card-content">
-          <span><strong>Yarn Color Category</strong></span>
-          <span>{{ stock.yarnColorCategory.name }}</span>
-        </p>
-        <p class="yarn-stocks-card-content">
-          <span><strong>Used Quantity</strong></span>
-          <span>{{ stock.usedQuantity }}</span>
-        </p>
-        <p class="yarn-stocks-card-content">
-          <span><strong>Cost Per Item</strong></span>
-          <span>{{
-            stock.costPerItem | currency: 'MYR' : 'symbol-narrow'
-          }}</span>
-        </p>
-        <p class="yarn-stocks-card-content">
-          <span><strong>Reorder Level</strong></span>
-          <span>{{ stock.reorderLevel }}</span>
-        </p>
-        <p class="yarn-stocks-card-content">
-          <span><strong>Last Ordered Date</strong></span>
-          <span>{{ stock.lastOrderedAt | empty }}</span>
-        </p>
-        <p
-          class="yarn-stocks-card-content"
-          [ngClass]="
-            stock.reorderStatus === 'Optimum'
-              ? 'optimum-level'
-              : 'reorder-level'
-          ">
-          <span><strong>Reorder Status</strong></span>
-          <span>{{ stock.reorderStatus }}</span>
-        </p>
-        <div class="quantity-container">
-          <button
-            mat-icon-button
-            aria-label="Decrease quantity"
-            (click)="onDecreaseQuantity(stock.id, stock.inStockQuantity)">
-            <mat-icon>remove</mat-icon>
-          </button>
-          <span class="quantity-text">{{ stock.inStockQuantity }}</span>
-          <button
-            mat-icon-button
-            aria-label="Increase quantity"
-            (click)="onIncreaseQuantity(stock.id, stock.inStockQuantity)">
-            <mat-icon>add</mat-icon>
-          </button>
-        </div>
-      </mat-card-content>
-    </mat-card>
-    <button
-      class="filter-fab"
-      mat-fab
-      matTooltip="Filter"
-      color="primary"
-      aria-label="Filter yarn stock"
-      (click)="onOpenFilter()">
-      <mat-icon>filter_alt</mat-icon>
-    </button>
+  <div class="yarn-stocks-view">
+    <div class="add-btn-container">
+      <button
+        mat-stroked-button
+        aria-label="Add yarn stock"
+        class="add-btn"
+        (click)="openAddDialog()">
+        <span class="add-icon">Add</span>
+        <mat-icon class="add-icon">add</mat-icon>
+      </button>
+    </div>
+    <div class="yarn-stocks-content">
+      <mat-card class="yarn-stocks-card" *ngFor="let stock of yarnStockList">
+        <mat-card-header>
+          <mat-card-title>{{ stock.detailedColor }}</mat-card-title>
+        </mat-card-header>
+        <img
+          mat-card-image
+          [src]="stock.imageUrl || 'assets/images/noimage.png'"
+          alt="Photo of {{ stock.detailedColor }}" />
+        <mat-card-content>
+          <p class="yarn-stocks-card-content">
+            <span><strong>Yarn Category</strong></span>
+            <span>{{ stock.yarnCategory.name }}</span>
+          </p>
+          <p class="yarn-stocks-card-content">
+            <span><strong>Yarn Color Category</strong></span>
+            <span>{{ stock.yarnColorCategory.name }}</span>
+          </p>
+          <p class="yarn-stocks-card-content">
+            <span><strong>Used Quantity</strong></span>
+            <span>{{ stock.usedQuantity }}</span>
+          </p>
+          <p class="yarn-stocks-card-content">
+            <span><strong>Cost Per Item</strong></span>
+            <span>{{
+              stock.costPerItem | currency: 'MYR' : 'symbol-narrow'
+            }}</span>
+          </p>
+          <p class="yarn-stocks-card-content">
+            <span><strong>Reorder Level</strong></span>
+            <span>{{ stock.reorderLevel }}</span>
+          </p>
+          <p class="yarn-stocks-card-content">
+            <span><strong>Last Ordered Date</strong></span>
+            <span>{{ stock.lastOrderedAt | empty }}</span>
+          </p>
+          <p
+            class="yarn-stocks-card-content"
+            [ngClass]="
+              stock.reorderStatus === 'Optimum'
+                ? 'optimum-level'
+                : 'reorder-level'
+            ">
+            <span><strong>Reorder Status</strong></span>
+            <span>{{ stock.reorderStatus }}</span>
+          </p>
+          <div class="quantity-container">
+            <button
+              mat-icon-button
+              aria-label="Decrease quantity"
+              (click)="onDecreaseQuantity(stock.id, stock.inStockQuantity)">
+              <mat-icon>remove</mat-icon>
+            </button>
+            <span class="quantity-text">{{ stock.inStockQuantity }}</span>
+            <button
+              mat-icon-button
+              aria-label="Increase quantity"
+              (click)="onIncreaseQuantity(stock.id, stock.inStockQuantity)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+      <button
+        class="filter-fab"
+        mat-fab
+        matTooltip="Filter"
+        color="primary"
+        aria-label="Filter yarn stock"
+        (click)="onOpenFilter()">
+        <mat-icon>filter_alt</mat-icon>
+      </button>
+    </div>
   </div>
 </app-layout>
