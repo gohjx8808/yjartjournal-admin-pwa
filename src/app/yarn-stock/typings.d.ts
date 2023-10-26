@@ -22,7 +22,7 @@ declare namespace yarnStock {
     checked: boolean;
   }
 
-  interface updateQuantityPayload extends refreshData {
+  interface updateQuantityPayload {
     yarnId: number;
     quantity: number;
   }
@@ -33,16 +33,16 @@ declare namespace yarnStock {
     onChange: () => void;
   }
 
-  interface addYarnStockPayload extends addEditYarnStockPayload, refreshData {
-    quantity: number;
+  interface addYarnStockPayload extends addEditYarnStockPayload {
+    quantity: number | null;
   }
 
   interface addEditYarnStockPayload {
-    yarnCategoryId: number;
-    yarnColorCategoryId: number;
+    yarnCategoryId: number | null;
+    yarnColorCategoryId: number | null;
     name: string;
-    cost: number;
-    reorderLevel: number;
+    cost: number | null;
+    reorderLevel: number | null;
     lastOrderedDate?: Date;
     image?: string | null;
   }

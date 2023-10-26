@@ -5,6 +5,8 @@ import { YarnCategoryApiService } from '../master-data/api/yarn-category/yarn-ca
 import { YarnColorCategoryApiService } from '../master-data/api/yarn-color-category/yarn-color-category-api.service';
 import { YarnStockApiService } from './api/yarn-stock-api.service';
 import { AddYarnStockDialogComponent } from './dialogs/add-yarn-stock-dialog/add-yarn-stock-dialog.component';
+import { HttpErrorResponse } from '@angular/common/http';
+import { SnackbarService } from '../services/snackbar.service';
 
 @Component({
   selector: 'app-yarn-stock',
@@ -20,7 +22,8 @@ export class YarnStockComponent implements OnInit {
     private dialog: MatDialog,
     private yarnCategoryApiService: YarnCategoryApiService,
     private yarnColorCategoryApiService: YarnColorCategoryApiService,
-    private yarnStockApiService: YarnStockApiService
+    private yarnStockApiService: YarnStockApiService,
+    private snackbarService: SnackbarService
   ) {
     this.onRefreshData = this.onRefreshData.bind(this);
   }
@@ -85,19 +88,29 @@ export class YarnStockComponent implements OnInit {
   }
 
   onIncreaseQuantity(yarnId: number, quantity: number) {
-    this.yarnStockApiService.postUpdateYarnStockQuantity({
-      yarnId,
-      quantity: quantity + 1,
-      onRefreshData: this.onRefreshData,
-    });
+    this.updateQuantity(yarnId, quantity + 1);
   }
 
   onDecreaseQuantity(yarnId: number, quantity: number) {
-    this.yarnStockApiService.postUpdateYarnStockQuantity({
-      yarnId,
-      quantity: quantity - 1,
-      onRefreshData: this.onRefreshData,
-    });
+    this.updateQuantity(yarnId, quantity - 1);
+  }
+
+  updateQuantity(yarnId: number, quantity: number) {
+    this.yarnStockApiService
+      .postUpdateYarnStockQuantity({
+        yarnId,
+        quantity,
+      })
+      .subscribe({
+        next: () => {
+          this.onRefreshData();
+        },
+        error: (err: HttpErrorResponse) => {
+          this.snackbarService.openErrorSnackbar(
+            err.statusText || 'The quantity had failed to update!'
+          );
+        },
+      });
   }
 
   openAddDialog() {
