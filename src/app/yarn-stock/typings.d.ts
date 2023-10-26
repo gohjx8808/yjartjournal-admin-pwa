@@ -47,7 +47,9 @@ declare namespace yarnStock {
     image?: string | null;
   }
 
-  interface refreshData {
+  interface AddEditYarnStockDialogData {
     onRefreshData: () => void;
+    actionType: 'Add' | 'Edit';
+    data?: addEditYarnStockPayload;
   }
 }

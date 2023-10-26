@@ -114,9 +114,13 @@ export class YarnStockComponent implements OnInit {
   }
 
   openAddDialog() {
-    this.dialog.open(AddEditYarnStockDialogComponent, {
+    this.dialog.open<
+      AddEditYarnStockDialogComponent,
+      yarnStock.AddEditYarnStockDialogData
+    >(AddEditYarnStockDialogComponent, {
       data: {
         onRefreshData: this.onRefreshData,
+        actionType: 'Add',
       },
     });
   }

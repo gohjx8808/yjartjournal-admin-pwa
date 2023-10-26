@@ -12,11 +12,11 @@ import { HttpErrorResponse } from '@angular/common/http';
   templateUrl: './add-edit-yarn-stock-dialog.component.html',
   styleUrls: ['./add-edit-yarn-stock-dialog.component.scss'],
 })
-export class AddEditYarnStockDialogComponent {
+export class AddEditYarnStockDialogComponent implements OnInit {
   yarnCategories: globalType.optionData[] = [];
   yarnColorCategories: globalType.optionData[] = [];
   isSubmitting = false;
-  addYarnStockForm = this.formBuilder.group({
+  addEditYarnStockForm = this.formBuilder.group({
     yarnCategoryId: [null, [Validators.required]],
     yarnColorCategoryId: [null, [Validators.required]],
     name: ['', [Validators.required]],
@@ -27,7 +27,8 @@ export class AddEditYarnStockDialogComponent {
   });
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public dialogData: yarnStock.refreshData,
+    @Inject(MAT_DIALOG_DATA)
+    public dialogData: yarnStock.AddEditYarnStockDialogData,
     private formBuilder: NonNullableFormBuilder,
     private yarnCategoryApiService: YarnCategoryApiService,
     private yarnColorCategoryApiService: YarnColorCategoryApiService,
@@ -47,27 +48,29 @@ export class AddEditYarnStockDialogComponent {
   }
 
   onSubmit() {
-    if (!this.addYarnStockForm.valid) {
-      this.addYarnStockForm.markAllAsTouched();
+    if (!this.addEditYarnStockForm.valid) {
+      this.addEditYarnStockForm.markAllAsTouched();
     } else {
       this.isSubmitting = true;
-      this.yarnStockApiService
-        .postAddYarnStock(this.addYarnStockForm.getRawValue())
-        .subscribe({
-          next: () => {
-            this.isSubmitting = false;
-            this.dialogData.onRefreshData();
-            this.snackbarService.openSuccessSnackbar(
-              'The yarn had been added!'
-            );
-          },
-          error: (err: HttpErrorResponse) => {
-            this.isSubmitting = false;
-            this.snackbarService.openErrorSnackbar(
-              err.statusText || 'The yarn had failed to add!'
-            );
-          },
-        });
+      if (this.dialogData.actionType === 'Add') {
+        this.yarnStockApiService
+          .postAddYarnStock(this.addEditYarnStockForm.getRawValue())
+          .subscribe({
+            next: () => {
+              this.isSubmitting = false;
+              this.dialogData.onRefreshData();
+              this.snackbarService.openSuccessSnackbar(
+                'The yarn had been added!'
+              );
+            },
+            error: (err: HttpErrorResponse) => {
+              this.isSubmitting = false;
+              this.snackbarService.openErrorSnackbar(
+                err.statusText || 'The yarn had failed to add!'
+              );
+            },
+          });
+      }
     }
   }
 }

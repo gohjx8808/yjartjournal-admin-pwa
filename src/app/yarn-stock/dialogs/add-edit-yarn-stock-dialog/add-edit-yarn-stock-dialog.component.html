@@ -1,12 +1,15 @@
-<h1 mat-dialog-title>Add Yarn Stock</h1>
-<form [formGroup]="addYarnStockForm" (ngSubmit)="onSubmit()">
+<h1 mat-dialog-title>{{ dialogData.actionType }} Yarn Stock</h1>
+<form [formGroup]="addEditYarnStockForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content class="content">
     <mat-form-field
       appearance="outline"
-      [class.error-msg-container]="addYarnStockForm.controls['name'].touched">
+      [class.error-msg-container]="
+        addEditYarnStockForm.controls['name'].touched
+      ">
       <mat-label>Name</mat-label>
       <input matInput formControlName="name" />
-      <mat-error *ngIf="addYarnStockForm.controls['name'].errors?.['required']">
+      <mat-error
+        *ngIf="addEditYarnStockForm.controls['name'].errors?.['required']">
         Name is required.
       </mat-error>
     </mat-form-field>
@@ -15,7 +18,7 @@
         appearance="outline"
         class="input-container"
         [class.error-msg-container]="
-          addYarnStockForm.controls['yarnCategoryId'].touched
+          addEditYarnStockForm.controls['yarnCategoryId'].touched
         ">
         <mat-label>Yarn Category</mat-label>
         <mat-select formControlName="yarnCategoryId">
@@ -27,7 +30,7 @@
         </mat-select>
         <mat-error
           *ngIf="
-            addYarnStockForm.controls['yarnCategoryId'].errors?.['required']
+            addEditYarnStockForm.controls['yarnCategoryId'].errors?.['required']
           ">
           Yarn category is required.
         </mat-error>
@@ -36,7 +39,7 @@
         appearance="outline"
         class="input-container"
         [class.error-msg-container]="
-          addYarnStockForm.controls['yarnColorCategoryId'].touched
+          addEditYarnStockForm.controls['yarnColorCategoryId'].touched
         ">
         <mat-label>Yarn Color Category</mat-label>
         <mat-select formControlName="yarnColorCategoryId">
@@ -48,7 +51,7 @@
         </mat-select>
         <mat-error
           *ngIf="
-            addYarnStockForm.controls['yarnColorCategoryId'].errors?.[
+            addEditYarnStockForm.controls['yarnColorCategoryId'].errors?.[
               'required'
             ]
           ">
@@ -58,12 +61,14 @@
       <mat-form-field
         appearance="outline"
         class="input-container"
-        [class.error-msg-container]="addYarnStockForm.controls['cost'].touched">
+        [class.error-msg-container]="
+          addEditYarnStockForm.controls['cost'].touched
+        ">
         <mat-label>Cost</mat-label>
         <span matPrefix class="input-prefix">RM &nbsp;</span>
         <input type="number" matInput formControlName="cost" />
         <mat-error
-          *ngIf="addYarnStockForm.controls['cost'].errors?.['required']">
+          *ngIf="addEditYarnStockForm.controls['cost'].errors?.['required']">
           Cost is required.
         </mat-error>
       </mat-form-field>
@@ -71,13 +76,13 @@
         appearance="outline"
         class="input-container"
         [class.error-msg-container]="
-          addYarnStockForm.controls['reorderLevel'].touched
+          addEditYarnStockForm.controls['reorderLevel'].touched
         ">
         <mat-label>Reorder Level</mat-label>
         <input type="number" matInput formControlName="reorderLevel" />
         <mat-error
           *ngIf="
-            addYarnStockForm.controls['reorderLevel'].errors?.['required']
+            addEditYarnStockForm.controls['reorderLevel'].errors?.['required']
           ">
           Reorder level is required.
         </mat-error>
@@ -86,12 +91,14 @@
         appearance="outline"
         class="input-container"
         [class.error-msg-container]="
-          addYarnStockForm.controls['quantity'].touched
+          addEditYarnStockForm.controls['quantity'].touched
         ">
         <mat-label>In Stock Quantity</mat-label>
         <input type="number" matInput formControlName="quantity" />
         <mat-error
-          *ngIf="addYarnStockForm.controls['quantity'].errors?.['required']">
+          *ngIf="
+            addEditYarnStockForm.controls['quantity'].errors?.['required']
+          ">
           Quantity is required.
         </mat-error>
       </mat-form-field>
@@ -99,7 +106,7 @@
         appearance="outline"
         class="input-container"
         [class.error-msg-container]="
-          addYarnStockForm.controls['lastOrderedDate'].touched
+          addEditYarnStockForm.controls['lastOrderedDate'].touched
         ">
         <mat-label>Last Ordered Date</mat-label>
         <input
@@ -120,7 +127,9 @@
         </mat-datepicker>
         <mat-error
           *ngIf="
-            addYarnStockForm.controls['lastOrderedDate'].errors?.['required']
+            addEditYarnStockForm.controls['lastOrderedDate'].errors?.[
+              'required'
+            ]
           ">
           Last ordered date is required.
         </mat-error>
@@ -134,7 +143,7 @@
       mat-dialog-close
       cdkFocusInitial
       type="submit"
-      [disabled]="!addYarnStockForm.valid">
+      [disabled]="!addEditYarnStockForm.valid">
       Submit
     </button>
   </mat-dialog-actions>
