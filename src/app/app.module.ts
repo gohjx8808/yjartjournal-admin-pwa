@@ -4,12 +4,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -29,13 +32,10 @@ import { LoginComponent } from './login/login.component';
 import { AddEditMasterDataDialogComponent } from './master-data/dialogs/add-edit-master-data-dialog/add-edit-master-data-dialog.component';
 import { DeleteMasterDataDialogComponent } from './master-data/dialogs/delete-master-data-dialog/delete-master-data-dialog.component';
 import { MasterDataComponent } from './master-data/master-data.component';
-import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
-import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter-dialog.component';
 import { EmptyPipe } from './pipes/empty.pipe';
-import { AddYarnStockDialogComponent } from './yarn-stock/dialogs/add-yarn-stock-dialog/add-yarn-stock-dialog.component';
-import { MatSelectModule } from '@angular/material/select';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
+import { AddEditYarnStockDialogComponent } from './yarn-stock/dialogs/add-edit-yarn-stock-dialog/add-edit-yarn-stock-dialog.component';
+import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter-dialog.component';
+import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +52,7 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
     DeleteMasterDataDialogComponent,
     FilterDialogComponent,
     EmptyPipe,
-    AddYarnStockDialogComponent,
+    AddEditYarnStockDialogComponent,
   ],
   imports: [
     BrowserModule,

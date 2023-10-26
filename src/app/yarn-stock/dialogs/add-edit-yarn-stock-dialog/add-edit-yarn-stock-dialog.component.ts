@@ -8,11 +8,11 @@ import { SnackbarService } from '../../../services/snackbar.service';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-add-yarn-stock-dialog',
-  templateUrl: './add-yarn-stock-dialog.component.html',
-  styleUrls: ['./add-yarn-stock-dialog.component.scss'],
+  selector: 'app-add-edit-yarn-stock-dialog',
+  templateUrl: './add-edit-yarn-stock-dialog.component.html',
+  styleUrls: ['./add-edit-yarn-stock-dialog.component.scss'],
 })
-export class AddYarnStockDialogComponent implements OnInit {
+export class AddEditYarnStockDialogComponent {
   yarnCategories: globalType.optionData[] = [];
   yarnColorCategories: globalType.optionData[] = [];
   isSubmitting = false;

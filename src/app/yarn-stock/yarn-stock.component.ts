@@ -1,12 +1,12 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { FilterDialogComponent } from './dialogs/filter-dialog/filter-dialog.component';
 import { YarnCategoryApiService } from '../master-data/api/yarn-category/yarn-category-api.service';
 import { YarnColorCategoryApiService } from '../master-data/api/yarn-color-category/yarn-color-category-api.service';
-import { YarnStockApiService } from './api/yarn-stock-api.service';
-import { AddYarnStockDialogComponent } from './dialogs/add-yarn-stock-dialog/add-yarn-stock-dialog.component';
-import { HttpErrorResponse } from '@angular/common/http';
 import { SnackbarService } from '../services/snackbar.service';
+import { YarnStockApiService } from './api/yarn-stock-api.service';
+import { AddEditYarnStockDialogComponent } from './dialogs/add-edit-yarn-stock-dialog/add-edit-yarn-stock-dialog.component';
+import { FilterDialogComponent } from './dialogs/filter-dialog/filter-dialog.component';
 
 @Component({
   selector: 'app-yarn-stock',
@@ -114,7 +114,7 @@ export class YarnStockComponent implements OnInit {
   }
 
   openAddDialog() {
-    this.dialog.open(AddYarnStockDialogComponent, {
+    this.dialog.open(AddEditYarnStockDialogComponent, {
       data: {
         onRefreshData: this.onRefreshData,
       },
