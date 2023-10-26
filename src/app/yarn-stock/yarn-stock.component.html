@@ -13,12 +13,12 @@
     <div class="yarn-stocks-content">
       <mat-card class="yarn-stocks-card" *ngFor="let stock of yarnStockList">
         <mat-card-header>
-          <mat-card-title>{{ stock.detailedColor }}</mat-card-title>
+          <mat-card-title>{{ stock.name }}</mat-card-title>
         </mat-card-header>
         <img
           mat-card-image
           [src]="stock.imageUrl || 'assets/images/noimage.png'"
-          alt="Photo of {{ stock.detailedColor }}" />
+          alt="Photo of {{ stock.name }}" />
         <mat-card-content>
           <p class="yarn-stocks-card-content">
             <span><strong>Yarn Category</strong></span>

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { YarnCategoryApiService } from '../../../master-data/api/yarn-category/yarn-category-api.service';
 import { YarnColorCategoryApiService } from 'src/app/master-data/api/yarn-color-category/yarn-color-category-api.service';
+import { YarnStockApiService } from '../../api/yarn-stock-api.service';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-yarn-stock-dialog',
@@ -12,19 +14,21 @@ export class AddYarnStockDialogComponent implements OnInit {
   yarnCategories: globalType.optionData[] = [];
   yarnColorCategories: globalType.optionData[] = [];
   addYarnStockForm = this.formBuilder.group({
-    yarnCategory: ['', [Validators.required]],
-    yarnColorCategory: ['', [Validators.required]],
-    detailedColor: ['', [Validators.required]],
-    cost: ['', [Validators.required]],
-    reorderLevel: ['', [Validators.required]],
-    quantity: ['', [Validators.required]],
-    lastOrderedDate: ['', [Validators.required]],
+    yarnCategoryId: [0, [Validators.required]],
+    yarnColorCategoryId: [0, [Validators.required]],
+    name: ['', [Validators.required]],
+    cost: [0, [Validators.required]],
+    reorderLevel: [0, [Validators.required]],
+    quantity: [0, [Validators.required]],
+    lastOrderedDate: [new Date(), [Validators.required]],
   });
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public dialogData: yarnStock.refreshData,
     private formBuilder: NonNullableFormBuilder,
     private yarnCategoryApiService: YarnCategoryApiService,
-    private yarnColorCategoryApiService: YarnColorCategoryApiService
+    private yarnColorCategoryApiService: YarnColorCategoryApiService,
+    private yarnStockApiService: YarnStockApiService
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +43,13 @@ export class AddYarnStockDialogComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.addYarnStockForm.getRawValue());
+    if (!this.addYarnStockForm.valid) {
+      this.addYarnStockForm.markAllAsTouched();
+    } else {
+      this.yarnStockApiService.postAddYarnStock({
+        ...this.addYarnStockForm.getRawValue(),
+        onRefreshData: this.dialogData.onRefreshData,
+      });
+    }
   }
 }

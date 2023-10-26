@@ -25,4 +25,10 @@ export class YarnStockApiService {
       .postRequest('/stocks/update-quantity', payload)
       .subscribe(() => payload.onRefreshData());
   }
+
+  postAddYarnStock(payload: yarnStock.addYarnStockPayload) {
+    this.apiService
+      .postRequest('/stocks/add-new', payload)
+      .subscribe(() => payload.onRefreshData());
+  }
 }

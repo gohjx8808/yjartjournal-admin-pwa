@@ -6,7 +6,7 @@ declare namespace yarnStock {
 
   interface yarnStockData {
     id: number;
-    detailedColor: string;
+    name: string;
     costPerItem: number;
     inStockQuantity: number;
     usedQuantity: number;
@@ -22,10 +22,9 @@ declare namespace yarnStock {
     checked: boolean;
   }
 
-  interface updateQuantityPayload {
+  interface updateQuantityPayload extends refreshData {
     yarnId: number;
     quantity: number;
-    onRefreshData: () => void;
   }
 
   interface filterDialogData {
@@ -34,17 +33,21 @@ declare namespace yarnStock {
     onChange: () => void;
   }
 
-  interface addYarnStockPayload extends addEditYarnStockPayload {
+  interface addYarnStockPayload extends addEditYarnStockPayload, refreshData {
     quantity: number;
   }
 
   interface addEditYarnStockPayload {
-    yarnCategory: globalType.optionData;
-    yarnColorCategory: globalType.optionData;
-    detailedColor: string;
+    yarnCategoryId: number;
+    yarnColorCategoryId: number;
+    name: string;
     cost: number;
     reorderLevel: number;
     lastOrderedDate?: Date;
     image?: string | null;
+  }
+
+  interface refreshData {
+    onRefreshData: () => void;
   }
 }

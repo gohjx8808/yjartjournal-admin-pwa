@@ -3,13 +3,10 @@
   <mat-dialog-content class="content">
     <mat-form-field
       appearance="outline"
-      [class.error-msg-container]="
-        addYarnStockForm.controls['detailedColor'].touched
-      ">
+      [class.error-msg-container]="addYarnStockForm.controls['name'].touched">
       <mat-label>Name</mat-label>
-      <input matInput formControlName="detailedColor" />
-      <mat-error
-        *ngIf="addYarnStockForm.controls['detailedColor'].errors?.['required']">
+      <input matInput formControlName="name" />
+      <mat-error *ngIf="addYarnStockForm.controls['name'].errors?.['required']">
         Name is required.
       </mat-error>
     </mat-form-field>
@@ -18,10 +15,10 @@
         appearance="outline"
         class="input-container"
         [class.error-msg-container]="
-          addYarnStockForm.controls['yarnCategory'].touched
+          addYarnStockForm.controls['yarnCategoryId'].touched
         ">
         <mat-label>Yarn Category</mat-label>
-        <mat-select formControlName="yarnCategory">
+        <mat-select formControlName="yarnCategoryId">
           <mat-option
             *ngFor="let category of yarnCategories"
             [value]="category.id">
@@ -30,7 +27,7 @@
         </mat-select>
         <mat-error
           *ngIf="
-            addYarnStockForm.controls['yarnCategory'].errors?.['required']
+            addYarnStockForm.controls['yarnCategoryId'].errors?.['required']
           ">
           Yarn category is required.
         </mat-error>
@@ -39,10 +36,10 @@
         appearance="outline"
         class="input-container"
         [class.error-msg-container]="
-          addYarnStockForm.controls['yarnColorCategory'].touched
+          addYarnStockForm.controls['yarnColorCategoryId'].touched
         ">
         <mat-label>Yarn Color Category</mat-label>
-        <mat-select formControlName="yarnColorCategory">
+        <mat-select formControlName="yarnColorCategoryId">
           <mat-option
             *ngFor="let colorCategory of yarnColorCategories"
             [value]="colorCategory.id">
@@ -51,7 +48,9 @@
         </mat-select>
         <mat-error
           *ngIf="
-            addYarnStockForm.controls['yarnColorCategory'].errors?.['required']
+            addYarnStockForm.controls['yarnColorCategoryId'].errors?.[
+              'required'
+            ]
           ">
           Yarn color category is required.
         </mat-error>
