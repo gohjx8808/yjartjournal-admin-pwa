@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NonNullableFormBuilder } from '@angular/forms';
+import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { YarnCategoryApiService } from '../../../master-data/api/yarn-category/yarn-category-api.service';
 import { YarnColorCategoryApiService } from 'src/app/master-data/api/yarn-color-category/yarn-color-category-api.service';
 
@@ -11,7 +11,15 @@ import { YarnColorCategoryApiService } from 'src/app/master-data/api/yarn-color-
 export class AddYarnStockDialogComponent implements OnInit {
   yarnCategories: globalType.optionData[] = [];
   yarnColorCategories: globalType.optionData[] = [];
-  addYarnStockForm = this.formBuilder.group({});
+  addYarnStockForm = this.formBuilder.group({
+    yarnCategory: ['', [Validators.required]],
+    yarnColorCategory: ['', [Validators.required]],
+    detailedColor: ['', [Validators.required]],
+    cost: ['', [Validators.required]],
+    reorderLevel: ['', [Validators.required]],
+    quantity: ['', [Validators.required]],
+    lastOrderedDate: ['', [Validators.required]],
+  });
 
   constructor(
     private formBuilder: NonNullableFormBuilder,
@@ -28,5 +36,9 @@ export class AddYarnStockDialogComponent implements OnInit {
       .subscribe(data => {
         this.yarnColorCategories = data;
       });
+  }
+
+  onSubmit() {
+    console.log(this.addYarnStockForm.getRawValue());
   }
 }

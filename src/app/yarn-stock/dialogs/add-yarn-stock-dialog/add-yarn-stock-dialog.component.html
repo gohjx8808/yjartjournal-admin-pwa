@@ -1,61 +1,142 @@
 <h1 mat-dialog-title>Add Yarn Stock</h1>
-<mat-dialog-content class="content">
-  <mat-form-field appearance="outline">
-    <mat-label>Name</mat-label>
-    <input matInput formControlName="name" />
-    <!-- <mat-error *ngIf="masterDataForm.controls['name'].errors?.['required']">
-      Name is required.
-    </mat-error> -->
-  </mat-form-field>
-  <div class="input-row-container">
-    <mat-form-field appearance="outline" class="input-container">
-      <mat-label>Yarn Category</mat-label>
-      <mat-select name="yarnCategory">
-        <mat-option
-          *ngFor="let category of yarnCategories"
-          [value]="category.id">
-          {{ category.name }}
-        </mat-option>
-      </mat-select>
+<form [formGroup]="addYarnStockForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content class="content">
+    <mat-form-field
+      appearance="outline"
+      [class.error-msg-container]="
+        addYarnStockForm.controls['detailedColor'].touched
+      ">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="detailedColor" />
+      <mat-error
+        *ngIf="addYarnStockForm.controls['detailedColor'].errors?.['required']">
+        Name is required.
+      </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="outline" class="input-container">
-      <mat-label>Yarn Color Category</mat-label>
-      <mat-select name="yarnColorCategory">
-        <mat-option
-          *ngFor="let colorCategory of yarnColorCategories"
-          [value]="colorCategory.id">
-          {{ colorCategory.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="input-container">
-      <mat-label>Cost</mat-label>
-      <span matPrefix class="input-prefix">RM &nbsp;</span>
-      <input type="number" matInput />
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="input-container">
-      <mat-label>Reorder Level</mat-label>
-      <input type="number" matInput />
-    </mat-form-field>
-    <mat-form-field appearance="outline" class="input-container">
-      <mat-label>Last Ordered Date</mat-label>
-      <input matInput [matDatepicker]="datepicker" />
-      <mat-hint>DD/MM/YYYY</mat-hint>
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="datepicker"></mat-datepicker-toggle>
-      <mat-datepicker #datepicker>
-        <mat-datepicker-actions>
-          <button mat-button matDatepickerCancel>Cancel</button>
-          <button mat-raised-button color="primary" matDatepickerApply>
-            Apply
-          </button>
-        </mat-datepicker-actions>
-      </mat-datepicker>
-    </mat-form-field>
-  </div>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button mat-dialog-close cdkFocusInitial>Submit</button>
-</mat-dialog-actions>
+    <div class="input-row-container">
+      <mat-form-field
+        appearance="outline"
+        class="input-container"
+        [class.error-msg-container]="
+          addYarnStockForm.controls['yarnCategory'].touched
+        ">
+        <mat-label>Yarn Category</mat-label>
+        <mat-select formControlName="yarnCategory">
+          <mat-option
+            *ngFor="let category of yarnCategories"
+            [value]="category.id">
+            {{ category.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            addYarnStockForm.controls['yarnCategory'].errors?.['required']
+          ">
+          Yarn category is required.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field
+        appearance="outline"
+        class="input-container"
+        [class.error-msg-container]="
+          addYarnStockForm.controls['yarnColorCategory'].touched
+        ">
+        <mat-label>Yarn Color Category</mat-label>
+        <mat-select formControlName="yarnColorCategory">
+          <mat-option
+            *ngFor="let colorCategory of yarnColorCategories"
+            [value]="colorCategory.id">
+            {{ colorCategory.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error
+          *ngIf="
+            addYarnStockForm.controls['yarnColorCategory'].errors?.['required']
+          ">
+          Yarn color category is required.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field
+        appearance="outline"
+        class="input-container"
+        [class.error-msg-container]="addYarnStockForm.controls['cost'].touched">
+        <mat-label>Cost</mat-label>
+        <span matPrefix class="input-prefix">RM &nbsp;</span>
+        <input type="number" matInput formControlName="cost" />
+        <mat-error
+          *ngIf="addYarnStockForm.controls['cost'].errors?.['required']">
+          Cost is required.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field
+        appearance="outline"
+        class="input-container"
+        [class.error-msg-container]="
+          addYarnStockForm.controls['reorderLevel'].touched
+        ">
+        <mat-label>Reorder Level</mat-label>
+        <input type="number" matInput formControlName="reorderLevel" />
+        <mat-error
+          *ngIf="
+            addYarnStockForm.controls['reorderLevel'].errors?.['required']
+          ">
+          Reorder level is required.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field
+        appearance="outline"
+        class="input-container"
+        [class.error-msg-container]="
+          addYarnStockForm.controls['quantity'].touched
+        ">
+        <mat-label>In Stock Quantity</mat-label>
+        <input type="number" matInput formControlName="quantity" />
+        <mat-error
+          *ngIf="addYarnStockForm.controls['quantity'].errors?.['required']">
+          Quantity is required.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field
+        appearance="outline"
+        class="input-container"
+        [class.error-msg-container]="
+          addYarnStockForm.controls['lastOrderedDate'].touched
+        ">
+        <mat-label>Last Ordered Date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="datepicker"
+          formControlName="lastOrderedDate" />
+        <mat-hint>DD/MM/YYYY</mat-hint>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker #datepicker>
+          <mat-datepicker-actions>
+            <button mat-button matDatepickerCancel>Cancel</button>
+            <button mat-raised-button color="primary" matDatepickerApply>
+              Apply
+            </button>
+          </mat-datepicker-actions>
+        </mat-datepicker>
+        <mat-error
+          *ngIf="
+            addYarnStockForm.controls['lastOrderedDate'].errors?.['required']
+          ">
+          Last ordered date is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+      type="submit"
+      [disabled]="!addYarnStockForm.valid">
+      Submit
+    </button>
+  </mat-dialog-actions>
+</form>

@@ -33,4 +33,18 @@ declare namespace yarnStock {
     colorCatList: yarnStockCheckbox[];
     onChange: () => void;
   }
+
+  interface addYarnStockPayload extends addEditYarnStockPayload {
+    quantity: number;
+  }
+
+  interface addEditYarnStockPayload {
+    yarnCategory: globalType.optionData;
+    yarnColorCategory: globalType.optionData;
+    detailedColor: string;
+    cost: number;
+    reorderLevel: number;
+    lastOrderedDate?: Date;
+    image?: string | null;
+  }
 }
