@@ -35,6 +35,7 @@ declare namespace yarnStock {
 
   interface addYarnStockPayload extends addEditYarnStockPayload {
     quantity: number | null;
+    image?: string | null;
   }
 
   interface addEditYarnStockPayload {
@@ -44,12 +45,18 @@ declare namespace yarnStock {
     cost: number | null;
     reorderLevel: number | null;
     lastOrderedDate?: Date;
-    image?: string | null;
+  }
+
+  interface updateYarnStockPayload extends addEditYarnStockPayload {
+    yarnId: number;
+    image: {
+      isUpdated: boolean;
+    };
   }
 
   interface AddEditYarnStockDialogData {
     onRefreshData: () => void;
     actionType: 'Add' | 'Edit';
-    data?: addEditYarnStockPayload;
+    data?: yarnStockData;
   }
 }

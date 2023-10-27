@@ -18,21 +18,25 @@ export class AddEditYarnStockDialogComponent implements OnInit {
   isSubmitting = false;
   addEditYarnStockForm = this.formBuilder.group({
     yarnCategoryId: [
-      this.dialogData.data?.yarnCategoryId ?? null,
+      this.dialogData.data?.yarnCategory.id ?? null,
       [Validators.required],
     ],
     yarnColorCategoryId: [
-      this.dialogData.data?.yarnColorCategoryId ?? null,
+      this.dialogData.data?.yarnColorCategory.id ?? null,
       [Validators.required],
     ],
     name: [this.dialogData.data?.name ?? '', [Validators.required]],
-    cost: [this.dialogData.data?.cost ?? null, [Validators.required]],
+    cost: [this.dialogData.data?.costPerItem ?? null, [Validators.required]],
     reorderLevel: [
       this.dialogData.data?.reorderLevel ?? null,
       [Validators.required],
     ],
     quantity: [null],
-    lastOrderedDate: [this.dialogData.data?.lastOrderedDate ?? undefined],
+    lastOrderedDate: [
+      this.dialogData.data?.lastOrderedAt
+        ? new Date(this.dialogData.data.lastOrderedAt)
+        : undefined,
+    ],
   });
 
   constructor(
@@ -81,6 +85,32 @@ export class AddEditYarnStockDialogComponent implements OnInit {
               this.isSubmitting = false;
               this.snackbarService.openErrorSnackbar(
                 err.statusText || 'The yarn had failed to add!'
+              );
+            },
+          });
+      } else {
+        const formData = this.addEditYarnStockForm.getRawValue();
+
+        this.yarnStockApiService
+          .postUpdateYarnStock({
+            yarnId: this.dialogData.data?.id || 0,
+            image: {
+              isUpdated: false,
+            },
+            ...formData,
+          })
+          .subscribe({
+            next: () => {
+              this.isSubmitting = false;
+              this.dialogData.onRefreshData();
+              this.snackbarService.openSuccessSnackbar(
+                'The yarn had been updated!'
+              );
+            },
+            error: (err: HttpErrorResponse) => {
+              this.isSubmitting = false;
+              this.snackbarService.openErrorSnackbar(
+                err.statusText || 'The yarn had failed to update!'
               );
             },
           });

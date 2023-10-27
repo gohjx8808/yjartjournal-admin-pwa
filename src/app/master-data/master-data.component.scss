@@ -1,3 +1,5 @@
+@import url('../app.component.scss');
+
 .master-data-content {
   padding: 5vw;
   flex-flow: column wrap;
@@ -14,10 +16,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 5px 20px;
-}
-
-.edit-icon {
-  color: goldenrod;
 }
 
 .master-data-header {

@@ -124,4 +124,17 @@ export class YarnStockComponent implements OnInit {
       },
     });
   }
+
+  openEditDialog(data: yarnStock.yarnStockData) {
+    this.dialog.open<
+      AddEditYarnStockDialogComponent,
+      yarnStock.AddEditYarnStockDialogData
+    >(AddEditYarnStockDialogComponent, {
+      data: {
+        onRefreshData: this.onRefreshData,
+        actionType: 'Edit',
+        data,
+      },
+    });
+  }
 }

@@ -1,3 +1,5 @@
+@import url('../app.component.scss');
+
 .filter-fab {
   position: fixed;
   right: 20px;
@@ -63,4 +65,9 @@
 
 .add-icon {
   color: white;
+}
+
+.card-header {
+  align-items: center;
+  justify-content: space-between;
 }
