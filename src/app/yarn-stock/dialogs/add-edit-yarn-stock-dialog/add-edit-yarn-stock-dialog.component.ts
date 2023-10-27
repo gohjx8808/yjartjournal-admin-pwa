@@ -17,13 +17,22 @@ export class AddEditYarnStockDialogComponent implements OnInit {
   yarnColorCategories: globalType.optionData[] = [];
   isSubmitting = false;
   addEditYarnStockForm = this.formBuilder.group({
-    yarnCategoryId: [null, [Validators.required]],
-    yarnColorCategoryId: [null, [Validators.required]],
-    name: ['', [Validators.required]],
-    cost: [null, [Validators.required]],
-    reorderLevel: [null, [Validators.required]],
-    quantity: [null, [Validators.required]],
-    lastOrderedDate: [undefined],
+    yarnCategoryId: [
+      this.dialogData.data?.yarnCategoryId ?? null,
+      [Validators.required],
+    ],
+    yarnColorCategoryId: [
+      this.dialogData.data?.yarnColorCategoryId ?? null,
+      [Validators.required],
+    ],
+    name: [this.dialogData.data?.name ?? '', [Validators.required]],
+    cost: [this.dialogData.data?.cost ?? null, [Validators.required]],
+    reorderLevel: [
+      this.dialogData.data?.reorderLevel ?? null,
+      [Validators.required],
+    ],
+    quantity: [null],
+    lastOrderedDate: [this.dialogData.data?.lastOrderedDate ?? undefined],
   });
 
   constructor(
@@ -45,6 +54,11 @@ export class AddEditYarnStockDialogComponent implements OnInit {
       .subscribe(data => {
         this.yarnColorCategories = data;
       });
+    if (this.dialogData.actionType === 'Add') {
+      this.addEditYarnStockForm.controls['quantity'].setValidators([
+        Validators.required,
+      ]);
+    }
   }
 
   onSubmit() {
