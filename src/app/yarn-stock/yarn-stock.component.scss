@@ -1,4 +1,4 @@
-@import url('../app.component.scss');
+@import '../app.component.scss';
 
 .filter-fab {
   position: fixed;
@@ -70,4 +70,8 @@
 .card-header {
   align-items: center;
   justify-content: space-between;
+}
+
+.action-icon {
+  color: gray;
 }

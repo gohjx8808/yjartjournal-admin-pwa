@@ -7,6 +7,7 @@ import { SnackbarService } from '../services/snackbar.service';
 import { YarnStockApiService } from './api/yarn-stock-api.service';
 import { AddEditYarnStockDialogComponent } from './dialogs/add-edit-yarn-stock-dialog/add-edit-yarn-stock-dialog.component';
 import { FilterDialogComponent } from './dialogs/filter-dialog/filter-dialog.component';
+import { DeleteYarnStockDialogComponent } from './dialogs/delete-yarn-stock-dialog/delete-yarn-stock-dialog.component';
 
 @Component({
   selector: 'app-yarn-stock',
@@ -116,7 +117,7 @@ export class YarnStockComponent implements OnInit {
   openAddDialog() {
     this.dialog.open<
       AddEditYarnStockDialogComponent,
-      yarnStock.AddEditYarnStockDialogData
+      yarnStock.addEditYarnStockDialogData
     >(AddEditYarnStockDialogComponent, {
       data: {
         onRefreshData: this.onRefreshData,
@@ -128,11 +129,23 @@ export class YarnStockComponent implements OnInit {
   openEditDialog(data: yarnStock.yarnStockData) {
     this.dialog.open<
       AddEditYarnStockDialogComponent,
-      yarnStock.AddEditYarnStockDialogData
+      yarnStock.addEditYarnStockDialogData
     >(AddEditYarnStockDialogComponent, {
       data: {
         onRefreshData: this.onRefreshData,
         actionType: 'Edit',
+        data,
+      },
+    });
+  }
+
+  openDeleteDialog(data: yarnStock.yarnStockData) {
+    this.dialog.open<
+      DeleteYarnStockDialogComponent,
+      yarnStock.deleteYarnStockDialogData
+    >(DeleteYarnStockDialogComponent, {
+      data: {
+        onRefreshData: this.onRefreshData,
         data,
       },
     });

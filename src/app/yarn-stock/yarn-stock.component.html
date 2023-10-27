@@ -14,12 +14,20 @@
       <mat-card class="yarn-stocks-card" *ngFor="let stock of yarnStockList">
         <mat-card-header class="card-header">
           <mat-card-title>{{ stock.name }}</mat-card-title>
-          <button
-            mat-icon-button
-            aria-label="Edit stock"
-            (click)="openEditDialog(stock)">
-            <mat-icon class="edit-icon">edit</mat-icon>
-          </button>
+          <div>
+            <button
+              mat-icon-button
+              aria-label="Edit stock"
+              (click)="openEditDialog(stock)">
+              <mat-icon class="action-icon">edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              aria-label="Delete stock"
+              (click)="openDeleteDialog(stock)">
+              <mat-icon class="action-icon">close</mat-icon>
+            </button>
+          </div>
         </mat-card-header>
         <img
           mat-card-image

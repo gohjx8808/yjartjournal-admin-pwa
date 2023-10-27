@@ -36,6 +36,7 @@ import { EmptyPipe } from './pipes/empty.pipe';
 import { AddEditYarnStockDialogComponent } from './yarn-stock/dialogs/add-edit-yarn-stock-dialog/add-edit-yarn-stock-dialog.component';
 import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter-dialog.component';
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
+import { DeleteYarnStockDialogComponent } from './yarn-stock/dialogs/delete-yarn-stock-dialog/delete-yarn-stock-dialog.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
     FilterDialogComponent,
     EmptyPipe,
     AddEditYarnStockDialogComponent,
+    DeleteYarnStockDialogComponent,
   ],
   imports: [
     BrowserModule,

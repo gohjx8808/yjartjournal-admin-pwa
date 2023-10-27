@@ -1,11 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
-import { YarnCategoryApiService } from '../../../master-data/api/yarn-category/yarn-category-api.service';
-import { YarnColorCategoryApiService } from 'src/app/master-data/api/yarn-color-category/yarn-color-category-api.service';
-import { YarnStockApiService } from '../../api/yarn-stock-api.service';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { YarnColorCategoryApiService } from 'src/app/master-data/api/yarn-color-category/yarn-color-category-api.service';
+import { YarnCategoryApiService } from '../../../master-data/api/yarn-category/yarn-category-api.service';
 import { SnackbarService } from '../../../services/snackbar.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { YarnStockApiService } from '../../api/yarn-stock-api.service';
 
 @Component({
   selector: 'app-add-edit-yarn-stock-dialog',
@@ -41,7 +41,7 @@ export class AddEditYarnStockDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public dialogData: yarnStock.AddEditYarnStockDialogData,
+    public dialogData: yarnStock.addEditYarnStockDialogData,
     private formBuilder: NonNullableFormBuilder,
     private yarnCategoryApiService: YarnCategoryApiService,
     private yarnColorCategoryApiService: YarnColorCategoryApiService,

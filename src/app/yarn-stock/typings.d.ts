@@ -47,16 +47,26 @@ declare namespace yarnStock {
     lastOrderedDate?: Date;
   }
 
-  interface updateYarnStockPayload extends addEditYarnStockPayload {
-    yarnId: number;
+  interface updateYarnStockPayload
+    extends addEditYarnStockPayload,
+      deleteYarnStockPayload {
     image: {
       isUpdated: boolean;
     };
   }
 
-  interface AddEditYarnStockDialogData {
+  interface addEditYarnStockDialogData {
     onRefreshData: () => void;
     actionType: 'Add' | 'Edit';
     data?: yarnStockData;
+  }
+
+  interface deleteYarnStockPayload {
+    yarnId: number;
+  }
+
+  interface deleteYarnStockDialogData {
+    data: yarnStockData;
+    onRefreshData: () => void;
   }
 }

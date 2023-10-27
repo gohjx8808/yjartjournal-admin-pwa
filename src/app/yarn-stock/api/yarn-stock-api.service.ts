@@ -31,4 +31,8 @@ export class YarnStockApiService {
   postUpdateYarnStock(payload: yarnStock.updateYarnStockPayload) {
     return this.apiService.postRequest('/stocks/update', payload);
   }
+
+  postDeleteYarnStock(payload: yarnStock.deleteYarnStockPayload) {
+    return this.apiService.postRequest('/stocks/delete', payload);
+  }
 }
