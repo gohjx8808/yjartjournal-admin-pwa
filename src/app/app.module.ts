@@ -37,6 +37,7 @@ import { AddEditYarnStockDialogComponent } from './yarn-stock/dialogs/add-edit-y
 import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter-dialog.component';
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
 import { DeleteYarnStockDialogComponent } from './yarn-stock/dialogs/delete-yarn-stock-dialog/delete-yarn-stock-dialog.component';
+import { FileUploadComponent } from './inputs/file/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { DeleteYarnStockDialogComponent } from './yarn-stock/dialogs/delete-yarn
     EmptyPipe,
     AddEditYarnStockDialogComponent,
     DeleteYarnStockDialogComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,
