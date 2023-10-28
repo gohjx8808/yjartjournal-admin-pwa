@@ -24,7 +24,7 @@ export class YarnStockApiService {
     return this.apiService.postRequest('/stocks/update-quantity', payload);
   }
 
-  postAddYarnStock(payload: yarnStock.addYarnStockPayload) {
+  postAddYarnStock(payload: FormData) {
     return this.apiService.postRequest('/stocks/add-new', payload);
   }
 

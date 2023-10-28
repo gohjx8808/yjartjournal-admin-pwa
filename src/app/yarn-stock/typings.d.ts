@@ -35,7 +35,7 @@ declare namespace yarnStock {
 
   interface addYarnStockPayload extends addEditYarnStockPayload {
     quantity: number | null;
-    image?: string | null;
+    image?: File | null;
   }
 
   interface addEditYarnStockPayload {

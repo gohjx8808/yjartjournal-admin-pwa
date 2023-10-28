@@ -136,16 +136,20 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <app-file-upload></app-file-upload>
+    <app-file-upload (fileSelected)="onFileSelected($event)"></app-file-upload>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close [disabled]="isSubmitting">
+      Cancel
+    </button>
     <button
       mat-button
-      mat-dialog-close
       cdkFocusInitial
       type="submit"
-      [disabled]="!addEditYarnStockForm.valid">
+      [disabled]="!addEditYarnStockForm.valid || isSubmitting">
+      <mat-icon *ngIf="isSubmitting">
+        <mat-spinner diameter="18"></mat-spinner>
+      </mat-icon>
       Submit
     </button>
   </mat-dialog-actions>

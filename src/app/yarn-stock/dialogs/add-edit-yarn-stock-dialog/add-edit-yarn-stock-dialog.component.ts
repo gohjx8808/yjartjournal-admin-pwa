@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { YarnColorCategoryApiService } from 'src/app/master-data/api/yarn-color-category/yarn-color-category-api.service';
 import { YarnCategoryApiService } from '../../../master-data/api/yarn-category/yarn-category-api.service';
 import { SnackbarService } from '../../../services/snackbar.service';
@@ -16,6 +16,7 @@ export class AddEditYarnStockDialogComponent implements OnInit {
   yarnCategories: globalType.optionData[] = [];
   yarnColorCategories: globalType.optionData[] = [];
   isSubmitting = false;
+  uploadedFile: File | null = null;
   addEditYarnStockForm = this.formBuilder.group({
     yarnCategoryId: [
       this.dialogData.data?.yarnCategory.id ?? null,
@@ -46,7 +47,8 @@ export class AddEditYarnStockDialogComponent implements OnInit {
     private yarnCategoryApiService: YarnCategoryApiService,
     private yarnColorCategoryApiService: YarnColorCategoryApiService,
     private yarnStockApiService: YarnStockApiService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private dialogRef: MatDialogRef<AddEditYarnStockDialogComponent>
   ) {}
 
   ngOnInit(): void {
@@ -70,24 +72,45 @@ export class AddEditYarnStockDialogComponent implements OnInit {
       this.addEditYarnStockForm.markAllAsTouched();
     } else {
       this.isSubmitting = true;
+      const formValue = this.addEditYarnStockForm.getRawValue();
+      const formData = new FormData();
+      formData.append('yarnCategoryId', formValue.yarnCategoryId!.toString());
+      formData.append(
+        'yarnColorCategoryId',
+        formValue.yarnColorCategoryId!.toString()
+      );
+      formData.append('name', formValue.name);
+      formData.append('cost', formValue.cost!.toString());
+      formData.append('reorderLevel', formValue.reorderLevel!.toString());
+      if (formValue.quantity) {
+        formData.append('quantity', formValue.quantity);
+      }
+      if (formValue.lastOrderedDate) {
+        formData.append(
+          'lastOrderedDate',
+          formValue.lastOrderedDate.toISOString()
+        );
+      }
+      if (this.uploadedFile) {
+        formData.append('image', this.uploadedFile);
+      }
       if (this.dialogData.actionType === 'Add') {
-        this.yarnStockApiService
-          .postAddYarnStock(this.addEditYarnStockForm.getRawValue())
-          .subscribe({
-            next: () => {
-              this.isSubmitting = false;
-              this.dialogData.onRefreshData();
-              this.snackbarService.openSuccessSnackbar(
-                'The yarn had been added!'
-              );
-            },
-            error: (err: HttpErrorResponse) => {
-              this.isSubmitting = false;
-              this.snackbarService.openErrorSnackbar(
-                err.statusText || 'The yarn had failed to add!'
-              );
-            },
-          });
+        this.yarnStockApiService.postAddYarnStock(formData).subscribe({
+          next: () => {
+            this.dialogRef.close();
+            this.isSubmitting = false;
+            this.dialogData.onRefreshData();
+            this.snackbarService.openSuccessSnackbar(
+              'The yarn had been added!'
+            );
+          },
+          error: (err: HttpErrorResponse) => {
+            this.isSubmitting = false;
+            this.snackbarService.openErrorSnackbar(
+              err.statusText || 'The yarn had failed to add!'
+            );
+          },
+        });
       } else {
         const formData = this.addEditYarnStockForm.getRawValue();
 
@@ -116,5 +139,9 @@ export class AddEditYarnStockDialogComponent implements OnInit {
           });
       }
     }
+  }
+
+  onFileSelected(file: File) {
+    this.uploadedFile = file;
   }
 }
