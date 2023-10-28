@@ -1,16 +1,23 @@
-<div
-  class="drop-zone"
-  (dragover)="onDragOver($event)"
-  (dragleave)="onDragLeave($event)"
-  (drop)="onDrop($event)">
-  <span>Drag and drop files here or click to select</span>
+<div class="drop-zone-container">
+  <div
+    class="drop-zone"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave($event)"
+    (drop)="onDrop($event)">
+    <span>Drag and drop files here or click to select</span>
+  </div>
+  <input
+    type="file"
+    accept="image/*"
+    (change)="onFileSelected($event)"
+    #fileInput
+    style="display: none" />
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="fileInput.click()"
+    class="upload-button">
+    Select File
+  </button>
+  <p *ngFor="let file of selectedFiles">{{ file.name }}</p>
 </div>
-<input
-  type="file"
-  (change)="onFileSelected($event)"
-  #fileInput
-  style="display: none" />
-<button mat-raised-button color="primary" (click)="fileInput.click()">
-  Select File
-</button>
-<p *ngFor="let file of selectedFiles">{{ file.name }}</p>

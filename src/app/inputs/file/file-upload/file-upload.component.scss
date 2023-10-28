@@ -4,4 +4,21 @@
   padding: 20px;
   text-align: center;
   cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.drop-zone-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-left: 24px;
+  margin-right: 24px;
+}
+
+.upload-button {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 30%;
 }
