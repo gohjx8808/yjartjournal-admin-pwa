@@ -113,11 +113,11 @@
         <input
           matInput
           [matDatepicker]="datepicker"
-          formControlName="lastOrderedDate" />
+          formControlName="lastOrderedDate"
+          [max]="maxDate" />
         <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle
-          matIconSuffix
-          [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle matIconSuffix [for]="datepicker">
+        </mat-datepicker-toggle>
         <mat-datepicker #datepicker>
           <mat-datepicker-actions>
             <button mat-button matDatepickerCancel>Cancel</button>

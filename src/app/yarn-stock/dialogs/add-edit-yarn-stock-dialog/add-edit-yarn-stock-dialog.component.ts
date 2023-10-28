@@ -17,6 +17,7 @@ export class AddEditYarnStockDialogComponent implements OnInit {
   yarnColorCategories: globalType.optionData[] = [];
   isSubmitting = false;
   uploadedFile: File | null = null;
+  maxDate = new Date();
   addEditYarnStockForm = this.formBuilder.group({
     yarnCategoryId: [
       this.dialogData.data?.yarnCategory.id ?? null,

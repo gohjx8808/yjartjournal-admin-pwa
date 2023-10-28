@@ -20,5 +20,15 @@
     class="upload-button">
     Select File
   </button>
-  <p *ngFor="let file of selectedFiles">{{ file.name }}</p>
+  <div *ngIf="selectedFile" class="uploaded-file">
+    {{ selectedFile.name }}
+    <button
+      mat-icon-button
+      aria-label="Remove file"
+      type="button"
+      class="remove-uploaded-file-button"
+      (click)="onFileRemoved()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
 </div>
