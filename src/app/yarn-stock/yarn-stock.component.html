@@ -32,7 +32,9 @@
         <img
           class="stock-img"
           mat-card-image
-          [src]="stock.imageUrl || 'assets/images/noimage.png'"
+          [src]="
+            stock.yarnStockImages?.[0]?.imageUrl ?? 'assets/images/noimage.png'
+          "
           alt="Photo of {{ stock.name }}" />
         <mat-card-content>
           <p class="yarn-stocks-card-content">

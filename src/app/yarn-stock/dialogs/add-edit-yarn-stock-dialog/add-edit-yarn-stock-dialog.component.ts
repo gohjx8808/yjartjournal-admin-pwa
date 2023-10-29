@@ -18,6 +18,8 @@ export class AddEditYarnStockDialogComponent implements OnInit {
   isSubmitting = false;
   uploadedFile: File | null = null;
   maxDate = new Date();
+  isImageUpdated = false;
+
   addEditYarnStockForm = this.formBuilder.group({
     yarnCategoryId: [
       this.dialogData.data?.yarnCategory.id ?? null,
@@ -143,6 +145,7 @@ export class AddEditYarnStockDialogComponent implements OnInit {
   }
 
   onFileSelected(file: File) {
+    this.isImageUpdated = true;
     this.uploadedFile = file;
   }
 }

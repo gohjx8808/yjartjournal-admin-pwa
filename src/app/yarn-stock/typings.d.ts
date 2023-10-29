@@ -15,7 +15,14 @@ declare namespace yarnStock {
     yarnColorCategory: globalType.optionData;
     yarnCategory: globalType.optionData;
     reorderStatus: 'Optimum' | 'Reorder';
-    imageUrl: string | null;
+    yarnStockImages?: stockImage[];
+  }
+
+  interface stockImage {
+    id: number;
+    cloudinaryId: string;
+    originalName: string;
+    imageUrl: string;
   }
 
   interface yarnStockCheckbox extends globalType.optionData {
