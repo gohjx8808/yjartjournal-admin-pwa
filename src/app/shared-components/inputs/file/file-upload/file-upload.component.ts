@@ -8,15 +8,15 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class FileUploadComponent {
   isNewImage = false;
   // selectedFiles: File[] = [];
-  @Input() imageName?: string;
+  @Input() image?: fileUpload.imageData;
 
   @Output() fileSelected: EventEmitter<File> = new EventEmitter<File>();
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
-    this.imageName = file.name;
     this.isNewImage = true;
     this.fileSelected.emit(file);
+    event.target.value = null;
   }
 
   // onFilesSelected(event: any) {
@@ -42,14 +42,12 @@ export class FileUploadComponent {
     event.stopPropagation();
     // const files = event.dataTransfer?.files;
     const file = event.dataTransfer?.files[0];
-    this.imageName = file?.name;
     this.isNewImage = true;
     this.fileSelected.emit(file);
     // this.selectedFiles = [...this.selectedFiles, ...Array.from(files)];
   }
 
   onFileRemoved() {
-    this.imageName = undefined;
     this.fileSelected.emit(undefined);
   }
 }

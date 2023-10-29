@@ -16,9 +16,10 @@ export class AddEditYarnStockDialogComponent implements OnInit {
   yarnCategories: globalType.optionData[] = [];
   yarnColorCategories: globalType.optionData[] = [];
   isSubmitting = false;
-  uploadedFile: File | null = null;
+  uploadedFile?: File;
   maxDate = new Date();
   isImageUpdated = false;
+  image?: fileUpload.imageData;
 
   addEditYarnStockForm = this.formBuilder.group({
     yarnCategoryId: [
@@ -67,6 +68,15 @@ export class AddEditYarnStockDialogComponent implements OnInit {
       this.addEditYarnStockForm.controls['quantity'].setValidators([
         Validators.required,
       ]);
+    }
+    if (
+      this.dialogData.data?.yarnStockImages &&
+      this.dialogData.data?.yarnStockImages.length > 0
+    ) {
+      this.image = {
+        imageName: this.dialogData.data?.yarnStockImages?.[0].originalName,
+        imageUrl: this.dialogData.data?.yarnStockImages?.[0].imageUrl,
+      };
     }
   }
 
@@ -138,8 +148,16 @@ export class AddEditYarnStockDialogComponent implements OnInit {
     }
   }
 
-  onFileSelected(file: File) {
+  onFileSelected(file?: File) {
     this.isImageUpdated = true;
     this.uploadedFile = file;
+    if (file) {
+      this.image = {
+        imageName: file?.name,
+        imageUrl: URL.createObjectURL(file),
+      };
+    } else {
+      this.image = undefined;
+    }
   }
 }

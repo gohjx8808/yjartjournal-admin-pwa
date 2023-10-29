@@ -20,8 +20,8 @@
     class="upload-button">
     Select File
   </button>
-  <div *ngIf="imageName" class="uploaded-file">
-    {{ imageName }}
+  <div *ngIf="image && image.imageUrl" class="uploaded-file">
+    {{ image.imageName }}
     <mat-chip *ngIf="isNewImage" class="new-chip">NEW</mat-chip>
     <button
       mat-icon-button
