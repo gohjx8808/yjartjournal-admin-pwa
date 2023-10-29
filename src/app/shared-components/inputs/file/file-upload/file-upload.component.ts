@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { EnlargedImageDialogComponent } from 'src/app/shared-components/dialogs/enlarged-image-dialog/enlarged-image-dialog.component';
 
 @Component({
   selector: 'app-file-upload',
@@ -11,6 +13,8 @@ export class FileUploadComponent {
   @Input() image?: fileUpload.imageData;
 
   @Output() fileSelected: EventEmitter<File> = new EventEmitter<File>();
+
+  constructor(private dialog: MatDialog) {}
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
@@ -49,5 +53,16 @@ export class FileUploadComponent {
 
   onFileRemoved() {
     this.fileSelected.emit(undefined);
+  }
+
+  openEnlargedImageDialog() {
+    this.dialog.open<
+      EnlargedImageDialogComponent,
+      enlargedImageDialog.dialogData
+    >(EnlargedImageDialogComponent, {
+      data: {
+        imageUrl: this.image?.imageUrl || '',
+      },
+    });
   }
 }

@@ -21,7 +21,9 @@
     Select File
   </button>
   <div *ngIf="image && image.imageUrl" class="uploaded-file">
-    {{ image.imageName }}
+    <button mat-button type="button" (click)="openEnlargedImageDialog()">
+      {{ image.imageName }}
+    </button>
     <mat-chip *ngIf="isNewImage" class="new-chip">NEW</mat-chip>
     <button
       mat-icon-button
