@@ -138,7 +138,7 @@
     </div>
     <app-file-upload
       (fileSelected)="onFileSelected($event)"
-      [existingImageName]="dialogData.data?.yarnStockImages?.[0]?.originalName">
+      [imageName]="dialogData.data?.yarnStockImages?.[0]?.originalName">
     </app-file-upload>
   </mat-dialog-content>
   <mat-dialog-actions align="end">

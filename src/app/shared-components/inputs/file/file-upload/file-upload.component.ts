@@ -6,15 +6,16 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./file-upload.component.scss'],
 })
 export class FileUploadComponent {
+  isNewImage = false;
   // selectedFiles: File[] = [];
-  @Input() existingImageName?: string;
-  selectedFile: File | undefined = undefined;
+  @Input() imageName?: string;
 
   @Output() fileSelected: EventEmitter<File> = new EventEmitter<File>();
 
   onFileSelected(event: any) {
     const file = event.target.files[0];
-    this.selectedFile = file;
+    this.imageName = file.name;
+    this.isNewImage = true;
     this.fileSelected.emit(file);
   }
 
@@ -41,14 +42,14 @@ export class FileUploadComponent {
     event.stopPropagation();
     // const files = event.dataTransfer?.files;
     const file = event.dataTransfer?.files[0];
-    this.selectedFile = file;
+    this.imageName = file?.name;
+    this.isNewImage = true;
     this.fileSelected.emit(file);
     // this.selectedFiles = [...this.selectedFiles, ...Array.from(files)];
   }
 
   onFileRemoved() {
-    this.selectedFile = undefined;
+    this.imageName = undefined;
     this.fileSelected.emit(undefined);
-    this.existingImageName = undefined;
   }
 }

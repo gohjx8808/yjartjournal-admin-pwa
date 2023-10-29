@@ -1,9 +1,11 @@
+import { NgOptimizedImage } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, isDevMode } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatChipsModule } from '@angular/material/chips';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -33,13 +35,12 @@ import { AddEditMasterDataDialogComponent } from './master-data/dialogs/add-edit
 import { DeleteMasterDataDialogComponent } from './master-data/dialogs/delete-master-data-dialog/delete-master-data-dialog.component';
 import { MasterDataComponent } from './master-data/master-data.component';
 import { EmptyPipe } from './pipes/empty.pipe';
+import { EnlargedImageDialogComponent } from './shared-components/dialogs/enlarged-image-dialog/enlarged-image-dialog.component';
+import { FileUploadComponent } from './shared-components/inputs/file/file-upload/file-upload.component';
 import { AddEditYarnStockDialogComponent } from './yarn-stock/dialogs/add-edit-yarn-stock-dialog/add-edit-yarn-stock-dialog.component';
+import { DeleteYarnStockDialogComponent } from './yarn-stock/dialogs/delete-yarn-stock-dialog/delete-yarn-stock-dialog.component';
 import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter-dialog.component';
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
-import { DeleteYarnStockDialogComponent } from './yarn-stock/dialogs/delete-yarn-stock-dialog/delete-yarn-stock-dialog.component';
-import { FileUploadComponent } from './shared-components/inputs/file/file-upload/file-upload.component';
-import { EnlargedImageDialogComponent } from './shared-components/dialogs/enlarged-image-dialog/enlarged-image-dialog.component';
-import { NgOptimizedImage } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import { NgOptimizedImage } from '@angular/common';
     MatSelectModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatChipsModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
