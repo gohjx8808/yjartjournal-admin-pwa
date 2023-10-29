@@ -37,7 +37,8 @@ import { AddEditYarnStockDialogComponent } from './yarn-stock/dialogs/add-edit-y
 import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter-dialog.component';
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
 import { DeleteYarnStockDialogComponent } from './yarn-stock/dialogs/delete-yarn-stock-dialog/delete-yarn-stock-dialog.component';
-import { FileUploadComponent } from './inputs/file/file-upload/file-upload.component';
+import { FileUploadComponent } from './shared-components/inputs/file/file-upload/file-upload.component';
+import { EnlargedImageDialogComponent } from './shared-components/dialogs/enlarged-image-dialog/enlarged-image-dialog.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { FileUploadComponent } from './inputs/file/file-upload/file-upload.compo
     AddEditYarnStockDialogComponent,
     DeleteYarnStockDialogComponent,
     FileUploadComponent,
+    EnlargedImageDialogComponent,
   ],
   imports: [
     BrowserModule,
