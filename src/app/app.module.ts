@@ -39,6 +39,7 @@ import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
 import { DeleteYarnStockDialogComponent } from './yarn-stock/dialogs/delete-yarn-stock-dialog/delete-yarn-stock-dialog.component';
 import { FileUploadComponent } from './shared-components/inputs/file/file-upload/file-upload.component';
 import { EnlargedImageDialogComponent } from './shared-components/dialogs/enlarged-image-dialog/enlarged-image-dialog.component';
+import { NgOptimizedImage } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -90,6 +91,7 @@ import { EnlargedImageDialogComponent } from './shared-components/dialogs/enlarg
     FormsModule,
     HttpClientModule,
     NgxChartsModule,
+    NgOptimizedImage,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   bootstrap: [AppComponent],
