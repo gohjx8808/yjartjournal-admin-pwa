@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-file-upload',
@@ -7,6 +7,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class FileUploadComponent {
   // selectedFiles: File[] = [];
+  @Input() existingImageName?: string;
   selectedFile: File | undefined = undefined;
 
   @Output() fileSelected: EventEmitter<File> = new EventEmitter<File>();
@@ -48,5 +49,6 @@ export class FileUploadComponent {
   onFileRemoved() {
     this.selectedFile = undefined;
     this.fileSelected.emit(undefined);
+    this.existingImageName = undefined;
   }
 }

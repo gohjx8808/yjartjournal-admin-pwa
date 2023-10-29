@@ -115,31 +115,25 @@ export class AddEditYarnStockDialogComponent implements OnInit {
           },
         });
       } else {
-        const formData = this.addEditYarnStockForm.getRawValue();
+        formData.append('yarnId', this.dialogData.data!.id!.toString());
+        formData.append('isImageUpdated', this.isImageUpdated.toString());
 
-        this.yarnStockApiService
-          .postUpdateYarnStock({
-            yarnId: this.dialogData.data?.id || 0,
-            image: {
-              isUpdated: false,
-            },
-            ...formData,
-          })
-          .subscribe({
-            next: () => {
-              this.isSubmitting = false;
-              this.dialogData.onRefreshData();
-              this.snackbarService.openSuccessSnackbar(
-                'The yarn had been updated!'
-              );
-            },
-            error: (err: HttpErrorResponse) => {
-              this.isSubmitting = false;
-              this.snackbarService.openErrorSnackbar(
-                err.statusText || 'The yarn had failed to update!'
-              );
-            },
-          });
+        this.yarnStockApiService.postUpdateYarnStock(formData).subscribe({
+          next: () => {
+            this.isSubmitting = false;
+            this.dialogRef.close();
+            this.dialogData.onRefreshData();
+            this.snackbarService.openSuccessSnackbar(
+              'The yarn had been updated!'
+            );
+          },
+          error: (err: HttpErrorResponse) => {
+            this.isSubmitting = false;
+            this.snackbarService.openErrorSnackbar(
+              err.statusText || 'The yarn had failed to update!'
+            );
+          },
+        });
       }
     }
   }

@@ -136,7 +136,10 @@
         </mat-error>
       </mat-form-field>
     </div>
-    <app-file-upload (fileSelected)="onFileSelected($event)"></app-file-upload>
+    <app-file-upload
+      (fileSelected)="onFileSelected($event)"
+      [existingImageName]="dialogData.data?.yarnStockImages?.[0]?.originalName">
+    </app-file-upload>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close [disabled]="isSubmitting">

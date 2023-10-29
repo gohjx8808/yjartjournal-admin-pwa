@@ -20,8 +20,8 @@
     class="upload-button">
     Select File
   </button>
-  <div *ngIf="selectedFile" class="uploaded-file">
-    {{ selectedFile.name }}
+  <div *ngIf="selectedFile || existingImageName" class="uploaded-file">
+    {{ selectedFile?.name ?? existingImageName }}
     <button
       mat-icon-button
       aria-label="Remove file"

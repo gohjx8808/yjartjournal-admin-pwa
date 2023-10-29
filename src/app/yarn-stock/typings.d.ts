@@ -57,9 +57,7 @@ declare namespace yarnStock {
   interface updateYarnStockPayload
     extends addEditYarnStockPayload,
       deleteYarnStockPayload {
-    image: {
-      isUpdated: boolean;
-    };
+    isImageUpdated: boolean;
   }
 
   interface addEditYarnStockDialogData {
