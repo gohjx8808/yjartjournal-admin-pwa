@@ -2,6 +2,7 @@
 <form [formGroup]="addEditYarnStockForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content class="content">
     <mat-form-field
+      color="accent"
       appearance="outline"
       [class.error-msg-container]="
         addEditYarnStockForm.controls['name'].touched
@@ -15,6 +16,7 @@
     </mat-form-field>
     <div class="input-row-container">
       <mat-form-field
+        color="accent"
         appearance="outline"
         class="input-container"
         [class.error-msg-container]="
@@ -36,6 +38,7 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field
+        color="accent"
         appearance="outline"
         class="input-container"
         [class.error-msg-container]="
@@ -59,6 +62,7 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field
+        color="accent"
         appearance="outline"
         class="input-container"
         [class.error-msg-container]="
@@ -73,6 +77,7 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field
+        color="accent"
         appearance="outline"
         class="input-container"
         [class.error-msg-container]="
@@ -88,6 +93,7 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field
+        color="accent"
         *ngIf="dialogData.actionType === 'Add'"
         appearance="outline"
         class="input-container"
@@ -104,6 +110,7 @@
         </mat-error>
       </mat-form-field>
       <mat-form-field
+        color="accent"
         appearance="outline"
         class="input-container"
         [class.error-msg-container]="
