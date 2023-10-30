@@ -2,6 +2,7 @@
 <form [formGroup]="masterDataForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content class="content">
     <mat-form-field
+      color="accent"
       appearance="outline"
       [class.error-msg-container]="masterDataForm.controls['name'].touched">
       <mat-label>Name</mat-label>

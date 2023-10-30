@@ -1,22 +1,21 @@
 @use '@angular/material' as mat;
-
-@include mat.core();
+@include mat.core;
 
 $my-primary-palette: (
   50: #f5dbc9,
   100: #dda783,
   200: #bd6f3b,
   300: #9b3700,
-  400: #880000,
+  400: #800,
   500: #730000,
   600: #710000,
   700: #6d0000,
   800: #650000,
   900: #5b0000,
   contrast: (
-    50: #7a3e21,
-    100: #7a3e21,
-    200: #7a3e21,
+    50: #5b0000,
+    100: #5b0000,
+    200: #5b0000,
     300: #f5dbc9,
     400: #f5dbc9,
     500: #f5dbc9,
@@ -26,7 +25,6 @@ $my-primary-palette: (
     900: #f5dbc9,
   ),
 );
-
 $my-accent-palette: (
   50: #ffe3c7,
   100: #f4c1a8,
@@ -51,10 +49,8 @@ $my-accent-palette: (
     900: #ffe3c7,
   ),
 );
-
 $my-primary: mat.define-palette($my-primary-palette, 50);
 $my-accent: mat.define-palette($my-accent-palette, 300);
-
 $my-theme: mat.define-light-theme(
   (
     color: (
