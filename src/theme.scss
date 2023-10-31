@@ -1,4 +1,5 @@
 @use '@angular/material' as mat;
+@use '../src/app/footer/footer.component.scss' as footer;
 @include mat.core;
 
 $my-primary-palette: (
@@ -63,3 +64,4 @@ $my-theme: mat.define-light-theme(
 );
 
 @include mat.all-component-themes($my-theme);
+@include footer.theme($my-theme);
