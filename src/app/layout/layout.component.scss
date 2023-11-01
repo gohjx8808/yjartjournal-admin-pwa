@@ -5,3 +5,9 @@
 .drawer {
   padding: 20px;
 }
+
+.drawer-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

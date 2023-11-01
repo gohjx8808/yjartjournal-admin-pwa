@@ -26,17 +26,19 @@
       </mat-tree-node>
     </mat-tree>
   </mat-drawer>
-  <mat-drawer-content>
-    <mat-toolbar color="primary">
-      <button
-        mat-icon-button
-        aria-label="Icon button to open sidenav"
-        (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      {{ currentItem.name }}
-    </mat-toolbar>
-    <ng-content></ng-content>
+  <mat-drawer-content class="drawer-content">
+    <div>
+      <mat-toolbar color="primary">
+        <button
+          mat-icon-button
+          aria-label="Icon button to open sidenav"
+          (click)="drawer.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        {{ currentItem.name }}
+      </mat-toolbar>
+      <ng-content></ng-content>
+    </div>
     <app-footer></app-footer>
   </mat-drawer-content>
 </mat-drawer-container>
