@@ -12,9 +12,26 @@
   flex-wrap: wrap;
 }
 
-.input-container {
-  min-width: 200px;
-  width: 48%;
+.input-48-container {
+  flex: 1 1 100%;
+  max-width: 48% !important;
+}
+
+.input-100-container {
+  flex: 1 1 100%;
+  max-width: 100% !important;
+}
+
+@media (width <= 768px) {
+  .input-row-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .input-48-container {
+    flex: 1 1 100%;
+    max-width: 100% !important;
+  }
 }
 
 .input-prefix {

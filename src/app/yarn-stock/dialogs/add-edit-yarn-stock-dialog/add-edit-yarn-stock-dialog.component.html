@@ -4,6 +4,7 @@
     <mat-form-field
       color="accent"
       appearance="outline"
+      class="input-100-container"
       [class.error-msg-container]="
         addEditYarnStockForm.controls['name'].touched
       ">
@@ -18,7 +19,7 @@
       <mat-form-field
         color="accent"
         appearance="outline"
-        class="input-container"
+        class="input-48-container"
         [class.error-msg-container]="
           addEditYarnStockForm.controls['yarnCategoryId'].touched
         ">
@@ -40,7 +41,7 @@
       <mat-form-field
         color="accent"
         appearance="outline"
-        class="input-container"
+        class="input-48-container"
         [class.error-msg-container]="
           addEditYarnStockForm.controls['yarnColorCategoryId'].touched
         ">
@@ -64,7 +65,7 @@
       <mat-form-field
         color="accent"
         appearance="outline"
-        class="input-container"
+        class="input-48-container"
         [class.error-msg-container]="
           addEditYarnStockForm.controls['cost'].touched
         ">
@@ -79,7 +80,7 @@
       <mat-form-field
         color="accent"
         appearance="outline"
-        class="input-container"
+        class="input-48-container"
         [class.error-msg-container]="
           addEditYarnStockForm.controls['reorderLevel'].touched
         ">
@@ -96,7 +97,7 @@
         color="accent"
         *ngIf="dialogData.actionType === 'Add'"
         appearance="outline"
-        class="input-container"
+        class="input-48-container"
         [class.error-msg-container]="
           addEditYarnStockForm.controls['quantity'].touched
         ">
@@ -112,7 +113,7 @@
       <mat-form-field
         color="accent"
         appearance="outline"
-        class="input-container"
+        class="input-48-container"
         [class.error-msg-container]="
           addEditYarnStockForm.controls['lastOrderedDate'].touched
         ">
