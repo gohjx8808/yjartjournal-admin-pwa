@@ -13,25 +13,34 @@
         <mat-icon class="add-icon">add</mat-icon>
       </button>
     </div>
-    <mat-card class="master-data-card" *ngFor="let data of listData">
-      <mat-card-header class="master-data">
-        <mat-card-title>{{ data.name }}</mat-card-title>
-        <div>
-          <button
-            mat-icon-button
-            aria-label="Edit data"
-            (click)="openAddEditDialog(false, data)">
-            <mat-icon class="edit-icon">edit</mat-icon>
-          </button>
-          <button
-            mat-icon-button
-            aria-label="Delete data"
-            color="warn"
-            (click)="openDeleteDialog(data)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </div>
-      </mat-card-header>
-    </mat-card>
+    <div *ngIf="listData.length > 0; else emptyData">
+      <mat-card class="master-data-card" *ngFor="let data of listData">
+        <mat-card-header class="master-data">
+          <mat-card-title>{{ data.name }}</mat-card-title>
+          <div>
+            <button
+              mat-icon-button
+              aria-label="Edit data"
+              (click)="openAddEditDialog(false, data)">
+              <mat-icon class="edit-icon">edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              aria-label="Delete data"
+              color="warn"
+              (click)="openDeleteDialog(data)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-card-header>
+      </mat-card>
+    </div>
   </div>
 </app-layout>
+<ng-template #emptyData>
+  <img
+    class="no-data-img"
+    mat-card-image
+    [src]="'assets/images/emptydata.jpeg'"
+    alt="No Data" />
+</ng-template>

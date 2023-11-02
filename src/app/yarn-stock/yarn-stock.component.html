@@ -10,7 +10,9 @@
         <mat-icon class="add-icon">add</mat-icon>
       </button>
     </div>
-    <div class="yarn-stocks-content">
+    <div
+      class="yarn-stocks-content"
+      *ngIf="yarnStockList.length > 0; else emptyData">
       <div class="card-container" *ngFor="let stock of yarnStockList">
         <mat-card class="yarn-stocks-card">
           <mat-card-header class="card-header">
@@ -35,7 +37,7 @@
             mat-card-image
             [src]="
               stock.yarnStockImages?.[0]?.imageUrl ??
-              'assets/images/noimage.png'
+              'assets/images/noimage.jpeg'
             "
             alt="Photo of {{ stock.name }}" />
           <mat-card-content>
@@ -105,3 +107,10 @@
     </button>
   </div>
 </app-layout>
+<ng-template #emptyData>
+  <img
+    class="no-data-img"
+    mat-card-image
+    [src]="'assets/images/emptydata.jpeg'"
+    alt="No Data" />
+</ng-template>
