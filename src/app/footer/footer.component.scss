@@ -14,7 +14,6 @@
     background-color: mat.get-color-from-palette($primary-palette, 50);
     flex-direction: row;
     display: flex;
-    width: 100vw;
     color: mat.get-color-from-palette($primary-palette, 900);
   }
 }
