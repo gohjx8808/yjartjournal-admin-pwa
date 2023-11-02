@@ -3,15 +3,15 @@ declare namespace dashboard {
     yarnStockOverview: {
       totalYarn: number;
       totalReorderYarn: number;
-      categoryChart: chartData[];
-      colorCategoryChart: chartData[];
+      categoryChart: chartData;
+      colorCategoryChart: chartData;
     };
     categoryCount: number;
     colorCategoryCount: number;
   }
 
   interface chartData {
-    value: number;
-    name: string;
+    value: number[];
+    name: string[];
   }
 }

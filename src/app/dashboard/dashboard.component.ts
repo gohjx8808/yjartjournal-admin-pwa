@@ -7,7 +7,7 @@ import { DashboardApiService } from './api/dashboard-api.service';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit {
-  dashboardData: dashboard.yarnStockOverview | null = null;
+  dashboardData!: dashboard.yarnStockOverview;
 
   constructor(private dashboardApiService: DashboardApiService) {}
 

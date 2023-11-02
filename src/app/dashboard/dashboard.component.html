@@ -2,33 +2,33 @@
   <div class="dashboard-content">
     <app-statistics-card
       title="Total Yarn Stock"
-      textContent="{{ dashboardData?.yarnStockOverview?.totalYarn }}">
+      textContent="{{ dashboardData.yarnStockOverview.totalYarn }}">
     </app-statistics-card>
     <app-statistics-card
       customContentStyle="{{
-        dashboardData?.yarnStockOverview?.totalReorderYarn || 0 > 0
+        dashboardData.yarnStockOverview.totalReorderYarn || 0 > 0
           ? 'reorder-required'
           : 'stock-sufficient'
       }}"
       title="Total Reorder Yarn Stock"
-      textContent="{{ dashboardData?.yarnStockOverview?.totalReorderYarn }}">
+      textContent="{{ dashboardData.yarnStockOverview.totalReorderYarn }}">
     </app-statistics-card>
     <app-statistics-card
       title="Total Yarn Category"
-      textContent="{{ dashboardData?.categoryCount }}"></app-statistics-card>
+      textContent="{{ dashboardData.categoryCount }}"></app-statistics-card>
     <app-statistics-card
       title="Total Yarn Color Category"
-      textContent="{{ dashboardData?.colorCategoryCount }}">
+      textContent="{{ dashboardData.colorCategoryCount }}">
     </app-statistics-card>
   </div>
   <div class="chart-content">
     <app-chart-card
       title="Yarn Stock Yarn Category"
-      [chartData]="dashboardData?.yarnStockOverview?.categoryChart">
+      [chartData]="dashboardData.yarnStockOverview.categoryChart">
     </app-chart-card>
     <app-chart-card
       title="Yarn Stock Yarn Color Category"
-      [chartData]="dashboardData?.yarnStockOverview?.colorCategoryChart">
+      [chartData]="dashboardData.yarnStockOverview.colorCategoryChart">
     </app-chart-card>
   </div>
 </app-layout>

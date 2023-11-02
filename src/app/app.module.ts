@@ -22,7 +22,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { NgChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ChartCardComponent } from './dashboard/chart-card/chart-card.component';
@@ -41,7 +41,6 @@ import { AddEditYarnStockDialogComponent } from './yarn-stock/dialogs/add-edit-y
 import { DeleteYarnStockDialogComponent } from './yarn-stock/dialogs/delete-yarn-stock-dialog/delete-yarn-stock-dialog.component';
 import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter-dialog.component';
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
-import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -93,7 +92,6 @@ import { NgChartsModule } from 'ng2-charts';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    NgxChartsModule,
     NgOptimizedImage,
     NgChartsModule,
   ],
