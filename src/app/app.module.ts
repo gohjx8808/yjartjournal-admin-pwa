@@ -41,6 +41,7 @@ import { AddEditYarnStockDialogComponent } from './yarn-stock/dialogs/add-edit-y
 import { DeleteYarnStockDialogComponent } from './yarn-stock/dialogs/delete-yarn-stock-dialog/delete-yarn-stock-dialog.component';
 import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter-dialog.component';
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
     HttpClientModule,
     NgxChartsModule,
     NgOptimizedImage,
+    NgChartsModule,
   ],
   providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
   bootstrap: [AppComponent],
