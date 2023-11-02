@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { ChartConfiguration, ChartDataset } from 'chart.js';
 
 @Component({
@@ -6,15 +6,17 @@ import { ChartConfiguration, ChartDataset } from 'chart.js';
   templateUrl: './chart-card.component.html',
   styleUrls: ['./chart-card.component.scss'],
 })
-export class ChartCardComponent implements OnInit {
+export class ChartCardComponent implements OnChanges {
   @Input({ required: true }) title = '';
-  @Input({ required: true }) chartData?: dashboard.chartData = undefined;
+  @Input({ required: true }) chartData?: dashboard.chartData;
 
   pieChartDatasets: ChartDataset<'pie', number[]>[] = [];
   pieChartOptions: ChartConfiguration['options'] = {};
 
-  ngOnInit(): void {
-    this.pieChartDatasets = [{ data: this.chartData?.value ?? [] }];
+  ngOnChanges(): void {
+    if (this.chartData) {
+      this.pieChartDatasets = [{ data: this.chartData?.value }];
+    }
     this.pieChartOptions = {
       responsive: true,
       plugins: {
