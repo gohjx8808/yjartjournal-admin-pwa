@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class StatisticsCardComponent {
   @Input({ required: true }) title = '';
-  @Input({ required: true }) textContent = '';
-  @Input() customContentStyle?: string = undefined;
+  @Input({ required: true }) textContent?: string;
+  @Input() customContentStyle?: string;
 }

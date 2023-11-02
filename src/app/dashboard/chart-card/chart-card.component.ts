@@ -8,13 +8,13 @@ import { ChartConfiguration, ChartDataset } from 'chart.js';
 })
 export class ChartCardComponent implements OnInit {
   @Input({ required: true }) title = '';
-  @Input({ required: true }) chartData!: dashboard.chartData;
+  @Input({ required: true }) chartData?: dashboard.chartData = undefined;
 
   pieChartDatasets: ChartDataset<'pie', number[]>[] = [];
   pieChartOptions: ChartConfiguration['options'] = {};
 
   ngOnInit(): void {
-    this.pieChartDatasets = [{ data: this.chartData.value }];
+    this.pieChartDatasets = [{ data: this.chartData?.value ?? [] }];
     this.pieChartOptions = {
       responsive: true,
       plugins: {
