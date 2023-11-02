@@ -84,6 +84,7 @@ export class AddEditYarnStockDialogComponent implements OnInit {
     if (!this.addEditYarnStockForm.valid) {
       this.addEditYarnStockForm.markAllAsTouched();
     } else {
+      this.dialogRef.disableClose = true;
       this.isSubmitting = true;
       const formValue = this.addEditYarnStockForm.getRawValue();
       const formData = new FormData();
@@ -110,6 +111,7 @@ export class AddEditYarnStockDialogComponent implements OnInit {
       if (this.dialogData.actionType === 'Add') {
         this.yarnStockApiService.postAddYarnStock(formData).subscribe({
           next: () => {
+            this.dialogRef.disableClose = false;
             this.dialogRef.close();
             this.isSubmitting = false;
             this.dialogData.onRefreshData();
@@ -118,6 +120,7 @@ export class AddEditYarnStockDialogComponent implements OnInit {
             );
           },
           error: (err: HttpErrorResponse) => {
+            this.dialogRef.disableClose = false;
             this.isSubmitting = false;
             this.snackbarService.openErrorSnackbar(
               err.statusText || 'The yarn had failed to add!'
@@ -130,6 +133,7 @@ export class AddEditYarnStockDialogComponent implements OnInit {
 
         this.yarnStockApiService.postUpdateYarnStock(formData).subscribe({
           next: () => {
+            this.dialogRef.disableClose = false;
             this.isSubmitting = false;
             this.dialogRef.close();
             this.dialogData.onRefreshData();
@@ -138,6 +142,7 @@ export class AddEditYarnStockDialogComponent implements OnInit {
             );
           },
           error: (err: HttpErrorResponse) => {
+            this.dialogRef.disableClose = false;
             this.isSubmitting = false;
             this.snackbarService.openErrorSnackbar(
               err.statusText || 'The yarn had failed to update!'
