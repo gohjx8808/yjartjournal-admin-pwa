@@ -24,3 +24,10 @@ body {
     --mat-snack-bar-button-color: #235b25;
   }
 }
+
+.fetching-container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: calc(100% - var(--mat-toolbar-standard-height));
+}

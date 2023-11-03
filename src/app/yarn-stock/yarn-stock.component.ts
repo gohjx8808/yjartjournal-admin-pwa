@@ -18,6 +18,7 @@ export class YarnStockComponent implements OnInit {
   yarnStockList: yarnStock.yarnStockData[] = [];
   checkboxCatList: yarnStock.yarnStockCheckbox[] = [];
   checkboxColorCatList: yarnStock.yarnStockCheckbox[] = [];
+  isFetchingData = false;
 
   constructor(
     private dialog: MatDialog,
@@ -30,6 +31,7 @@ export class YarnStockComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.isFetchingData = true;
     this.yarnCategoryApiService.getAllYarnCategoryApi();
     this.yarnColorCategoryApiService.getAllYarnColorCategoryApi();
 
@@ -63,6 +65,7 @@ export class YarnStockComponent implements OnInit {
     });
 
     this.yarnStockApiService.getYarnStocks().subscribe(stocks => {
+      this.isFetchingData = false;
       this.yarnStockList = stocks;
     });
   }

@@ -14,6 +14,7 @@ import { DeleteMasterDataDialogComponent } from './dialogs/delete-master-data-di
 export class MasterDataComponent implements OnInit {
   listData: globalType.optionData[] = [];
   isYarnCategory = false;
+  isFetchingData = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -23,11 +24,13 @@ export class MasterDataComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isFetchingData = true;
     const currentRouteUrl = this.route.snapshot.url.join('/');
     if (currentRouteUrl === 'yarn-category') {
       this.isYarnCategory = true;
       this.yarnCategoryApiService.getAllYarnCategoryApi();
       this.yarnCategoryApiService.getYarnCategories().subscribe(data => {
+        this.isFetchingData = false;
         this.listData = data;
       });
     } else {
@@ -36,6 +39,7 @@ export class MasterDataComponent implements OnInit {
       this.yarnColorCategoryApiService
         .getYarnColorCategories()
         .subscribe(data => {
+          this.isFetchingData = false;
           this.listData = data;
         });
     }

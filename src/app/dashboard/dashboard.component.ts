@@ -8,11 +8,14 @@ import { DashboardApiService } from './api/dashboard-api.service';
 })
 export class DashboardComponent implements OnInit {
   dashboardData?: dashboard.yarnStockOverview = undefined;
+  isFetchingData = false;
 
   constructor(private dashboardApiService: DashboardApiService) {}
 
   ngOnInit(): void {
+    this.isFetchingData = true;
     this.dashboardApiService.getYarnStockOverview().subscribe(res => {
+      this.isFetchingData = false;
       this.dashboardData = res.data;
     });
   }
