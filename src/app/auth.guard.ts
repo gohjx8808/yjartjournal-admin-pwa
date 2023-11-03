@@ -6,6 +6,6 @@ export const authGuard: CanMatchFn = (route, segments) => {
   if (localStorage.getItem('TOKEN')) {
     return true;
   }
-  router.navigate(['']);
+  router.navigateByUrl('');
   return false;
 };

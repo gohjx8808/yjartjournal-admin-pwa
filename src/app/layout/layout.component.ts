@@ -74,4 +74,9 @@ export class LayoutComponent implements OnInit {
   }
 
   hasChild = (_: number, node: layout.drawerItemFlatNode) => node.expandable;
+
+  logout() {
+    localStorage.removeItem('TOKEN');
+    this.router.navigateByUrl('');
+  }
 }
