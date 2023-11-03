@@ -29,5 +29,5 @@ body {
   justify-content: center;
   align-items: center;
   display: flex;
-  height: calc(100% - var(--mat-toolbar-standard-height));
+  padding-top: 100px;
 }
