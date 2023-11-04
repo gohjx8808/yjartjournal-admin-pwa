@@ -1,11 +1,13 @@
-import { CanMatchFn, Router } from '@angular/router';
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
 
-export const authGuard: CanMatchFn = (route, segments) => {
-  const router = new Router();
+export const authGuard: CanActivateFn = (route, state) => {
+  const router = inject(Router);
 
   if (localStorage.getItem('TOKEN')) {
     return true;
+  } else {
+    router.navigate(['']);
+    return false;
   }
-  router.navigateByUrl('');
-  return false;
 };
