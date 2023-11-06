@@ -22,6 +22,9 @@
 
 .main-content {
   flex-grow: 1;
+  padding: 5vw;
+  flex-flow: column wrap;
+  display: flex;
 }
 
 .spacer {

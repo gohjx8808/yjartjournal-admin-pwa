@@ -1,4 +1,4 @@
-import { NgOptimizedImage } from '@angular/common';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule, isDevMode } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -42,6 +42,7 @@ import { DeleteYarnStockDialogComponent } from './yarn-stock/dialogs/delete-yarn
 import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter-dialog.component';
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -91,13 +92,14 @@ import { UserManagementComponent } from './user-management/user-management.compo
     MatDatepickerModule,
     MatNativeDateModule,
     MatChipsModule,
+    MatTableModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
     NgOptimizedImage,
     NgChartsModule,
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,5 +1,5 @@
 <app-layout>
-  <div class="master-data-content" *ngIf="!isFetchingData; else fetching">
+  <div *ngIf="!isFetchingData; else fetching">
     <div class="master-data-header">
       <h1>
         {{ isYarnCategory ? 'Yarn Category' : 'Yarn Color Category' }}
