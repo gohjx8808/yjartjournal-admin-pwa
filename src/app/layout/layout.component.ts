@@ -17,6 +17,7 @@ export class LayoutComponent implements OnInit {
 
   drawerNavItems: layout.drawerItem[] = [
     { name: 'Dashboard', icon: 'home', route: '/dashboard' },
+    { name: 'User Management', icon: 'group', route: '/user-management' },
     { name: 'Yarn Stock', icon: 'inventory', route: '/yarn-stock' },
     {
       name: 'Master Data',

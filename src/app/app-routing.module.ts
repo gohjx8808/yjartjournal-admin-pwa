@@ -5,12 +5,18 @@ import { LoginComponent } from './login/login.component';
 import { MasterDataComponent } from './master-data/master-data.component';
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
 import { authGuard } from './auth.guard';
+import { UserManagementComponent } from './user-management/user-management.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'user-management',
+    component: UserManagementComponent,
     canActivate: [authGuard],
   },
   {
