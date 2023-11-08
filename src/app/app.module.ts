@@ -13,10 +13,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
 import { BrowserModule } from '@angular/platform-browser';
@@ -37,12 +39,11 @@ import { MasterDataComponent } from './master-data/master-data.component';
 import { EmptyPipe } from './pipes/empty.pipe';
 import { EnlargedImageDialogComponent } from './shared-components/dialogs/enlarged-image-dialog/enlarged-image-dialog.component';
 import { FileUploadComponent } from './shared-components/inputs/file/file-upload/file-upload.component';
+import { UserManagementComponent } from './user-management/user-management.component';
 import { AddEditYarnStockDialogComponent } from './yarn-stock/dialogs/add-edit-yarn-stock-dialog/add-edit-yarn-stock-dialog.component';
 import { DeleteYarnStockDialogComponent } from './yarn-stock/dialogs/delete-yarn-stock-dialog/delete-yarn-stock-dialog.component';
 import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter-dialog.component';
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
-import { UserManagementComponent } from './user-management/user-management.component';
-import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import { MatTableModule } from '@angular/material/table';
     MatNativeDateModule,
     MatChipsModule,
     MatTableModule,
+    MatPaginatorModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,

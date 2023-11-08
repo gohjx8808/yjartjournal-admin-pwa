@@ -11,8 +11,8 @@ export class UserManagementApiService {
 
   getUserList = () => this.userList.asObservable();
 
-  getAllApi = () =>
+  getAllApi = (payload: users.getUserListPayload) =>
     this.apiService
-      .getRequest<users.userData[]>('/users/get-all')
+      .postRequest<users.userData[]>('/users/get-all', payload)
       .subscribe(data => this.userList.next(data.data));
 }

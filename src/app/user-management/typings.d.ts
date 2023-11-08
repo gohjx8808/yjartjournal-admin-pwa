@@ -31,8 +31,20 @@ declare namespace users {
   interface userRole {
     id: 1;
     role: {
-      name: 'customer';
+      name: string;
     };
-    createdAt: '2023-06-19T00:07:32.981Z';
+    createdAt: string;
+  }
+
+  interface getUserListPayload {
+    sortBy?: {
+      name: string;
+      order: 'DESC' | 'ASC';
+    };
+    filter?: string;
+    pagination: {
+      pageSize: number;
+      page: number;
+    };
   }
 }

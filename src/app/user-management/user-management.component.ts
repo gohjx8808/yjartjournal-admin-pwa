@@ -61,7 +61,9 @@ export class UserManagementComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.userManagementApiService.getAllApi();
+    this.userManagementApiService.getAllApi({
+      pagination: { page: 1, pageSize: 10 },
+    });
     this.userManagementApiService.getUserList().subscribe(users => {
       this.userList = users;
     });
