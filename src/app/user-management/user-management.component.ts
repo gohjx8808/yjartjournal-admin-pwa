@@ -48,7 +48,7 @@ export class UserManagementComponent implements OnInit {
       cell: (element: users.userData) => `${element.dob}`,
     },
     {
-      columnDef: 'createdAt',
+      columnDef: 'created-at',
       header: 'Created At',
       cell: (element: users.userData) =>
         this.datePipe.transform(element.createdAt, 'YYYY-MM-dd'),
