@@ -19,4 +19,14 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
   </div>
+  <mat-paginator
+    color="accent"
+    [length]="totalFiltered"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    showFirstLastButtons="true"
+    (page)="handlePageEvent($event)"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    aria-label="Select page of users">
+  </mat-paginator>
 </app-layout>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserManagementApiService } from './api/user-management-api.service';
 import { DatePipe } from '@angular/common';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user-management',
@@ -54,6 +55,9 @@ export class UserManagementComponent implements OnInit {
     },
   ];
   displayedColumns = this.columns.map(c => c.columnDef);
+  pageSize = 10;
+  pageIndex = 0;
+  totalFiltered = 0;
 
   constructor(
     private userManagementApiService: UserManagementApiService,
@@ -62,10 +66,19 @@ export class UserManagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.userManagementApiService.getAllApi({
-      pagination: { page: 1, pageSize: 10 },
+      pagination: { page: this.pageIndex, pageSize: this.pageSize },
     });
     this.userManagementApiService.getUserList().subscribe(users => {
-      this.userList = users;
+      this.userList = users.users;
+      this.totalFiltered = users.totalFiltered;
+    });
+  }
+
+  handlePageEvent(e: PageEvent) {
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+    this.userManagementApiService.getAllApi({
+      pagination: { page: e.pageIndex, pageSize: e.pageSize },
     });
   }
 }

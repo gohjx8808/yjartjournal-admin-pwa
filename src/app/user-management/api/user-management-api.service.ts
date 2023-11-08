@@ -6,13 +6,13 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class UserManagementApiService {
-  private userList = new Subject<users.userData[]>();
+  private userList = new Subject<users.userListReponse>();
   constructor(private apiService: ApiService) {}
 
   getUserList = () => this.userList.asObservable();
 
   getAllApi = (payload: users.getUserListPayload) =>
     this.apiService
-      .postRequest<users.userData[]>('/users/get-all', payload)
+      .postRequest<users.userListReponse>('/users/get-all', payload)
       .subscribe(data => this.userList.next(data.data));
 }

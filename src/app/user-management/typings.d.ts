@@ -1,4 +1,9 @@
 declare namespace users {
+  interface userListReponse {
+    users: userData[];
+    totalFiltered: number;
+  }
+
   interface userData {
     id: number;
     name: string;
