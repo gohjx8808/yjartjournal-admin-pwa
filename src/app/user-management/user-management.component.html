@@ -3,11 +3,17 @@
     <table
       mat-table
       [dataSource]="userList"
-      class="mat-elevation-z8 user-table">
+      class="mat-elevation-z8 user-table"
+      matSort
+      (matSortChange)="handleSort($event)">
       <ng-container
         *ngFor="let column of columns"
         [matColumnDef]="column.columnDef">
-        <th mat-header-cell *matHeaderCellDef>
+        <th
+          mat-header-cell
+          *matHeaderCellDef
+          [mat-sort-header]="column.sortName"
+          [disabled]="column.sortName === 'phone'">
           {{ column.header }}
         </th>
         <td mat-cell *matCellDef="let row">
@@ -22,8 +28,8 @@
   <mat-paginator
     color="accent"
     [length]="totalFiltered"
-    [pageSize]="pageSize"
-    [pageIndex]="pageIndex"
+    [pageSize]="pagination.pageSize"
+    [pageIndex]="pagination.pageIndex"
     showFirstLastButtons="true"
     (page)="handlePageEvent($event)"
     [pageSizeOptions]="[5, 10, 25, 100]"

@@ -42,14 +42,18 @@ declare namespace users {
   }
 
   interface getUserListPayload {
-    sortBy?: {
-      name: string;
-      order: 'DESC' | 'ASC';
-    };
+    sortBy: sortOption;
     filter?: string;
     pagination: {
       pageSize: number;
       page: number;
     };
   }
+
+  interface sortOption {
+    name?: string;
+    order: sortOrder;
+  }
+
+  type sortOrder = 'DESC' | 'ASC' | '';
 }
