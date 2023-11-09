@@ -1,4 +1,8 @@
 <app-layout>
+  <mat-form-field color="accent" appearance="outline">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="handleFilter($event)" placeholder="Search..." />
+  </mat-form-field>
   <div class="user-table-container">
     <table
       mat-table
@@ -23,6 +27,9 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="8" ngClass="empty">No data</td>
+      </tr>
     </table>
   </div>
   <mat-paginator

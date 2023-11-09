@@ -73,6 +73,7 @@ export class UserManagementComponent implements OnInit {
     name: '',
     order: '',
   };
+  filter = '';
 
   constructor(
     private userManagementApiService: UserManagementApiService,
@@ -99,6 +100,14 @@ export class UserManagementComponent implements OnInit {
     this.initUserList();
   }
 
+  handleFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.filter = filterValue.trim().toLowerCase();
+
+    this.pagination.pageIndex = 0;
+    this.initUserList();
+  }
+
   private initUserList() {
     this.userManagementApiService.getAllApi({
       pagination: {
@@ -109,6 +118,7 @@ export class UserManagementComponent implements OnInit {
         order: this.sorting.order,
         name: this.sorting.name,
       },
+      filter: this.filter,
     });
   }
 }
