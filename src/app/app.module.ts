@@ -46,6 +46,7 @@ import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTabsModule } from '@angular/material/tabs';
+import { RolesTableComponent } from './user-management/expanded-tables/roles-table/roles-table.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     FileUploadComponent,
     EnlargedImageDialogComponent,
     UserManagementComponent,
+    RolesTableComponent,
   ],
   imports: [
     BrowserModule,

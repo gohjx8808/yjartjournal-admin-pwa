@@ -33,13 +33,13 @@ export class UserManagementComponent implements OnInit {
       sortName: 'id',
       columnDef: 'id',
       header: 'ID',
-      cell: (element: users.userData) => `${element.id}`,
+      cell: (element: users.userData) => element.id,
     },
     {
       sortName: 'name',
       columnDef: 'name',
       header: 'Full Name',
-      cell: (element: users.userData) => `${element.name}`,
+      cell: (element: users.userData) => element.name,
     },
     {
       sortName: 'preferredName',
@@ -51,7 +51,7 @@ export class UserManagementComponent implements OnInit {
       sortName: 'email',
       columnDef: 'email',
       header: 'Email',
-      cell: (element: users.userData) => `${element.email}`,
+      cell: (element: users.userData) => element.email,
     },
     {
       sortName: 'phone',
@@ -64,13 +64,13 @@ export class UserManagementComponent implements OnInit {
       sortName: 'gender',
       columnDef: 'gender',
       header: 'Gender',
-      cell: (element: users.userData) => `${element.gender}`,
+      cell: (element: users.userData) => element.gender,
     },
     {
       sortName: 'dob',
       columnDef: 'dob',
       header: 'Date of Birth',
-      cell: (element: users.userData) => `${element.dob}`,
+      cell: (element: users.userData) => element.dob,
     },
     {
       sortName: 'createdAt',
