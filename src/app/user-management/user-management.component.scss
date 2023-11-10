@@ -11,3 +11,20 @@
   padding: 20px;
   text-align: center;
 }
+
+tr.user-detail-row {
+  height: 0;
+}
+
+tr.user-row:not(.expanded-user-details):hover {
+  background: whitesmoke;
+}
+
+.user-row td {
+  border-bottom-width: 0;
+}
+
+.user-detail {
+  overflow: hidden;
+  display: flex;
+}

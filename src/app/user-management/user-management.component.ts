@@ -3,11 +3,28 @@ import { UserManagementApiService } from './api/user-management-api.service';
 import { DatePipe } from '@angular/common';
 import { PageEvent } from '@angular/material/paginator';
 import { Sort } from '@angular/material/sort';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-user-management',
   templateUrl: './user-management.component.html',
   styleUrls: ['./user-management.component.scss'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({ height: '0px', minHeight: '0' })),
+      state('expanded', style({ height: '*' })),
+      transition(
+        'expanded <=> collapsed',
+        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')
+      ),
+    ]),
+  ],
 })
 export class UserManagementComponent implements OnInit {
   userList: users.userData[] = [];
@@ -74,6 +91,7 @@ export class UserManagementComponent implements OnInit {
     order: '',
   };
   filter = '';
+  expandedUser: users.userData | null = null;
 
   constructor(
     private userManagementApiService: UserManagementApiService,

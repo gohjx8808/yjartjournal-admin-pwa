@@ -45,6 +45,7 @@ import { DeleteYarnStockDialogComponent } from './yarn-stock/dialogs/delete-yarn
 import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter-dialog.component';
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
 import { MatSortModule } from '@angular/material/sort';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatTabsModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
