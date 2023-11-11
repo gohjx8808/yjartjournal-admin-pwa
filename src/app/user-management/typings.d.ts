@@ -27,6 +27,9 @@ declare namespace users {
     addressLineTwo: string;
     postcode: string;
     city: string;
+    state: {
+      name: string;
+    };
     country: string;
     isDefault: boolean;
     tag: string;

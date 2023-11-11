@@ -10,6 +10,7 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
+import { EmptyPipe } from '../pipes/empty.pipe';
 
 @Component({
   selector: 'app-user-management',
@@ -45,7 +46,8 @@ export class UserManagementComponent implements OnInit {
       sortName: 'preferredName',
       columnDef: 'preferred-name',
       header: 'Preferred Name',
-      cell: (element: users.userData) => element.preferredName || '-',
+      cell: (element: users.userData) =>
+        this.emptyPipe.transform(element.preferredName),
     },
     {
       sortName: 'email',
@@ -95,7 +97,8 @@ export class UserManagementComponent implements OnInit {
 
   constructor(
     private userManagementApiService: UserManagementApiService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private emptyPipe: EmptyPipe
   ) {}
 
   ngOnInit(): void {

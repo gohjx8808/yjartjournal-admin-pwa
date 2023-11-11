@@ -18,7 +18,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTreeModule } from '@angular/material/tree';
 import { BrowserModule } from '@angular/platform-browser';
@@ -39,14 +41,13 @@ import { MasterDataComponent } from './master-data/master-data.component';
 import { EmptyPipe } from './pipes/empty.pipe';
 import { EnlargedImageDialogComponent } from './shared-components/dialogs/enlarged-image-dialog/enlarged-image-dialog.component';
 import { FileUploadComponent } from './shared-components/inputs/file/file-upload/file-upload.component';
+import { AddressesTableComponent } from './user-management/expanded-tables/addresses-table/addresses-table.component';
+import { RolesTableComponent } from './user-management/expanded-tables/roles-table/roles-table.component';
 import { UserManagementComponent } from './user-management/user-management.component';
 import { AddEditYarnStockDialogComponent } from './yarn-stock/dialogs/add-edit-yarn-stock-dialog/add-edit-yarn-stock-dialog.component';
 import { DeleteYarnStockDialogComponent } from './yarn-stock/dialogs/delete-yarn-stock-dialog/delete-yarn-stock-dialog.component';
 import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter-dialog.component';
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTabsModule } from '@angular/material/tabs';
-import { RolesTableComponent } from './user-management/expanded-tables/roles-table/roles-table.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { RolesTableComponent } from './user-management/expanded-tables/roles-tab
     EnlargedImageDialogComponent,
     UserManagementComponent,
     RolesTableComponent,
+    AddressesTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -107,7 +109,11 @@ import { RolesTableComponent } from './user-management/expanded-tables/roles-tab
     NgOptimizedImage,
     NgChartsModule,
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }, DatePipe],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
+    DatePipe,
+    EmptyPipe,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

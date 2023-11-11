@@ -40,7 +40,11 @@
                 <app-roles-table [roles]="expandedUser?.userRoles || []">
                 </app-roles-table>
               </mat-tab>
-              <mat-tab label="Second"> Content 2 </mat-tab>
+              <mat-tab label="Addresses">
+                <app-addresses-table
+                  [addresses]="expandedUser?.addresses || []">
+                </app-addresses-table>
+              </mat-tab>
             </mat-tab-group>
           </div>
         </td>
