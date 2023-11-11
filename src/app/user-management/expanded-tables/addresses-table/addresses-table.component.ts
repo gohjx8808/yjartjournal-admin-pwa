@@ -69,6 +69,11 @@ export class AddressesTableComponent {
       cell: (element: users.userAddress) => element.isDefault,
     },
     {
+      columnDef: 'tag',
+      header: 'Tag',
+      cell: (element: users.userAddress) => element.tag,
+    },
+    {
       columnDef: 'created-at',
       header: 'Created At',
       cell: (element: users.userAddress) =>
