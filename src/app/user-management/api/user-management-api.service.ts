@@ -13,6 +13,6 @@ export class UserManagementApiService {
 
   getAllApi = (payload: users.getUserListPayload) =>
     this.apiService
-      .postRequest<users.userListReponse>('/users/get-all', payload)
+      .postRequest<users.userListReponse>('/admin/user/get-all', payload)
       .subscribe(data => this.userList.next(data.data));
 }
