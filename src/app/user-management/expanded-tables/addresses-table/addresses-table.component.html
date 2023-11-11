@@ -6,12 +6,27 @@
     <ng-container
       *ngFor="let column of columns"
       [matColumnDef]="column.columnDef">
-      <th mat-header-cell *matHeaderCellDef>
-        {{ column.header }}
-      </th>
-      <td mat-cell *matCellDef="let row">
-        {{ column.cell(row) }}
-      </td>
+      <ng-container [ngSwitch]="column.columnDef">
+        <ng-container *ngSwitchCase="'is-default'">
+          <th mat-header-cell *matHeaderCellDef>{{ column.header }}</th>
+          <td mat-cell *matCellDef="let row">
+            <mat-icon
+              *ngIf="column.cell(row); else notDefault"
+              class="is-default-icon">
+              done
+            </mat-icon>
+          </td>
+        </ng-container>
+
+        <ng-container *ngSwitchDefault>
+          <th mat-header-cell *matHeaderCellDef>
+            {{ column.header }}
+          </th>
+          <td mat-cell *matCellDef="let row">
+            {{ column.cell(row) }}
+          </td>
+        </ng-container>
+      </ng-container>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -23,3 +38,7 @@
     </tr>
   </table>
 </div>
+
+<ng-template #notDefault>
+  <mat-icon class="not-default-icon">close</mat-icon>
+</ng-template>

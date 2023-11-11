@@ -64,7 +64,12 @@ export class AddressesTableComponent {
       cell: (element: users.userAddress) => element.country,
     },
     {
-      columnDef: 'createdAt',
+      columnDef: 'is-default',
+      header: 'Is Default',
+      cell: (element: users.userAddress) => element.isDefault,
+    },
+    {
+      columnDef: 'created-at',
       header: 'Created At',
       cell: (element: users.userAddress) =>
         this.datePipe.transform(element.createdAt, 'YYYY-MM-dd'),

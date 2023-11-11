@@ -6,3 +6,19 @@
   max-width: 100%;
   overflow: auto;
 }
+
+.is-default-icon {
+  color: green;
+}
+
+.not-default-icon {
+  color: red;
+}
+
+.mat-column-is-default {
+  text-align: center;
+}
+
+.mat-column-created-at {
+  text-align: center;
+}
