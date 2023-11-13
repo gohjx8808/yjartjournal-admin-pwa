@@ -1,4 +1,10 @@
 <app-layout>
+  <div class="add-btn-container">
+    <button mat-flat-button aria-label="Add user" class="add-btn">
+      <span class="add-icon">Add User</span>
+      <mat-icon class="add-icon">add</mat-icon>
+    </button>
+  </div>
   <mat-form-field color="accent" appearance="outline">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="handleFilter($event)" placeholder="Search..." />

@@ -36,3 +36,17 @@ body {
   padding: 20px;
   text-align: center;
 }
+
+.add-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+.add-btn {
+  background-color: forestgreen !important;
+}
+
+.add-icon {
+  color: white;
+}
