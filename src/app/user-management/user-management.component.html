@@ -1,6 +1,10 @@
 <app-layout>
   <div class="add-btn-container">
-    <button mat-flat-button aria-label="Add user" class="add-btn">
+    <button
+      mat-flat-button
+      aria-label="Add user"
+      class="add-btn"
+      (click)="openAddDialog()">
       <span class="add-icon">Add User</span>
       <mat-icon class="add-icon">add</mat-icon>
     </button>

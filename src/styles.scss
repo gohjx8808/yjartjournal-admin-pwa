@@ -50,3 +50,53 @@ body {
 .add-icon {
   color: white;
 }
+
+.dialog-content {
+  padding-top: 10px;
+  flex-direction: column;
+  display: flex;
+  width: 50vw;
+}
+
+.input-row-container {
+  justify-content: space-between;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.input-48-container {
+  flex: 1 1 100%;
+  max-width: 48% !important;
+}
+
+.input-100-container {
+  flex: 1 1 100%;
+  max-width: 100% !important;
+}
+
+.input-40-container {
+  flex: 1 1 100%;
+  max-width: 40% !important;
+}
+
+.input-56-container {
+  flex: 1 1 100%;
+  max-width: 56% !important;
+}
+
+@media (width <= 768px) {
+  .input-row-container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .input-48-container {
+    flex: 1 1 100%;
+    max-width: 100% !important;
+  }
+}
+
+.input-prefix {
+  margin-left: 10px;
+}

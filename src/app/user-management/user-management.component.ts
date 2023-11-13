@@ -11,6 +11,8 @@ import {
   trigger,
 } from '@angular/animations';
 import { EmptyPipe } from '../pipes/empty.pipe';
+import { MatDialog } from '@angular/material/dialog';
+import { AddEditUserDialogComponent } from './dialogs/add-edit-user-dialog/add-edit-user-dialog.component';
 
 @Component({
   selector: 'app-user-management',
@@ -98,7 +100,8 @@ export class UserManagementComponent implements OnInit {
   constructor(
     private userManagementApiService: UserManagementApiService,
     private datePipe: DatePipe,
-    private emptyPipe: EmptyPipe
+    private emptyPipe: EmptyPipe,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -141,5 +144,16 @@ export class UserManagementComponent implements OnInit {
       },
       filter: this.filter,
     });
+  }
+
+  openAddDialog() {
+    this.dialog.open<AddEditUserDialogComponent, users.addEditDialogData>(
+      AddEditUserDialogComponent,
+      {
+        data: {
+          actionType: 'Add',
+        },
+      }
+    );
   }
 }

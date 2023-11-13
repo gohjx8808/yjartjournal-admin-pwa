@@ -59,4 +59,9 @@ declare namespace users {
   }
 
   type sortOrder = 'DESC' | 'ASC' | '';
+
+  interface addEditDialogData {
+    data?: userData;
+    actionType: 'Add' | 'Edit';
+  }
 }

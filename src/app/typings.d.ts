@@ -3,4 +3,9 @@ declare namespace globalType {
     id: number;
     name: string;
   }
+
+  interface stringOptionData {
+    id: string;
+    name: string;
+  }
 }
