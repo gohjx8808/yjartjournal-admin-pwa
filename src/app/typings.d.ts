@@ -8,4 +8,8 @@ declare namespace globalType {
     id: string;
     name: string;
   }
+
+  interface checkboxOption extends optionData {
+    checked: boolean;
+  }
 }

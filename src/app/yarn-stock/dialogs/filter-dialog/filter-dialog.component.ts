@@ -7,8 +7,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./filter-dialog.component.scss'],
 })
 export class FilterDialogComponent implements OnInit {
-  catList: yarnStock.yarnStockCheckbox[] = [];
-  colorCatList: yarnStock.yarnStockCheckbox[] = [];
+  catList: globalType.checkboxOption[] = [];
+  colorCatList: globalType.checkboxOption[] = [];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData: yarnStock.filterDialogData

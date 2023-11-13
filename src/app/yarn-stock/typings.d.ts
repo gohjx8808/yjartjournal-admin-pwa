@@ -25,18 +25,14 @@ declare namespace yarnStock {
     imageUrl: string;
   }
 
-  interface yarnStockCheckbox extends globalType.optionData {
-    checked: boolean;
-  }
-
   interface updateQuantityPayload {
     yarnId: number;
     quantity: number;
   }
 
   interface filterDialogData {
-    catList: yarnStockCheckbox[];
-    colorCatList: yarnStockCheckbox[];
+    catList: globalType.checkboxOption[];
+    colorCatList: globalType.checkboxOption[];
     onChange: () => void;
   }
 

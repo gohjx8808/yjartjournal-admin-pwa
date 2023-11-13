@@ -6,8 +6,9 @@ import { YarnColorCategoryApiService } from '../master-data/api/yarn-color-categ
 import { SnackbarService } from '../services/snackbar.service';
 import { YarnStockApiService } from './api/yarn-stock-api.service';
 import { AddEditYarnStockDialogComponent } from './dialogs/add-edit-yarn-stock-dialog/add-edit-yarn-stock-dialog.component';
-import { FilterDialogComponent } from './dialogs/filter-dialog/filter-dialog.component';
 import { DeleteYarnStockDialogComponent } from './dialogs/delete-yarn-stock-dialog/delete-yarn-stock-dialog.component';
+import { FilterDialogComponent } from './dialogs/filter-dialog/filter-dialog.component';
+import { HelpersService } from '../helpers/helpers.service';
 
 @Component({
   selector: 'app-yarn-stock',
@@ -16,8 +17,8 @@ import { DeleteYarnStockDialogComponent } from './dialogs/delete-yarn-stock-dial
 })
 export class YarnStockComponent implements OnInit {
   yarnStockList: yarnStock.yarnStockData[] = [];
-  checkboxCatList: yarnStock.yarnStockCheckbox[] = [];
-  checkboxColorCatList: yarnStock.yarnStockCheckbox[] = [];
+  checkboxCatList: globalType.checkboxOption[] = [];
+  checkboxColorCatList: globalType.checkboxOption[] = [];
   isFetchingData = false;
 
   constructor(
@@ -25,7 +26,8 @@ export class YarnStockComponent implements OnInit {
     private yarnCategoryApiService: YarnCategoryApiService,
     private yarnColorCategoryApiService: YarnColorCategoryApiService,
     private yarnStockApiService: YarnStockApiService,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private helpersService: HelpersService
   ) {
     this.onRefreshData = this.onRefreshData.bind(this);
   }
@@ -36,7 +38,7 @@ export class YarnStockComponent implements OnInit {
     this.yarnColorCategoryApiService.getAllYarnColorCategoryApi();
 
     let catIds: number[] = [];
-    let tempCatList: yarnStock.yarnStockCheckbox[] = [];
+    let tempCatList: globalType.checkboxOption[] = [];
     this.yarnCategoryApiService.getYarnCategories().subscribe(catList => {
       tempCatList = [];
       catIds = catList.map(cat => {
@@ -47,7 +49,7 @@ export class YarnStockComponent implements OnInit {
     });
 
     let colorCatIds: number[] = [];
-    let tempColorCatList: yarnStock.yarnStockCheckbox[] = [];
+    let tempColorCatList: globalType.checkboxOption[] = [];
     this.yarnColorCategoryApiService
       .getYarnColorCategories()
       .subscribe(colorCatList => {
@@ -82,13 +84,11 @@ export class YarnStockComponent implements OnInit {
 
   private onRefreshData() {
     this.yarnStockApiService.getAllYarnStockApi({
-      yarnCategoryIds: this.getCheckedId(this.checkboxCatList),
-      yarnColorCategoryIds: this.getCheckedId(this.checkboxColorCatList),
+      yarnCategoryIds: this.helpersService.getCheckedId(this.checkboxCatList),
+      yarnColorCategoryIds: this.helpersService.getCheckedId(
+        this.checkboxColorCatList
+      ),
     });
-  }
-
-  private getCheckedId(list: yarnStock.yarnStockCheckbox[]) {
-    return list.filter(item => item.checked).map(({ id }) => id);
   }
 
   onIncreaseQuantity(yarnId: number, quantity: number) {
