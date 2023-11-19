@@ -160,4 +160,17 @@ export class UserManagementComponent implements OnInit {
       }
     );
   }
+
+  openEditDialog(data: users.userData) {
+    this.dialog.open<AddEditUserDialogComponent, users.addEditDialogData>(
+      AddEditUserDialogComponent,
+      {
+        data: {
+          actionType: 'Edit',
+          data,
+          onRefreshData: this.initUserList,
+        },
+      }
+    );
+  }
 }

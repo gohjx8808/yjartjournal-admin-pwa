@@ -41,7 +41,10 @@
           &nbsp;
         </th>
         <td mat-cell *matCellDef="let element" class="action-container">
-          <button mat-icon-button aria-label="Edit user">
+          <button
+            mat-icon-button
+            aria-label="Edit user"
+            (click)="openEditDialog(element); $event.stopPropagation()">
             <mat-icon class="edit-icon">edit</mat-icon>
           </button>
           <button mat-icon-button aria-label="Delete user" color="warn">

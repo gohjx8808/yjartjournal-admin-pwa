@@ -21,4 +21,7 @@ export class UserManagementApiService {
 
   submitAddNewUser = (payload: users.addNewUserPayload) =>
     this.apiService.postRequest('/admin/user/add-new', payload);
+
+  submitUpdateUser = (payload: users.updateUserPayload) =>
+    this.apiService.postRequest('/admin/user/update', payload);
 }

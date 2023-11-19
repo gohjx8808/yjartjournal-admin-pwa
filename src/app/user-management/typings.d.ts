@@ -71,26 +71,25 @@ declare namespace users {
     gender: globalType.stringOptionData[];
   }
 
-  interface addNewUserPayload {
-    name: string;
-    preferredName?: string | null;
+  interface addNewUserPayload extends addUpdatePayload {
     email: string;
-    countryCode: string;
-    phoneNumber: string;
-    gender: string;
-    dob: string;
     roleIds?: number[];
   }
 
-  interface updateUserPayload {
+  interface updateUserPayload extends addUpdatePayload {
     userId: number;
+  }
+
+  interface addUpdatePayload {
     name: string;
-    preferredName: string;
+    preferredName?: string | null;
     countryCode: string;
     phoneNumber: string;
-    gender: 'M' | 'F';
+    gender: genderOption;
     dob: string;
   }
+
+  type genderOption = 'M' | 'F';
 
   interface deleteUserPayload {
     userId: number;

@@ -37,7 +37,11 @@
             addEditUserForm.controls['email'].touched
           ">
           <mat-label>Email</mat-label>
-          <input matInput type="email" formControlName="email" />
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            [readonly]="dialogData.actionType === 'Edit'" />
           <mat-error
             *ngIf="addEditUserForm.controls['email'].errors?.['required']">
             Email is required.
