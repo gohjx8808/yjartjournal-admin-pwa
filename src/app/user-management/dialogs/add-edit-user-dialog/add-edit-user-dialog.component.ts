@@ -5,6 +5,7 @@ import { UserManagementApiService } from '../../api/user-management-api.service'
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { HelpersService } from '../../../helpers/helpers.service';
 
 @Component({
   selector: 'app-add-edit-user-dialog',
@@ -21,7 +22,8 @@ export class AddEditUserDialogComponent implements OnInit {
     private formBuilder: NonNullableFormBuilder,
     private userManagementApiService: UserManagementApiService,
     private dialogRef: MatDialogRef<AddEditUserDialogComponent>,
-    private snackbarService: SnackbarService
+    private snackbarService: SnackbarService,
+    private helpersService: HelpersService
   ) {}
 
   ngOnInit(): void {
@@ -67,7 +69,7 @@ export class AddEditUserDialogComponent implements OnInit {
       countryCode: formData.countryCode!,
       phoneNumber: formData.phoneNumber!,
       gender: formData.gender!,
-      dob: formData.dob!.toISOString().split('T')[0],
+      dob: this.helpersService.formatDate(formData.dob!),
       roleIds: formData.roleIds!,
     };
 

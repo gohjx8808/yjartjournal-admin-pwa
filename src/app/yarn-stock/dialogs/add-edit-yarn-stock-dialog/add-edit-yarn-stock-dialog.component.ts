@@ -6,6 +6,7 @@ import { YarnColorCategoryApiService } from 'src/app/master-data/api/yarn-color-
 import { YarnCategoryApiService } from '../../../master-data/api/yarn-category/yarn-category-api.service';
 import { SnackbarService } from '../../../services/snackbar.service';
 import { YarnStockApiService } from '../../api/yarn-stock-api.service';
+import { HelpersService } from '../../../helpers/helpers.service';
 
 @Component({
   selector: 'app-add-edit-yarn-stock-dialog',
@@ -52,7 +53,8 @@ export class AddEditYarnStockDialogComponent implements OnInit {
     private yarnColorCategoryApiService: YarnColorCategoryApiService,
     private yarnStockApiService: YarnStockApiService,
     private snackbarService: SnackbarService,
-    private dialogRef: MatDialogRef<AddEditYarnStockDialogComponent>
+    private dialogRef: MatDialogRef<AddEditYarnStockDialogComponent>,
+    private helpersService: HelpersService
   ) {}
 
   ngOnInit(): void {
@@ -102,7 +104,7 @@ export class AddEditYarnStockDialogComponent implements OnInit {
       if (formValue.lastOrderedDate) {
         formData.append(
           'lastOrderedDate',
-          formValue.lastOrderedDate.toISOString()
+          this.helpersService.formatDate(formValue.lastOrderedDate)
         );
       }
       if (this.uploadedFile) {
