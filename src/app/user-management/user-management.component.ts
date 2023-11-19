@@ -85,6 +85,7 @@ export class UserManagementComponent implements OnInit {
     },
   ];
   displayedColumns = this.columns.map(c => c.columnDef);
+  columnsToDisplayWithExpand = [...this.displayedColumns, 'actions', 'expand'];
   pagination = {
     pageSize: 10,
     pageIndex: 0,
