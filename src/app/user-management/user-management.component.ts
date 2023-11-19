@@ -13,6 +13,7 @@ import {
 import { EmptyPipe } from '../pipes/empty.pipe';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditUserDialogComponent } from './dialogs/add-edit-user-dialog/add-edit-user-dialog.component';
+import { DeleteUserDialogComponent } from './dialogs/delete-user-dialog/delete-user-dialog.component';
 
 @Component({
   selector: 'app-user-management',
@@ -167,6 +168,18 @@ export class UserManagementComponent implements OnInit {
       {
         data: {
           actionType: 'Edit',
+          data,
+          onRefreshData: this.initUserList,
+        },
+      }
+    );
+  }
+
+  openDeleteDialog(data: users.userData) {
+    this.dialog.open<DeleteUserDialogComponent, users.deleteDialogData>(
+      DeleteUserDialogComponent,
+      {
+        data: {
           data,
           onRefreshData: this.initUserList,
         },

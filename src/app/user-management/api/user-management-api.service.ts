@@ -24,4 +24,7 @@ export class UserManagementApiService {
 
   submitUpdateUser = (payload: users.updateUserPayload) =>
     this.apiService.postRequest('/admin/user/update', payload);
+
+  submitDeleteUser = (payload: users.deleteUserPayload) =>
+    this.apiService.postRequest('/admin/user/delete', payload);
 }

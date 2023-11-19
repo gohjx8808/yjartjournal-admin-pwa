@@ -47,7 +47,11 @@
             (click)="openEditDialog(element); $event.stopPropagation()">
             <mat-icon class="edit-icon">edit</mat-icon>
           </button>
-          <button mat-icon-button aria-label="Delete user" color="warn">
+          <button
+            mat-icon-button
+            aria-label="Delete user"
+            color="warn"
+            (click)="openDeleteDialog(element); $event.stopPropagation()">
             <mat-icon>delete</mat-icon>
           </button>
         </td>
