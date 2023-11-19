@@ -64,4 +64,9 @@ declare namespace users {
     data?: userData;
     actionType: 'Add' | 'Edit';
   }
+
+  interface formOption {
+    roles: globalType.checkboxOption[];
+    gender: globalType.optionData[];
+  }
 }

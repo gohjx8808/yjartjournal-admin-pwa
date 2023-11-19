@@ -15,4 +15,7 @@ export class UserManagementApiService {
     this.apiService
       .postRequest<users.userListReponse>('/admin/user/get-all', payload)
       .subscribe(data => this.userList.next(data.data));
+
+  getFormOptions = () =>
+    this.apiService.getRequest<users.formOption>('/admin/user/form-options');
 }

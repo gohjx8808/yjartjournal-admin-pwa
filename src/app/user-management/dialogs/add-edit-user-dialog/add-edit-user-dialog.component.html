@@ -1,128 +1,153 @@
 <h1 mat-dialog-title>{{ dialogData.actionType }} User</h1>
 <form [formGroup]="addEditUserForm" (ngSubmit)="onSubmit()">
   <mat-dialog-content class="dialog-content">
-    <div class="input-row-container">
-      <mat-form-field
-        color="accent"
-        appearance="outline"
-        class="input-100-container"
-        [class.error-msg-container]="addEditUserForm.controls['name'].touched">
-        <mat-label>Full Name</mat-label>
-        <input matInput formControlName="name" />
-        <mat-error
-          *ngIf="addEditUserForm.controls['name'].errors?.['required']">
-          Name is required.
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field
-        color="accent"
-        appearance="outline"
-        class="input-48-container"
-        [class.error-msg-container]="
-          addEditUserForm.controls['preferredName'].touched
-        ">
-        <mat-label>Preferred Name</mat-label>
-        <input matInput formControlName="preferredName" />
-        <mat-hint>How we should address this user</mat-hint>
-      </mat-form-field>
-      <mat-form-field
-        color="accent"
-        appearance="outline"
-        class="input-48-container"
-        [class.error-msg-container]="addEditUserForm.controls['email'].touched">
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" />
-        <mat-error
-          *ngIf="addEditUserForm.controls['email'].errors?.['required']">
-          Email is required.
-        </mat-error>
-      </mat-form-field>
-      <div class="input-48-container phone-number-container spacing">
+    <section>
+      <h3><strong>User Details</strong></h3>
+      <div class="input-row-container">
         <mat-form-field
           color="accent"
           appearance="outline"
-          class="input-40-container"
+          class="input-100-container"
           [class.error-msg-container]="
-            addEditUserForm.controls['countryCode'].touched
+            addEditUserForm.controls['name'].touched
           ">
-          <mat-label>Country Code</mat-label>
-          <span matPrefix class="input-prefix">+</span>
-          <input matInput formControlName="countryCode" />
+          <mat-label>Full Name</mat-label>
+          <input matInput formControlName="name" />
           <mat-error
-            *ngIf="
-              addEditUserForm.controls['countryCode'].errors?.['required']
-            ">
-            Country code is required.
+            *ngIf="addEditUserForm.controls['name'].errors?.['required']">
+            Name is required.
           </mat-error>
         </mat-form-field>
         <mat-form-field
           color="accent"
           appearance="outline"
-          class="input-56-container"
+          class="input-100-container"
           [class.error-msg-container]="
-            addEditUserForm.controls['phoneNumber'].touched
+            addEditUserForm.controls['preferredName'].touched
           ">
-          <mat-label>Phone Number</mat-label>
-          <input matInput formControlName="phoneNumber" />
+          <mat-label>Preferred Name</mat-label>
+          <input matInput formControlName="preferredName" />
+          <mat-hint>How we should address this user</mat-hint>
+        </mat-form-field>
+        <mat-form-field
+          color="accent"
+          appearance="outline"
+          class="input-48-container spacing"
+          [class.error-msg-container]="
+            addEditUserForm.controls['email'].touched
+          ">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" />
           <mat-error
-            *ngIf="
-              addEditUserForm.controls['phoneNumber'].errors?.['required']
+            *ngIf="addEditUserForm.controls['email'].errors?.['required']">
+            Email is required.
+          </mat-error>
+        </mat-form-field>
+        <div class="input-48-container phone-number-container spacing">
+          <mat-form-field
+            color="accent"
+            appearance="outline"
+            class="input-40-container"
+            [class.error-msg-container]="
+              addEditUserForm.controls['countryCode'].touched
             ">
-            Phone number is required.
+            <mat-label>Country Code</mat-label>
+            <span matPrefix class="input-prefix">+</span>
+            <input matInput formControlName="countryCode" />
+            <mat-error
+              *ngIf="
+                addEditUserForm.controls['countryCode'].errors?.['required']
+              ">
+              Country code is required.
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field
+            color="accent"
+            appearance="outline"
+            class="input-56-container"
+            [class.error-msg-container]="
+              addEditUserForm.controls['phoneNumber'].touched
+            ">
+            <mat-label>Phone Number</mat-label>
+            <input matInput formControlName="phoneNumber" />
+            <mat-error
+              *ngIf="
+                addEditUserForm.controls['phoneNumber'].errors?.['required']
+              ">
+              Phone number is required.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <mat-form-field
+          color="accent"
+          appearance="outline"
+          class="input-48-container"
+          [class.country-code-error-spacing]="
+            (addEditUserForm.controls['phoneNumber'].touched &&
+              addEditUserForm.controls['phoneNumber'].errors?.['required']) ||
+            (addEditUserForm.controls['countryCode'].touched &&
+              addEditUserForm.controls['countryCode'].errors?.['required'])
+          "
+          [class.error-msg-container]="
+            addEditUserForm.controls['gender'].touched
+          ">
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option
+              *ngFor="let gender of formOptions.gender"
+              [value]="gender.id">
+              {{ gender.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="addEditUserForm.controls['gender'].errors?.['required']">
+            Gender is required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field
+          color="accent"
+          appearance="outline"
+          class="input-48-container"
+          [class.country-code-error-spacing]="
+            (addEditUserForm.controls['phoneNumber'].touched &&
+              addEditUserForm.controls['phoneNumber'].errors?.['required']) ||
+            (addEditUserForm.controls['countryCode'].touched &&
+              addEditUserForm.controls['countryCode'].errors?.['required'])
+          "
+          [class.error-msg-container]="addEditUserForm.controls['dob'].touched">
+          <mat-label>Date of Birth</mat-label>
+          <input
+            matInput
+            [matDatepicker]="datepicker"
+            formControlName="dob"
+            [max]="maxDate" />
+          <mat-hint>DD/MM/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="datepicker">
+          </mat-datepicker-toggle>
+          <mat-datepicker #datepicker>
+            <mat-datepicker-actions>
+              <button mat-button matDatepickerCancel>Cancel</button>
+              <button mat-raised-button color="primary" matDatepickerApply>
+                Apply
+              </button>
+            </mat-datepicker-actions>
+          </mat-datepicker>
+          <mat-error
+            *ngIf="addEditUserForm.controls['dob'].errors?.['required']">
+            Date of birth is required.
           </mat-error>
         </mat-form-field>
       </div>
-      <mat-form-field
-        color="accent"
-        appearance="outline"
-        class="input-48-container spacing"
-        [class.error-msg-container]="
-          addEditUserForm.controls['gender'].touched
-        ">
-        <mat-label>Gender</mat-label>
-        <mat-select formControlName="gender">
-          <mat-option *ngFor="let gender of genderOptions" [value]="gender.id">
-            {{ gender.name }}
-          </mat-option>
-        </mat-select>
-        <mat-error
-          *ngIf="addEditUserForm.controls['gender'].errors?.['required']">
-          Gender is required.
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field
-        color="accent"
-        appearance="outline"
-        class="input-48-container"
-        [class.dob-spacing]="
-          (addEditUserForm.controls['phoneNumber'].touched &&
-            addEditUserForm.controls['phoneNumber'].errors?.['required']) ||
-          (addEditUserForm.controls['countryCode'].touched &&
-            addEditUserForm.controls['countryCode'].errors?.['required'])
-        "
-        [class.error-msg-container]="addEditUserForm.controls['dob'].touched">
-        <mat-label>Date of Birth</mat-label>
-        <input
-          matInput
-          [matDatepicker]="datepicker"
-          formControlName="dob"
-          [max]="maxDate" />
-        <mat-hint>DD/MM/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="datepicker">
-        </mat-datepicker-toggle>
-        <mat-datepicker #datepicker>
-          <mat-datepicker-actions>
-            <button mat-button matDatepickerCancel>Cancel</button>
-            <button mat-raised-button color="primary" matDatepickerApply>
-              Apply
-            </button>
-          </mat-datepicker-actions>
-        </mat-datepicker>
-        <mat-error *ngIf="addEditUserForm.controls['dob'].errors?.['required']">
-          Date of birth is required.
-        </mat-error>
-      </mat-form-field>
-    </div>
+    </section>
+    <section *ngIf="dialogData.actionType === 'Add'">
+      <h3><strong>Roles</strong></h3>
+      <mat-checkbox
+        [checked]="role.checked"
+        (change)="test($event, role.id)"
+        *ngFor="let role of formOptions.roles">
+        {{ role.name }}
+      </mat-checkbox>
+    </section>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close [disabled]="isSubmitting">
