@@ -1,8 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UserManagementApiService } from '../../api/user-management-api.service';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { SnackbarService } from '../../../services/snackbar.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-edit-user-dialog',
@@ -17,7 +19,9 @@ export class AddEditUserDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public dialogData: users.addEditDialogData,
     private formBuilder: NonNullableFormBuilder,
-    private userManagementApiService: UserManagementApiService
+    private userManagementApiService: UserManagementApiService,
+    private dialogRef: MatDialogRef<AddEditUserDialogComponent>,
+    private snackbarService: SnackbarService
   ) {}
 
   ngOnInit(): void {
@@ -29,13 +33,7 @@ export class AddEditUserDialogComponent implements OnInit {
   addEditUserForm = this.formBuilder.group({
     name: [this.dialogData.data?.name ?? null, [Validators.required]],
     preferredName: [this.dialogData.data?.preferredName ?? null],
-    email: [
-      {
-        value: this.dialogData.data?.email ?? null,
-        disabled: this.dialogData.data?.email,
-      },
-      [Validators.required],
-    ],
+    email: [this.dialogData.data?.email ?? null, [Validators.required]],
     countryCode: [
       this.dialogData.data?.countryCode ?? null,
       [Validators.required],
@@ -60,7 +58,48 @@ export class AddEditUserDialogComponent implements OnInit {
   });
 
   onSubmit() {
-    console.log(this.addEditUserForm.value);
+    const formData = this.addEditUserForm.value;
+
+    const dataToBeSubmit = {
+      name: formData.name!,
+      preferredName: formData.preferredName,
+      email: formData.email!,
+      countryCode: formData.countryCode!,
+      phoneNumber: formData.phoneNumber!,
+      gender: formData.gender!,
+      dob: formData.dob!.toISOString().split('T')[0],
+      roleIds: formData.roleIds!,
+    };
+
+    if (!this.addEditUserForm.valid) {
+      this.addEditUserForm.markAllAsTouched;
+    } else {
+      this.dialogRef.disableClose = true;
+      if (this.dialogData.actionType === 'Add') {
+        this.userManagementApiService
+          .submitAddNewUser(dataToBeSubmit)
+          .subscribe({
+            next: () => {
+              this.dialogRef.disableClose = false;
+              this.dialogRef.close();
+              this.dialogData.onRefreshData();
+              this.isSubmitting = false;
+              this.snackbarService.openSuccessSnackbar(
+                'The user had been added!'
+              );
+            },
+            error: (err: HttpErrorResponse) => {
+              this.dialogRef.disableClose = false;
+              this.isSubmitting = false;
+              let errorMsg = err.statusText || 'The user had failed to add!';
+              if (err.status === 422) {
+                errorMsg = err.error.errors[0].msg;
+              }
+              this.snackbarService.openErrorSnackbar(errorMsg);
+            },
+          });
+      }
+    }
   }
 
   test(event: MatCheckboxChange, roleId: number) {

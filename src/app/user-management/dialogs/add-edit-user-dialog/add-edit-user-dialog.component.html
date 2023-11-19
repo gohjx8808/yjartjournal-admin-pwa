@@ -37,7 +37,7 @@
             addEditUserForm.controls['email'].touched
           ">
           <mat-label>Email</mat-label>
-          <input matInput formControlName="email" />
+          <input matInput type="email" formControlName="email" />
           <mat-error
             *ngIf="addEditUserForm.controls['email'].errors?.['required']">
             Email is required.
@@ -147,6 +147,10 @@
         *ngFor="let role of formOptions.roles">
         {{ role.name }}
       </mat-checkbox>
+      <mat-error
+        *ngIf="addEditUserForm.controls['roleIds'].errors?.['required']">
+        At least one role must be selected.
+      </mat-error>
     </section>
   </mat-dialog-content>
   <mat-dialog-actions align="end">

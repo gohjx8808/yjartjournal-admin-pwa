@@ -63,10 +63,36 @@ declare namespace users {
   interface addEditDialogData {
     data?: userData;
     actionType: 'Add' | 'Edit';
+    onRefreshData: () => void;
   }
 
   interface formOption {
     roles: globalType.checkboxOption[];
-    gender: globalType.optionData[];
+    gender: globalType.stringOptionData[];
+  }
+
+  interface addNewUserPayload {
+    name: string;
+    preferredName?: string | null;
+    email: string;
+    countryCode: string;
+    phoneNumber: string;
+    gender: string;
+    dob: string;
+    roleIds?: number[];
+  }
+
+  interface updateUserPayload {
+    userId: number;
+    name: string;
+    preferredName: string;
+    countryCode: string;
+    phoneNumber: string;
+    gender: 'M' | 'F';
+    dob: string;
+  }
+
+  interface deleteUserPayload {
+    userId: number;
   }
 }

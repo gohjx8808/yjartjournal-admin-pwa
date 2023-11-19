@@ -102,7 +102,9 @@ export class UserManagementComponent implements OnInit {
     private datePipe: DatePipe,
     private emptyPipe: EmptyPipe,
     private dialog: MatDialog
-  ) {}
+  ) {
+    this.initUserList = this.initUserList.bind(this);
+  }
 
   ngOnInit(): void {
     this.initUserList();
@@ -152,6 +154,7 @@ export class UserManagementComponent implements OnInit {
       {
         data: {
           actionType: 'Add',
+          onRefreshData: this.initUserList,
         },
       }
     );

@@ -18,4 +18,7 @@ export class UserManagementApiService {
 
   getFormOptions = () =>
     this.apiService.getRequest<users.formOption>('/admin/user/form-options');
+
+  submitAddNewUser = (payload: users.addNewUserPayload) =>
+    this.apiService.postRequest('/admin/user/add-new', payload);
 }
