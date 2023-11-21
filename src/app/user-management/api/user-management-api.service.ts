@@ -28,6 +28,15 @@ export class UserManagementApiService {
   submitDeleteUser = (payload: users.deleteUserPayload) =>
     this.apiService.postRequest('/admin/user/delete', payload);
 
+  getAssignableRole = (payload: users.userIdPayload) =>
+    this.apiService.postRequest<globalType.optionData[]>(
+      '/admin/user/assignable-roles',
+      payload
+    );
+
+  submitAddUserRole = (payload: users.addUserRolePayload) =>
+    this.apiService.postRequest('/admin/user/role/add', payload);
+
   submitDeleteUserRole = (payload: users.deleteUserRolePayload) =>
     this.apiService.postRequest('/admin/user/role/delete', payload);
 }

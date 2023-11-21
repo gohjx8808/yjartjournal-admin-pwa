@@ -1,0 +1,37 @@
+<h1 mat-dialog-title>Add Role</h1>
+<form [formGroup]="addRoleForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content class="dialog-content">
+    <div class="input-row-container">
+      <mat-form-field
+        color="accent"
+        appearance="outline"
+        class="input-100-container"
+        [class.error-msg-container]="addRoleForm.controls['roleId'].touched">
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="roleId">
+          <mat-option *ngFor="let role of roleOptions" [value]="role.id">
+            {{ role.name }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="addRoleForm.controls['roleId'].errors?.['required']">
+          Role is required.
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close [disabled]="isSubmitting">
+      Cancel
+    </button>
+    <button
+      mat-button
+      cdkFocusInitial
+      type="submit"
+      [disabled]="!addRoleForm.valid || isSubmitting">
+      <mat-icon *ngIf="isSubmitting">
+        <mat-spinner diameter="18"></mat-spinner>
+      </mat-icon>
+      Submit
+    </button>
+  </mat-dialog-actions>
+</form>

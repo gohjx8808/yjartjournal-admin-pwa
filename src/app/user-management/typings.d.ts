@@ -76,9 +76,7 @@ declare namespace users {
     roleIds?: number[];
   }
 
-  interface updateUserPayload extends addUpdatePayload {
-    userId: number;
-  }
+  type updateUserPayload = addUpdatePayload & userIdPayload;
 
   interface addUpdatePayload {
     name: string;
@@ -91,9 +89,11 @@ declare namespace users {
 
   type genderOption = 'M' | 'F';
 
-  interface deleteUserPayload {
+  interface userIdPayload {
     userId: number;
   }
+
+  type deleteUserPayload = userIdPayload;
 
   interface deleteUserDialogData {
     data: userData;
@@ -107,5 +107,13 @@ declare namespace users {
 
   interface deleteUserRolePayload {
     userRoleId: number;
+  }
+
+  interface addRoleDialogData extends userIdPayload {
+    onRefreshData: () => void;
+  }
+
+  interface addUserRolePayload extends userIdPayload {
+    roleId: number;
   }
 }
