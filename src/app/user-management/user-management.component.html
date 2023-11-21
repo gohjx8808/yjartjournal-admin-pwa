@@ -80,7 +80,7 @@
       </ng-container>
 
       <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-      <ng-container matColumnDef="expandedUserDetail">
+      <ng-container matColumnDef="expanded-user-detail">
         <td
           mat-cell
           *matCellDef="let row"
@@ -115,7 +115,7 @@
         (click)="expandedUser = expandedUser === row ? null : row"></tr>
       <tr
         mat-row
-        *matRowDef="let row; columns: ['expandedUserDetail']"
+        *matRowDef="let row; columns: ['expanded-user-detail']"
         class="user-detail-row"></tr>
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="8" ngClass="empty-table-data">No data</td>

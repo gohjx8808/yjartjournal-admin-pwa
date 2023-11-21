@@ -27,6 +27,8 @@ tr.user-row:not(.expanded-user-details):hover {
 
 .user-details-tab-group {
   width: 100%;
+  margin: 16px 0;
+  background: white;
 }
 
 .mat-column-name {
@@ -47,6 +49,10 @@ tr.user-row:not(.expanded-user-details):hover {
 
 .mat-column-created-at {
   min-width: 130px;
+}
+
+.mat-column-expanded-user-detail {
+  background: #f5dbc9;
 }
 
 .action-container {
