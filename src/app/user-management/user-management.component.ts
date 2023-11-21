@@ -1,8 +1,3 @@
-import { Component, OnInit } from '@angular/core';
-import { UserManagementApiService } from './api/user-management-api.service';
-import { DatePipe } from '@angular/common';
-import { PageEvent } from '@angular/material/paginator';
-import { Sort } from '@angular/material/sort';
 import {
   animate,
   state,
@@ -10,8 +5,13 @@ import {
   transition,
   trigger,
 } from '@angular/animations';
-import { EmptyPipe } from '../pipes/empty.pipe';
+import { DatePipe } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
+import { Sort } from '@angular/material/sort';
+import { EmptyPipe } from '../pipes/empty.pipe';
+import { UserManagementApiService } from './api/user-management-api.service';
 import { AddEditUserDialogComponent } from './dialogs/add-edit-user-dialog/add-edit-user-dialog.component';
 import { DeleteUserDialogComponent } from './dialogs/delete-user-dialog/delete-user-dialog.component';
 
@@ -136,7 +136,7 @@ export class UserManagementComponent implements OnInit {
     this.initUserList();
   }
 
-  private initUserList() {
+  initUserList() {
     this.userManagementApiService.getAllApi({
       pagination: {
         page: this.pagination.pageIndex,
@@ -176,7 +176,7 @@ export class UserManagementComponent implements OnInit {
   }
 
   openDeleteDialog(data: users.userData) {
-    this.dialog.open<DeleteUserDialogComponent, users.deleteDialogData>(
+    this.dialog.open<DeleteUserDialogComponent, users.deleteUserDialogData>(
       DeleteUserDialogComponent,
       {
         data: {

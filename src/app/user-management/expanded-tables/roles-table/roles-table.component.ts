@@ -1,5 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteRoleDialogComponent } from './dialogs/delete-role-dialog/delete-role-dialog.component';
 
 @Component({
   selector: 'app-roles-table',
@@ -8,8 +10,14 @@ import { Component, Input } from '@angular/core';
 })
 export class RolesTableComponent {
   @Input() roles: users.userRole[] = [];
+  @Input() userId: number | null = null;
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  @Input() onRefreshData: () => void = () => {};
 
-  constructor(private datePipe: DatePipe) {}
+  constructor(
+    private datePipe: DatePipe,
+    private dialog: MatDialog
+  ) {}
 
   columns = [
     {
@@ -30,4 +38,18 @@ export class RolesTableComponent {
     },
   ];
   displayedColumns = this.columns.map(c => c.columnDef);
+
+  columnsWithActions = [...this.displayedColumns, 'actions'];
+
+  openDeleteDialog = (data: users.userRole) => {
+    this.dialog.open<DeleteRoleDialogComponent, users.deleteRoleDialogData>(
+      DeleteRoleDialogComponent,
+      {
+        data: {
+          data,
+          onRefreshData: this.onRefreshData,
+        },
+      }
+    );
+  };
 }

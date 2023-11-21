@@ -95,8 +95,17 @@ declare namespace users {
     userId: number;
   }
 
-  interface deleteDialogData {
+  interface deleteUserDialogData {
     data: userData;
     onRefreshData: () => void;
+  }
+
+  interface deleteRoleDialogData {
+    data: userRole;
+    onRefreshData: () => void;
+  }
+
+  interface deleteUserRolePayload {
+    userRoleId: number;
   }
 }

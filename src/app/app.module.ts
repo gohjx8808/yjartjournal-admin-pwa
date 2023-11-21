@@ -50,6 +50,7 @@ import { FilterDialogComponent } from './yarn-stock/dialogs/filter-dialog/filter
 import { YarnStockComponent } from './yarn-stock/yarn-stock.component';
 import { AddEditUserDialogComponent } from './user-management/dialogs/add-edit-user-dialog/add-edit-user-dialog.component';
 import { DeleteUserDialogComponent } from './user-management/dialogs/delete-user-dialog/delete-user-dialog.component';
+import { DeleteRoleDialogComponent } from './user-management/expanded-tables/roles-table/dialogs/delete-role-dialog/delete-role-dialog.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { DeleteUserDialogComponent } from './user-management/dialogs/delete-user
     AddressesTableComponent,
     AddEditUserDialogComponent,
     DeleteUserDialogComponent,
+    DeleteRoleDialogComponent,
   ],
   imports: [
     BrowserModule,

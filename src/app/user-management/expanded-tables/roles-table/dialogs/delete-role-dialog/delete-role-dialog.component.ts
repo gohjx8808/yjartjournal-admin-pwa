@@ -2,47 +2,48 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { SnackbarService } from 'src/app/services/snackbar.service';
-import { UserManagementApiService } from '../../api/user-management-api.service';
+import { UserManagementApiService } from 'src/app/user-management/api/user-management-api.service';
 
 @Component({
-  selector: 'app-delete-user-dialog',
-  templateUrl: './delete-user-dialog.component.html',
-  styleUrls: ['./delete-user-dialog.component.scss'],
+  selector: 'app-delete-role-dialog',
+  templateUrl: './delete-role-dialog.component.html',
+  styleUrls: ['./delete-role-dialog.component.scss'],
 })
-export class DeleteUserDialogComponent {
+export class DeleteRoleDialogComponent {
   isSubmitting = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public dialogData: users.deleteUserDialogData,
+    public dialogData: users.deleteRoleDialogData,
     private userManagementApiService: UserManagementApiService,
     private snackbarService: SnackbarService,
-    private dialogRef: MatDialogRef<DeleteUserDialogComponent>
+    private dialogRef: MatDialogRef<DeleteRoleDialogComponent>
   ) {}
 
-  onConfirm() {
-    this.dialogRef.disableClose = true;
-    this.isSubmitting = true;
+  onSubmit() {
     this.userManagementApiService
-      .submitDeleteUser({
-        userId: this.dialogData.data.id,
+      .submitDeleteUserRole({
+        userRoleId: this.dialogData.data.id,
       })
       .subscribe({
         next: () => {
           this.dialogRef.disableClose = false;
           this.dialogRef.close();
-          this.isSubmitting = false;
           this.dialogData.onRefreshData();
+          this.isSubmitting = false;
           this.snackbarService.openSuccessSnackbar(
-            'The user had been deleted!'
+            'The user role had been deleted!'
           );
         },
         error: (err: HttpErrorResponse) => {
           this.dialogRef.disableClose = false;
           this.isSubmitting = false;
-          this.snackbarService.openErrorSnackbar(
-            err.statusText || 'The user had failed to delete!'
-          );
+          let errorMsg =
+            err.statusText || 'The user role had failed to delete!';
+          if (err.status === 422) {
+            errorMsg = err.error?.message || err.error.errors?.[0].msg;
+          }
+          this.snackbarService.openErrorSnackbar(errorMsg);
         },
       });
   }

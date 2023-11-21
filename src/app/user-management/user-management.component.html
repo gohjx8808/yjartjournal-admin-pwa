@@ -69,12 +69,12 @@
               expandedUser = expandedUser === element ? null : element;
               $event.stopPropagation()
             ">
-            <mat-icon *ngIf="expandedUser !== element"
-              >keyboard_arrow_down</mat-icon
-            >
-            <mat-icon *ngIf="expandedUser === element"
-              >keyboard_arrow_up</mat-icon
-            >
+            <mat-icon *ngIf="expandedUser !== element">
+              keyboard_arrow_down
+            </mat-icon>
+            <mat-icon *ngIf="expandedUser === element">
+              keyboard_arrow_up
+            </mat-icon>
           </button>
         </td>
       </ng-container>
@@ -90,7 +90,10 @@
             [@detailExpand]="row === expandedUser ? 'expanded' : 'collapsed'">
             <mat-tab-group class="user-details-tab-group" color="accent">
               <mat-tab label="Roles">
-                <app-roles-table [roles]="expandedUser?.userRoles || []">
+                <app-roles-table
+                  [roles]="expandedUser?.userRoles || []"
+                  [userId]="expandedUser?.id || 0"
+                  [onRefreshData]="initUserList">
                 </app-roles-table>
               </mat-tab>
               <mat-tab label="Addresses">
