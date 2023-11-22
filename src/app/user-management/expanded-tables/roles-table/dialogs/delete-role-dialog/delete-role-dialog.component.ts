@@ -29,7 +29,9 @@ export class DeleteRoleDialogComponent {
         next: () => {
           this.dialogRef.disableClose = false;
           this.dialogRef.close();
-          this.dialogData.onRefreshData();
+          this.userManagementApiService.getUserRoleApi({
+            userId: this.dialogData.userId,
+          });
           this.isSubmitting = false;
           this.snackbarService.openSuccessSnackbar(
             'The user role had been deleted!'

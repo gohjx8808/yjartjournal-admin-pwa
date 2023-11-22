@@ -14,8 +14,6 @@ declare namespace users {
     gender: 'Male' | 'Female';
     dob: string;
     createdAt: string;
-    addresses: userAddress[];
-    userRoles: userRole[];
   }
 
   interface userAddress {
@@ -100,17 +98,12 @@ declare namespace users {
     onRefreshData: () => void;
   }
 
-  interface deleteRoleDialogData {
+  interface deleteRoleDialogData extends userIdPayload {
     data: userRole;
-    onRefreshData: () => void;
   }
 
   interface deleteUserRolePayload {
     userRoleId: number;
-  }
-
-  interface addRoleDialogData extends userIdPayload {
-    onRefreshData: () => void;
   }
 
   interface addUserRolePayload extends userIdPayload {

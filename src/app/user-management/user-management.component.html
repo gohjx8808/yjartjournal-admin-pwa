@@ -65,10 +65,7 @@
           <button
             mat-icon-button
             aria-label="expand row"
-            (click)="
-              expandedUser = expandedUser === element ? null : element;
-              $event.stopPropagation()
-            ">
+            (click)="onExpandTable(element); $event.stopPropagation()">
             <mat-icon *ngIf="expandedUser !== element">
               keyboard_arrow_down
             </mat-icon>
@@ -90,16 +87,11 @@
             [@detailExpand]="row === expandedUser ? 'expanded' : 'collapsed'">
             <mat-tab-group class="user-details-tab-group" color="accent">
               <mat-tab label="Roles">
-                <app-roles-table
-                  [roles]="expandedUser?.userRoles || []"
-                  [userId]="expandedUser?.id || 0"
-                  [onRefreshData]="initUserList">
+                <app-roles-table [userId]="expandedUser?.id || 0">
                 </app-roles-table>
               </mat-tab>
               <mat-tab label="Addresses">
-                <app-addresses-table
-                  [addresses]="expandedUser?.addresses || []">
-                </app-addresses-table>
+                <app-addresses-table [addresses]="[]"> </app-addresses-table>
               </mat-tab>
             </mat-tab-group>
           </div>
@@ -112,7 +104,7 @@
         *matRowDef="let row; columns: columnsToDisplayWithExpand"
         class="user-row"
         [class.expanded-user-details]="expandedUser === row"
-        (click)="expandedUser = expandedUser === row ? null : row"></tr>
+        (click)="onExpandTable(row)"></tr>
       <tr
         mat-row
         *matRowDef="let row; columns: ['expanded-user-detail']"

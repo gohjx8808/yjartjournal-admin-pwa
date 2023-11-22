@@ -7,14 +7,23 @@ import { Subject } from 'rxjs';
 })
 export class UserManagementApiService {
   private userList = new Subject<users.userListReponse>();
+  private userRoleList = new Subject<users.userRole[]>();
   constructor(private apiService: ApiService) {}
 
   getUserList = () => this.userList.asObservable();
+  getUserRoleList = () => this.userRoleList.asObservable();
 
   getAllApi = (payload: users.getUserListPayload) =>
     this.apiService
       .postRequest<users.userListReponse>('/admin/user/get-all', payload)
       .subscribe(data => this.userList.next(data.data));
+
+  getUserRoleApi = (payload: users.userIdPayload) =>
+    this.apiService
+      .postRequest<users.userRole[]>('/admin/user/roles', payload)
+      .subscribe(data => {
+        this.userRoleList.next(data.data);
+      });
 
   getFormOptions = () =>
     this.apiService.getRequest<users.formOption>('/admin/user/form-options');

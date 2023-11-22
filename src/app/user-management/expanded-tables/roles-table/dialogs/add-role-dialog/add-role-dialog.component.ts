@@ -18,7 +18,7 @@ export class AddRoleDialogComponent implements OnInit {
   });
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public dialogData: users.addRoleDialogData,
+    @Inject(MAT_DIALOG_DATA) public dialogData: users.userIdPayload,
     private userManagementApiService: UserManagementApiService,
     private formBuilder: NonNullableFormBuilder,
     private dialogRef: MatDialogRef<AddRoleDialogComponent>,
@@ -46,7 +46,9 @@ export class AddRoleDialogComponent implements OnInit {
           next: () => {
             this.dialogRef.disableClose = false;
             this.dialogRef.close();
-            this.dialogData.onRefreshData();
+            this.userManagementApiService.getUserRoleApi({
+              userId: this.dialogData.userId,
+            });
             this.isSubmitting = false;
             this.snackbarService.openSuccessSnackbar(
               'The user role had been added!'

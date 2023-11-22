@@ -1,24 +1,30 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteRoleDialogComponent } from './dialogs/delete-role-dialog/delete-role-dialog.component';
 import { AddRoleDialogComponent } from './dialogs/add-role-dialog/add-role-dialog.component';
+import { UserManagementApiService } from '../../api/user-management-api.service';
 
 @Component({
   selector: 'app-roles-table',
   templateUrl: './roles-table.component.html',
   styleUrls: ['./roles-table.component.scss'],
 })
-export class RolesTableComponent {
-  @Input() roles: users.userRole[] = [];
+export class RolesTableComponent implements OnInit {
+  roles: users.userRole[] = [];
   @Input() userId!: number;
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  @Input() onRefreshData: () => void = () => {};
 
   constructor(
     private datePipe: DatePipe,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private userManagementApiService: UserManagementApiService
   ) {}
+
+  ngOnInit(): void {
+    this.userManagementApiService.getUserRoleList().subscribe(data => {
+      this.roles = data;
+    });
+  }
 
   columns = [
     {
@@ -43,12 +49,11 @@ export class RolesTableComponent {
   columnsWithActions = [...this.displayedColumns, 'actions'];
 
   openAddDialog = () => {
-    this.dialog.open<AddRoleDialogComponent, users.addRoleDialogData>(
+    this.dialog.open<AddRoleDialogComponent, users.userIdPayload>(
       AddRoleDialogComponent,
       {
         data: {
           userId: this.userId,
-          onRefreshData: this.onRefreshData,
         },
       }
     );
@@ -60,7 +65,7 @@ export class RolesTableComponent {
       {
         data: {
           data,
-          onRefreshData: this.onRefreshData,
+          userId: this.userId,
         },
       }
     );

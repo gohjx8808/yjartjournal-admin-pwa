@@ -136,7 +136,7 @@ export class UserManagementComponent implements OnInit {
     this.initUserList();
   }
 
-  initUserList() {
+  private initUserList() {
     this.userManagementApiService.getAllApi({
       pagination: {
         page: this.pagination.pageIndex,
@@ -149,6 +149,13 @@ export class UserManagementComponent implements OnInit {
       filter: this.filter,
     });
   }
+
+  onExpandTable = (user: users.userData) => {
+    if (this.expandedUser === null || this.expandedUser !== user) {
+      this.userManagementApiService.getUserRoleApi({ userId: user.id });
+    }
+    this.expandedUser = this.expandedUser === user ? null : user;
+  };
 
   openAddDialog() {
     this.dialog.open<AddEditUserDialogComponent, users.addEditDialogData>(
