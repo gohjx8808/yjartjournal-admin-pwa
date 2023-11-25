@@ -14,7 +14,7 @@ export class DeleteRoleDialogComponent {
 
   constructor(
     @Inject(MAT_DIALOG_DATA)
-    public dialogData: users.deleteRoleDialogData,
+    public dialogData: role.deleteRoleDialogData,
     private userManagementApiService: UserManagementApiService,
     private snackbarService: SnackbarService,
     private dialogRef: MatDialogRef<DeleteRoleDialogComponent>

@@ -52,6 +52,7 @@ import { AddEditUserDialogComponent } from './user-management/dialogs/add-edit-u
 import { DeleteUserDialogComponent } from './user-management/dialogs/delete-user-dialog/delete-user-dialog.component';
 import { DeleteRoleDialogComponent } from './user-management/expanded-tables/roles-table/dialogs/delete-role-dialog/delete-role-dialog.component';
 import { AddRoleDialogComponent } from './user-management/expanded-tables/roles-table/dialogs/add-role-dialog/add-role-dialog.component';
+import { AddEditAddressDialogComponent } from './user-management/expanded-tables/addresses-table/dialogs/add-edit-address-dialog/add-edit-address-dialog/add-edit-address-dialog.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { AddRoleDialogComponent } from './user-management/expanded-tables/roles-
     DeleteUserDialogComponent,
     DeleteRoleDialogComponent,
     AddRoleDialogComponent,
+    AddEditAddressDialogComponent,
   ],
   imports: [
     BrowserModule,

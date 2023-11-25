@@ -7,7 +7,7 @@ import { Subject } from 'rxjs';
 })
 export class UserManagementApiService {
   private userList = new Subject<users.userListReponse>();
-  private userRoleList = new Subject<users.userRole[]>();
+  private userRoleList = new Subject<role.userRole[]>();
   private userAddressList = new Subject<users.userAddress[]>();
   constructor(private apiService: ApiService) {}
 
@@ -22,7 +22,7 @@ export class UserManagementApiService {
 
   getUserRoleApi = (payload: users.userIdPayload) =>
     this.apiService
-      .postRequest<users.userRole[]>('/admin/user/roles', payload)
+      .postRequest<role.userRole[]>('/admin/user/roles', payload)
       .subscribe(data => {
         this.userRoleList.next(data.data);
       });
@@ -52,9 +52,9 @@ export class UserManagementApiService {
       payload
     );
 
-  submitAddUserRole = (payload: users.addUserRolePayload) =>
+  submitAddUserRole = (payload: role.addUserRolePayload) =>
     this.apiService.postRequest('/admin/user/role/add', payload);
 
-  submitDeleteUserRole = (payload: users.deleteUserRolePayload) =>
+  submitDeleteUserRole = (payload: role.deleteUserRolePayload) =>
     this.apiService.postRequest('/admin/user/role/delete', payload);
 }

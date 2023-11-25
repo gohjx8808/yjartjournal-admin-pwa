@@ -34,14 +34,6 @@ declare namespace users {
     createdAt: string;
   }
 
-  interface userRole {
-    id: 1;
-    role: {
-      name: string;
-    };
-    createdAt: string;
-  }
-
   interface getUserListPayload {
     sortBy: sortOption;
     filter?: string;
@@ -96,17 +88,5 @@ declare namespace users {
   interface deleteUserDialogData {
     data: userData;
     onRefreshData: () => void;
-  }
-
-  interface deleteRoleDialogData extends userIdPayload {
-    data: userRole;
-  }
-
-  interface deleteUserRolePayload {
-    userRoleId: number;
-  }
-
-  interface addUserRolePayload extends userIdPayload {
-    roleId: number;
   }
 }

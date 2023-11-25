@@ -11,7 +11,7 @@ import { UserManagementApiService } from '../../api/user-management-api.service'
   styleUrls: ['./roles-table.component.scss'],
 })
 export class RolesTableComponent implements OnInit {
-  roles: users.userRole[] = [];
+  roles: role.userRole[] = [];
   @Input() userId!: number;
 
   constructor(
@@ -30,17 +30,17 @@ export class RolesTableComponent implements OnInit {
     {
       columnDef: 'id',
       header: 'ID',
-      cell: (element: users.userRole) => element.id,
+      cell: (element: role.userRole) => element.id,
     },
     {
       columnDef: 'roleName',
       header: 'Role',
-      cell: (element: users.userRole) => element.role.name,
+      cell: (element: role.userRole) => element.role.name,
     },
     {
       columnDef: 'createdAt',
       header: 'Created At',
-      cell: (element: users.userRole) =>
+      cell: (element: role.userRole) =>
         this.datePipe.transform(element.createdAt, 'YYYY-MM-dd'),
     },
   ];
@@ -59,8 +59,8 @@ export class RolesTableComponent implements OnInit {
     );
   };
 
-  openDeleteDialog = (data: users.userRole) => {
-    this.dialog.open<DeleteRoleDialogComponent, users.deleteRoleDialogData>(
+  openDeleteDialog = (data: role.userRole) => {
+    this.dialog.open<DeleteRoleDialogComponent, role.deleteRoleDialogData>(
       DeleteRoleDialogComponent,
       {
         data: {
