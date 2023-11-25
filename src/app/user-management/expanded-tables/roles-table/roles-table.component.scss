@@ -1,3 +1,5 @@
+@import '../../user-management.component.scss';
+
 .role-table {
   width: 100%;
 }
@@ -10,8 +12,4 @@
 .mat-column-actions {
   width: 150px;
   text-align: center;
-}
-
-.add-btn-container {
-  margin: 20px 30px 20px 0;
 }

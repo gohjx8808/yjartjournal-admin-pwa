@@ -1,3 +1,5 @@
+@import '../../user-management.component.scss';
+
 .address-table {
   min-width: 100%;
   overflow-x: scroll;
@@ -47,9 +49,4 @@
 
 .mat-column-tag {
   text-align: center;
-}
-
-.action-container {
-  flex-direction: row;
-  display: flex;
 }
