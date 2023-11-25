@@ -153,6 +153,7 @@ export class UserManagementComponent implements OnInit {
   onExpandTable = (user: users.userData) => {
     if (this.expandedUser === null || this.expandedUser !== user) {
       this.userManagementApiService.getUserRoleApi({ userId: user.id });
+      this.userManagementApiService.getUserAddressApi({ userId: user.id });
     }
     this.expandedUser = this.expandedUser === user ? null : user;
   };

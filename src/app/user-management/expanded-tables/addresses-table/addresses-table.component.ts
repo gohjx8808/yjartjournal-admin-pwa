@@ -1,18 +1,22 @@
 import { DatePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { EmptyPipe } from 'src/app/pipes/empty.pipe';
+import { UserManagementApiService } from '../../api/user-management-api.service';
 
 @Component({
   selector: 'app-addresses-table',
   templateUrl: './addresses-table.component.html',
   styleUrls: ['./addresses-table.component.scss'],
 })
-export class AddressesTableComponent {
-  @Input() addresses: users.userAddress[] = [];
+export class AddressesTableComponent implements OnInit {
+  @Input() userId!: number;
+
+  addressList: users.userAddress[] = [];
 
   constructor(
     private datePipe: DatePipe,
-    private emptyPipe: EmptyPipe
+    private emptyPipe: EmptyPipe,
+    private userManagementApiService: UserManagementApiService
   ) {}
 
   columns = [
@@ -81,4 +85,10 @@ export class AddressesTableComponent {
     },
   ];
   displayedColumns = this.columns.map(c => c.columnDef);
+
+  ngOnInit(): void {
+    this.userManagementApiService.getUserAddressList().subscribe(addresses => {
+      this.addressList = addresses;
+    });
+  }
 }
