@@ -1,5 +1,6 @@
 .address-table {
-  width: 100%;
+  min-width: 100%;
+  overflow-x: scroll;
 }
 
 .address-table-container {
@@ -15,12 +16,33 @@
   color: red;
 }
 
+.mat-column-receiver-name {
+  min-width: 200px;
+}
+
+.mat-column-receiver-phone {
+  min-width: 200px;
+}
+
+.mat-column-address-line-1 {
+  min-width: 200px;
+}
+
+.mat-column-address-line-2 {
+  min-width: 200px;
+}
+
+.mat-column-city {
+  min-width: 125px;
+}
+
 .mat-column-is-default {
   text-align: center;
 }
 
 .mat-column-created-at {
   text-align: center;
+  min-width: 130px;
 }
 
 .mat-column-tag {

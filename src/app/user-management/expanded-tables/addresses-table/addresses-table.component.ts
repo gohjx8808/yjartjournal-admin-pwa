@@ -26,23 +26,23 @@ export class AddressesTableComponent implements OnInit {
       cell: (element: users.userAddress) => element.id,
     },
     {
-      columnDef: 'receiverName',
+      columnDef: 'receiver-name',
       header: 'Receiver Name',
       cell: (element: users.userAddress) => element.receiverName,
     },
     {
-      columnDef: 'receiverPhone',
+      columnDef: 'receiver-phone',
       header: 'Receiver Phone Number',
       cell: (element: users.userAddress) =>
         `${element.receiverCountryCode} ${element.receiverPhoneNumber}`,
     },
     {
-      columnDef: 'addressLineOne',
+      columnDef: 'address-line-1',
       header: 'Address Line 1',
       cell: (element: users.userAddress) => element.addressLineOne,
     },
     {
-      columnDef: 'addressLineTwo',
+      columnDef: 'address-line-2',
       header: 'Address Line 2',
       cell: (element: users.userAddress) =>
         this.emptyPipe.transform(element.addressLineTwo),

@@ -21,7 +21,10 @@
         <ng-container *ngSwitchCase="'tag'">
           <th mat-header-cell *matHeaderCellDef>{{ column.header }}</th>
           <td mat-cell *matCellDef="let row">
-            <button mat-flat-button color="primary">
+            <button
+              mat-flat-button
+              color="primary"
+              *ngIf="column.cell(row); else emptyTag">
               {{ column.cell(row) }}
             </button>
           </td>
@@ -51,3 +54,5 @@
 <ng-template #notDefault>
   <mat-icon class="not-default-icon">close</mat-icon>
 </ng-template>
+
+<ng-template #emptyTag> - </ng-template>
