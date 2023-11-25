@@ -85,6 +85,7 @@ export class AddressesTableComponent implements OnInit {
     },
   ];
   displayedColumns = this.columns.map(c => c.columnDef);
+  displayedColumnsWithActions = [...this.displayedColumns, 'actions'];
 
   ngOnInit(): void {
     this.userManagementApiService.getUserAddressList().subscribe(addresses => {
