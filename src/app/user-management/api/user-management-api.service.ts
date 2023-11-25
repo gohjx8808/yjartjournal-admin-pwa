@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 export class UserManagementApiService {
   private userList = new Subject<users.userListReponse>();
   private userRoleList = new Subject<role.userRole[]>();
-  private userAddressList = new Subject<users.userAddress[]>();
+  private userAddressList = new Subject<address.userAddress[]>();
   constructor(private apiService: ApiService) {}
 
   getUserList = () => this.userList.asObservable();
@@ -29,7 +29,7 @@ export class UserManagementApiService {
 
   getUserAddressApi = (payload: users.userIdPayload) =>
     this.apiService
-      .postRequest<users.userAddress[]>('/admin/user/addresses', payload)
+      .postRequest<address.userAddress[]>('/admin/user/addresses', payload)
       .subscribe(data => {
         this.userAddressList.next(data.data);
       });

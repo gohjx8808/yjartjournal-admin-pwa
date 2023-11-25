@@ -11,7 +11,7 @@ import { UserManagementApiService } from '../../api/user-management-api.service'
 export class AddressesTableComponent implements OnInit {
   @Input() userId!: number;
 
-  addressList: users.userAddress[] = [];
+  addressList: address.userAddress[] = [];
 
   constructor(
     private datePipe: DatePipe,
@@ -23,64 +23,64 @@ export class AddressesTableComponent implements OnInit {
     {
       columnDef: 'id',
       header: 'ID',
-      cell: (element: users.userAddress) => element.id,
+      cell: (element: address.userAddress) => element.id,
     },
     {
       columnDef: 'receiver-name',
       header: 'Receiver Name',
-      cell: (element: users.userAddress) => element.receiverName,
+      cell: (element: address.userAddress) => element.receiverName,
     },
     {
       columnDef: 'receiver-phone',
       header: 'Receiver Phone Number',
-      cell: (element: users.userAddress) =>
+      cell: (element: address.userAddress) =>
         `${element.receiverCountryCode} ${element.receiverPhoneNumber}`,
     },
     {
       columnDef: 'address-line-1',
       header: 'Address Line 1',
-      cell: (element: users.userAddress) => element.addressLineOne,
+      cell: (element: address.userAddress) => element.addressLineOne,
     },
     {
       columnDef: 'address-line-2',
       header: 'Address Line 2',
-      cell: (element: users.userAddress) =>
+      cell: (element: address.userAddress) =>
         this.emptyPipe.transform(element.addressLineTwo),
     },
     {
       columnDef: 'postcode',
       header: 'Postcode',
-      cell: (element: users.userAddress) => element.postcode,
+      cell: (element: address.userAddress) => element.postcode,
     },
     {
       columnDef: 'city',
       header: 'City',
-      cell: (element: users.userAddress) => element.city,
+      cell: (element: address.userAddress) => element.city,
     },
     {
       columnDef: 'state',
       header: 'State',
-      cell: (element: users.userAddress) => element.state.name,
+      cell: (element: address.userAddress) => element.state.name,
     },
     {
       columnDef: 'country',
       header: 'Country',
-      cell: (element: users.userAddress) => element.country,
+      cell: (element: address.userAddress) => element.country,
     },
     {
       columnDef: 'is-default',
       header: 'Is Default',
-      cell: (element: users.userAddress) => element.isDefault,
+      cell: (element: address.userAddress) => element.isDefault,
     },
     {
       columnDef: 'tag',
       header: 'Tag',
-      cell: (element: users.userAddress) => element.tag,
+      cell: (element: address.userAddress) => element.tag,
     },
     {
       columnDef: 'created-at',
       header: 'Created At',
-      cell: (element: users.userAddress) =>
+      cell: (element: address.userAddress) =>
         this.datePipe.transform(element.createdAt, 'YYYY-MM-dd'),
     },
   ];
