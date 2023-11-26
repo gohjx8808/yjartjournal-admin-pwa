@@ -16,4 +16,34 @@ declare namespace address {
     tag: string;
     createdAt: string;
   }
+
+  interface addressFormOptions {
+    tags: string[];
+    states: globalType.optionData[];
+  }
+
+  interface addEditDialogData {
+    actionType: 'Add' | 'Edit';
+    data?: userAddress;
+  }
+
+  interface addAddressPayload {
+    receiverName: string;
+    receiverCountryCode: string;
+    receiverPhoneNumber: string;
+    addressLineOne: string;
+    addressLineTwo?: string;
+    postcode: string;
+    city: string;
+    state: globalType.optionData;
+    country: string;
+    isDefault: boolean;
+    tag?: string;
+  }
+
+  interface deleteAddressPayload {
+    addressId: number;
+  }
+
+  type updateAddressPayload = addAddressPayload & deleteAddressPayload;
 }

@@ -57,4 +57,18 @@ export class UserManagementApiService {
 
   submitDeleteUserRole = (payload: role.deleteUserRolePayload) =>
     this.apiService.postRequest('/admin/user/role/delete', payload);
+
+  getAddressFormOptions = () =>
+    this.apiService.getRequest<address.addressFormOptions>(
+      '/admin/user/address/form-options'
+    );
+
+  submitAddAddress = (payload: address.addAddressPayload) =>
+    this.apiService.postRequest('/admin/user/address/add', payload);
+
+  submitUpdateAddress = (payload: address.updateAddressPayload) =>
+    this.apiService.postRequest('/admin/user/address/update', payload);
+
+  submitDeleteAddress = (payload: address.deleteAddressPayload) =>
+    this.apiService.postRequest('/admin/user/address/delete', payload);
 }
