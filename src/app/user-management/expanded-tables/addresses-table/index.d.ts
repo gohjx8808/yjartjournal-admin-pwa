@@ -24,10 +24,11 @@ declare namespace address {
 
   interface addEditDialogData {
     actionType: globalType.dialogActionType;
+    userId: number;
     data?: userAddress;
   }
 
-  interface addAddressPayload {
+  interface addAddressPayload extends users.userIdPayload {
     receiverName: string;
     receiverCountryCode: string;
     receiverPhoneNumber: string;

@@ -105,6 +105,7 @@ export class AddressesTableComponent implements OnInit {
       {
         data: {
           actionType,
+          userId: this.userId,
           data,
         },
       }
