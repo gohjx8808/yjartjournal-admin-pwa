@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>Delete Address</h1>
+<mat-dialog-content class="mat-typography">
+  <h3>Are you sure you wish to delete this address?</h3>
+  <p>
+    <strong> ID: {{ dialogData.data.id }} </strong>
+  </p>
+  <h3>This CANNOT be undone!</h3>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close [disabled]="isSubmitting">Cancel</button>
+  <button
+    mat-button
+    cdkFocusInitial
+    (click)="onConfirm()"
+    [disabled]="isSubmitting">
+    <mat-icon *ngIf="isSubmitting">
+      <mat-spinner diameter="18"></mat-spinner>
+    </mat-icon>
+    Confirm
+  </button>
+</mat-dialog-actions>

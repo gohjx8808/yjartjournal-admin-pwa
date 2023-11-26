@@ -4,6 +4,7 @@ import { EmptyPipe } from 'src/app/pipes/empty.pipe';
 import { UserManagementApiService } from '../../api/user-management-api.service';
 import { MatDialog } from '@angular/material/dialog';
 import { AddEditAddressDialogComponent } from './dialogs/add-edit-address-dialog/add-edit-address-dialog/add-edit-address-dialog.component';
+import { DeleteAddressDialogComponent } from './dialogs/delete-address-dialog/delete-address-dialog/delete-address-dialog.component';
 
 @Component({
   selector: 'app-addresses-table',
@@ -105,6 +106,18 @@ export class AddressesTableComponent implements OnInit {
       {
         data: {
           actionType,
+          userId: this.userId,
+          data,
+        },
+      }
+    );
+  }
+
+  openDeleteDialog(data: address.userAddress) {
+    this.dialog.open<DeleteAddressDialogComponent, address.deleteDialogData>(
+      DeleteAddressDialogComponent,
+      {
+        data: {
           userId: this.userId,
           data,
         },

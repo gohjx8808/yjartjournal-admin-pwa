@@ -54,6 +54,7 @@ import { DeleteRoleDialogComponent } from './user-management/expanded-tables/rol
 import { AddRoleDialogComponent } from './user-management/expanded-tables/roles-table/dialogs/add-role-dialog/add-role-dialog.component';
 import { AddEditAddressDialogComponent } from './user-management/expanded-tables/addresses-table/dialogs/add-edit-address-dialog/add-edit-address-dialog/add-edit-address-dialog.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { DeleteAddressDialogComponent } from './user-management/expanded-tables/addresses-table/dialogs/delete-address-dialog/delete-address-dialog/delete-address-dialog.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     DeleteRoleDialogComponent,
     AddRoleDialogComponent,
     AddEditAddressDialogComponent,
+    DeleteAddressDialogComponent,
   ],
   imports: [
     BrowserModule,

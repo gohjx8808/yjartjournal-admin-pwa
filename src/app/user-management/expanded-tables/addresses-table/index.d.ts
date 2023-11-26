@@ -47,4 +47,8 @@ declare namespace address {
   }
 
   type updateAddressPayload = addAddressPayload & deleteAddressPayload;
+
+  interface deleteDialogData extends users.userIdPayload {
+    data: userAddress;
+  }
 }
