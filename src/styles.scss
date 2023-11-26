@@ -104,3 +104,13 @@ body {
 .edit-icon {
   color: goldenrod;
 }
+
+.space-between-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}

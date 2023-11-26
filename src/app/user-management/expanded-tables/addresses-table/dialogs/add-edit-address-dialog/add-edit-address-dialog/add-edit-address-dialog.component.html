@@ -1,1 +1,194 @@
-<p>add-edit-address-dialog works!</p>
+<h1 mat-dialog-title>{{ dialogData.actionType }} Address</h1>
+<form [formGroup]="addEditAddressForm" (ngSubmit)="onSubmit()">
+  <mat-dialog-content class="dialog-content">
+    <section>
+      <h3><strong>Receiver Details</strong></h3>
+      <div class="input-row-container">
+        <mat-form-field
+          color="accent"
+          appearance="outline"
+          class="input-100-container"
+          [class.error-msg-container]="
+            addEditAddressForm.controls['receiverName'].touched
+          ">
+          <mat-label>Full Name</mat-label>
+          <input matInput formControlName="receiverName" />
+          <mat-error
+            *ngIf="
+              addEditAddressForm.controls['receiverName'].errors?.['required']
+            ">
+            Full name is required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field
+          color="accent"
+          appearance="outline"
+          class="input-40-container"
+          [class.error-msg-container]="
+            addEditAddressForm.controls['receiverCountryCode'].touched
+          ">
+          <mat-label>Country Code</mat-label>
+          <span matPrefix class="input-prefix">+</span>
+          <input matInput type="number" formControlName="receiverCountryCode" />
+          <mat-error
+            *ngIf="
+              addEditAddressForm.controls['receiverCountryCode'].errors?.[
+                'required'
+              ]
+            ">
+            Country code is required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field
+          color="accent"
+          appearance="outline"
+          class="input-56-container"
+          [class.error-msg-container]="
+            addEditAddressForm.controls['receiverPhoneNumber'].touched
+          ">
+          <mat-label>Phone Number</mat-label>
+          <input matInput type="number" formControlName="receiverPhoneNumber" />
+          <mat-error
+            *ngIf="
+              addEditAddressForm.controls['receiverPhoneNumber'].errors?.[
+                'required'
+              ]
+            ">
+            Phone number is required.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </section>
+    <section>
+      <h3><strong>Receiver Address</strong></h3>
+      <div class="input-row-container">
+        <mat-form-field
+          color="accent"
+          appearance="outline"
+          class="input-100-container"
+          [class.error-msg-container]="
+            addEditAddressForm.controls['addressLineOne'].touched
+          ">
+          <mat-label>Address Line 1</mat-label>
+          <input matInput formControlName="addressLineOne" />
+          <mat-error
+            *ngIf="
+              addEditAddressForm.controls['addressLineOne'].errors?.['required']
+            ">
+            Address line 1 is required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field
+          color="accent"
+          appearance="outline"
+          class="input-100-container spacing"
+          [class.error-msg-container]="
+            addEditAddressForm.controls['addressLineTwo'].touched
+          ">
+          <mat-label>Address Line 2</mat-label>
+          <input matInput formControlName="addressLineTwo" />
+        </mat-form-field>
+        <mat-form-field
+          color="accent"
+          appearance="outline"
+          class="input-48-container"
+          [class.error-msg-container]="
+            addEditAddressForm.controls['postcode'].touched
+          ">
+          <mat-label>Postcode</mat-label>
+          <input matInput type="number" formControlName="postcode" />
+          <mat-error
+            *ngIf="
+              addEditAddressForm.controls['postcode'].errors?.['required']
+            ">
+            Postcode is required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field
+          color="accent"
+          appearance="outline"
+          class="input-48-container"
+          [class.error-msg-container]="
+            addEditAddressForm.controls['city'].touched
+          ">
+          <mat-label>City</mat-label>
+          <input matInput formControlName="city" />
+          <mat-error
+            *ngIf="addEditAddressForm.controls['city'].errors?.['required']">
+            City is required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field
+          color="accent"
+          appearance="outline"
+          class="input-48-container"
+          [class.error-msg-container]="
+            addEditAddressForm.controls['state'].touched
+          ">
+          <mat-label>State</mat-label>
+          <mat-select formControlName="state">
+            <mat-option
+              *ngFor="let state of formOptions.states"
+              [value]="state.id">
+              {{ state.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="addEditAddressForm.controls['state'].errors?.['required']">
+            State is required.
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field
+          color="accent"
+          appearance="outline"
+          class="input-48-container"
+          [class.error-msg-container]="
+            addEditAddressForm.controls['country'].touched
+          ">
+          <mat-label>Country</mat-label>
+          <input matInput formControlName="country" readonly />
+          <mat-error
+            *ngIf="addEditAddressForm.controls['country'].errors?.['required']">
+            Country is required.
+          </mat-error>
+        </mat-form-field>
+        <mat-checkbox formControlName="isDefault">
+          Is Default Address
+        </mat-checkbox>
+        <mat-error
+          *ngIf="addEditAddressForm.controls['isDefault'].errors?.['required']">
+          Is default address is required.
+        </mat-error>
+        <div class="input-48-container flex-row tag-container">
+          <h4 class="tag-title"><strong>Address Tag</strong></h4>
+          <mat-button-toggle-group
+            multiple
+            formControlName="tag"
+            aria-label="Address Tag"
+            (change)="onTagChange($event)">
+            <mat-button-toggle
+              *ngFor="let tag of formOptions.tags"
+              [value]="tag">
+              {{ tag }}
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+        </div>
+      </div>
+    </section>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close [disabled]="isSubmitting">
+      Cancel
+    </button>
+    <button
+      mat-button
+      cdkFocusInitial
+      type="submit"
+      [disabled]="!addEditAddressForm.valid || isSubmitting">
+      <mat-icon *ngIf="isSubmitting">
+        <mat-spinner diameter="18"></mat-spinner>
+      </mat-icon>
+      Submit
+    </button>
+  </mat-dialog-actions>
+</form>

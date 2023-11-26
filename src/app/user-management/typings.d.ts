@@ -34,7 +34,7 @@ declare namespace users {
 
   interface addEditDialogData {
     data?: userData;
-    actionType: 'Add' | 'Edit';
+    actionType: globalType.dialogActionType;
     onRefreshData: () => void;
   }
 

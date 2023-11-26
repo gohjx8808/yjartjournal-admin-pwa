@@ -58,7 +58,7 @@ declare namespace yarnStock {
 
   interface addEditYarnStockDialogData {
     onRefreshData: () => void;
-    actionType: 'Add' | 'Edit';
+    actionType: globalType.dialogActionType;
     data?: yarnStockData;
   }
 

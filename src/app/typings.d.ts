@@ -12,4 +12,6 @@ declare namespace globalType {
   interface checkboxOption extends optionData {
     checked: boolean;
   }
+
+  type dialogActionType = 'Add' | 'Edit';
 }

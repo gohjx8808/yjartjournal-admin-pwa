@@ -23,7 +23,7 @@ declare namespace address {
   }
 
   interface addEditDialogData {
-    actionType: 'Add' | 'Edit';
+    actionType: globalType.dialogActionType;
     data?: userAddress;
   }
 

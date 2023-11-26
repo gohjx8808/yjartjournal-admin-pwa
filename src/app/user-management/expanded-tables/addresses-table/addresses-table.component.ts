@@ -2,6 +2,8 @@ import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { EmptyPipe } from 'src/app/pipes/empty.pipe';
 import { UserManagementApiService } from '../../api/user-management-api.service';
+import { MatDialog } from '@angular/material/dialog';
+import { AddEditAddressDialogComponent } from './dialogs/add-edit-address-dialog/add-edit-address-dialog/add-edit-address-dialog.component';
 
 @Component({
   selector: 'app-addresses-table',
@@ -16,7 +18,8 @@ export class AddressesTableComponent implements OnInit {
   constructor(
     private datePipe: DatePipe,
     private emptyPipe: EmptyPipe,
-    private userManagementApiService: UserManagementApiService
+    private userManagementApiService: UserManagementApiService,
+    private dialog: MatDialog
   ) {}
 
   columns = [
@@ -91,5 +94,20 @@ export class AddressesTableComponent implements OnInit {
     this.userManagementApiService.getUserAddressList().subscribe(addresses => {
       this.addressList = addresses;
     });
+  }
+
+  openAddEditDialog(
+    actionType: globalType.dialogActionType,
+    data?: address.userAddress
+  ) {
+    this.dialog.open<AddEditAddressDialogComponent, address.addEditDialogData>(
+      AddEditAddressDialogComponent,
+      {
+        data: {
+          actionType,
+          data,
+        },
+      }
+    );
   }
 }

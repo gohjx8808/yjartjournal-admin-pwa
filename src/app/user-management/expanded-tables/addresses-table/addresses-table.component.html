@@ -1,6 +1,10 @@
 <div class="address-table-container">
   <div class="add-btn-container">
-    <button mat-flat-button aria-label="Add address" class="add-btn">
+    <button
+      mat-flat-button
+      aria-label="Add address"
+      class="add-btn"
+      (click)="openAddEditDialog('Add')">
       <span class="add-icon">Add Address</span>
       <mat-icon class="add-icon">add</mat-icon>
     </button>
@@ -53,7 +57,7 @@
         <button
           mat-icon-button
           aria-label="Edit address"
-          (click)="$event.stopPropagation()">
+          (click)="openAddEditDialog('Edit', element)">
           <mat-icon class="edit-icon">edit</mat-icon>
         </button>
         <button
