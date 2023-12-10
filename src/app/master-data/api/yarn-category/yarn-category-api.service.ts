@@ -9,7 +9,11 @@ export class YarnCategoryApiService {
   private yarnCategories: BehaviorSubject<globalType.optionData[]> =
     new BehaviorSubject<globalType.optionData[]>([]);
 
-  constructor(private apiService: ApiService) {}
+  private masterDataUrl: string;
+
+  constructor(private apiService: ApiService) {
+    this.masterDataUrl = apiService.masterDataApiUrl;
+  }
 
   getYarnCategories() {
     return this.yarnCategories.asObservable();
@@ -17,27 +21,29 @@ export class YarnCategoryApiService {
 
   getAllYarnCategoryApi() {
     return this.apiService
-      .getRequest<globalType.optionData[]>('/stocks/yarn-categories')
+      .getRequest<globalType.optionData[]>(
+        `${this.masterDataUrl}/yarn-categories`
+      )
       .subscribe(categories => this.yarnCategories.next(categories.data));
   }
 
   addYarnCategory(payload: masterData.addMasterDataPayload) {
     return this.apiService.postRequest(
-      '/stocks/yarn-categories/add-new',
+      `${this.masterDataUrl}/yarn-categories/add-new`,
       payload
     );
   }
 
   updateYarnCategory(payload: masterData.updateMasterDataPayload) {
     return this.apiService.postRequest(
-      '/stocks/yarn-categories/update',
+      `${this.masterDataUrl}/yarn-categories/update`,
       payload
     );
   }
 
   deleteYarnCategory(payload: masterData.deleteMasterDataPayload) {
     return this.apiService.postRequest(
-      '/stocks/yarn-categories/delete',
+      `${this.masterDataUrl}/yarn-categories/delete`,
       payload
     );
   }

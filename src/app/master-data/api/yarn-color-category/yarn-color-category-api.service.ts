@@ -9,7 +9,11 @@ export class YarnColorCategoryApiService {
   private yarnColorCategories: BehaviorSubject<globalType.optionData[]> =
     new BehaviorSubject<globalType.optionData[]>([]);
 
-  constructor(private apiService: ApiService) {}
+  private masterDataUrl: string;
+
+  constructor(private apiService: ApiService) {
+    this.masterDataUrl = apiService.masterDataApiUrl;
+  }
 
   getYarnColorCategories() {
     return this.yarnColorCategories.asObservable();
@@ -17,7 +21,9 @@ export class YarnColorCategoryApiService {
 
   getAllYarnColorCategoryApi() {
     return this.apiService
-      .getRequest<globalType.optionData[]>('/stocks/yarn-color-categories')
+      .getRequest<globalType.optionData[]>(
+        `${this.masterDataUrl}/yarn-color-categories`
+      )
       .subscribe(data => {
         this.yarnColorCategories.next(data.data);
       });
@@ -25,21 +31,21 @@ export class YarnColorCategoryApiService {
 
   addYarnColorCategory(payload: masterData.addMasterDataPayload) {
     return this.apiService.postRequest(
-      '/stocks/yarn-color-categories/add-new',
+      `${this.masterDataUrl}/yarn-color-categories/add-new`,
       payload
     );
   }
 
   updateYarnColorCategory(payload: masterData.updateMasterDataPayload) {
     return this.apiService.postRequest(
-      '/stocks/yarn-color-categories/update',
+      `${this.masterDataUrl}/yarn-color-categories/update`,
       payload
     );
   }
 
   deleteYarnColorCategory(payload: masterData.deleteMasterDataPayload) {
     return this.apiService.postRequest(
-      '/stocks/yarn-color-categories/delete',
+      `${this.masterDataUrl}/yarn-color-categories/delete`,
       payload
     );
   }

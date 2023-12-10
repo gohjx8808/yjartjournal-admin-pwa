@@ -12,6 +12,8 @@ interface Response<T> {
 export class ApiService {
   constructor(private http: HttpClient) {}
 
+  masterDataApiUrl = '/admin/master-data';
+
   getRequest<T>(url: string, auth = true) {
     const token = localStorage.getItem('TOKEN');
     let headers = {};
