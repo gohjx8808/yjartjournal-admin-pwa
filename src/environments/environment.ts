@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: 'https://yjartjournal-api.vercel.app',
+  apiUrl: 'https://yjartjournal-api.onrender.com',
 };
